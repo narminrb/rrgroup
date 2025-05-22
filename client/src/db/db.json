@@ -1,0 +1,71 @@
+{
+    "instaswipers": [
+      { "id": 1,
+        "image": { "url": "/assets/mission1.svg" } ,
+      "name":"Dəyər qazandırmaq",
+      "desc":"Davamlı rəqabət üstünlükləri yaratmaqla müştərilərimizə dəyər qazandırmaq "
+    },
+      { "id": 2,
+       "image": { "url": "/assets/mission3.svg" },
+      "name":"Çoxşaxəli sahələr",
+      "desc":" Əlimizdən gələnin ən yaxşısını etməyə səy göstəririk;"
+    },
+       { "id": 3,
+       "image": { "url": "/assets/mission2.svg" },
+      "name":"Beynəlxalq rəqabət",
+      "desc":"İxrac potensialının güclənməsinə töhfə verdiyimizi hesab edirik." },
+      { "id": 4,
+       "image": { "url": "/assets/mission1.svg" },
+      "name":"Davamlı rəqabət",
+      "desc":"Davamlı rəqabət üstünlükləri yaratmaqla müştərilərimizə dəyər qazandırmaq " }
+    ],
+    "aboutvalues": [
+      { "id": 9,
+        "image": { "url": "/assets/value1.svg" } ,
+      "name":"Korporativ idarəetmə",
+      "desc":"Fəaliyyətimizin effektivliyini və səmərəliyini daim artırmaq"
+    },
+      { "id": 10,
+       "image": { "url": "/assets/value2.svg" },
+      "name":"Sadiqlik",
+      "desc":"Dəyərlərimizə tam sadiq qalmaq, şirkətə loyallığı təmin etmək"
+    },
+       { "id": 11,
+       "image": { "url": "/assets/value3.svg" },
+      "name":"Peşəkarlıq",
+      "desc":"Gördüyümüz bütün işlərə müasir peşəkar təcrübələrə əsaslanmaqla yanaşmaq" },
+      { "id": 12,
+       "image": { "url": "/assets/value4.svg" },
+      "name":"Vətənpərvərlik",
+      "desc":"ölkənin maraqlarını biznes maraqlarımızdan daim üstün tutmaq" }
+      ,
+       { "id": 13,
+       "image": { "url": "/assets/value5.svg" },
+      "name":"Məsuliyyətli biznes",
+      "desc":"qabaqcıl biznes etikasına tam uyğun fəaliyyət göstərmək;" },
+      { "id": 14,
+       "image": { "url": "/assets/value6.svg" },
+      "name":"Müştəriyönlülük",
+      "desc":"ədalətli qiymətlərlə məhsul istehsal etmək və xidmətlər göstərmək;" }
+    ],
+    "certificates": [
+  { "id": 5, "image": { "url": "/assets/cert1.svg" } },
+  { "id": 6, "image": { "url": "/assets/cert2.svg" } },
+  { "id": 7, "image": { "url": "/assets/cert3.svg" } },
+  { "id": 8, "image": { "url": "/assets/cert1.svg" } }
+],
+"aboutboards":[ {
+    "id": 20,
+    "image": { "url": "/assets/value6.svg" },
+    "name": "Qarayeva Taliyyə İbrahim qızı 'Qarabağ Aqro 44' MMC-nin direktoru"
+  },
+  {
+    "id": 21,
+    "image": { "url": "/assets/value6.svg" },
+    "name": "Qarayeva Taliyyə İbrahim qızı 'Qarabağ Aqro 44' MMC-nin direktoru"
+  }
+]
+
+
+  }
+  
