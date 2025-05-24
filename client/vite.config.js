@@ -13,6 +13,7 @@ export default defineConfig({
          include: "**/*.svg",
         }),
   ],
+  base: process.env.VITE_BASE_PATH || "/rrgroup",
   resolve: {
     alias: {
     "@": path.resolve(__dirname, "./src"),
