@@ -56,16 +56,163 @@
 ],
 "aboutboards":[ {
     "id": 20,
-    "image": { "url": "/assets/value6.svg" },
-    "name": "Qarayeva Taliyyə İbrahim qızı 'Qarabağ Aqro 44' MMC-nin direktoru"
+    "image": { "url": "/assets/board1.svg" },
+    "name": "Quliyev Fizuli Əli oğlu 'RR İnvestment' MMC-nin direktoru",
+    "desc":"Quliyev Fizuli Əli oğlu 13 mart 1963-cü ildə Tovuz rayonunda anadan olmuşdur. 1984-1989 cu illərdə Ukraynanın Sevastopol cihazqayırma institutunda təhsil almışdır. 2002-ci ilədək Gəncə cihazqayırma zavodunda sahə rəisi, sex rəisi vəzifələrində çalışmışdır. 2002-2011 illərdə biznes sahəsində fəaliyyətini uğurla davam etdirmişdir. 2011-ci ildən bir çox tanınmış şirkətlərdə direktor vəzifəsində çalışmışdır. 35 ilə yaxın iş fəaliyyəti dövründə bir çox rəhbər vəzifələri icra etmişdir. 2024-cü ildən 'RR İnvestment' MMC-nin direktorudur."
   },
   {
     "id": 21,
-    "image": { "url": "/assets/value6.svg" },
-    "name": "Qarayeva Taliyyə İbrahim qızı 'Qarabağ Aqro 44' MMC-nin direktoru"
+    "image": { "url": "/assets/board2.svg" },
+    "name": "Qarayeva Taliyyə İbrahim qızı 'Qarabağ Aqro 44' MMC-nin direktoru",
+    "desc":"Quliyev Fizuli Əli oğlu 13 mart 1963-cü ildə Tovuz rayonunda anadan olmuşdur. 1984-1989 cu illərdə Ukraynanın Sevastopol cihazqayırma institutunda təhsil almışdır. 2002-ci ilədək Gəncə cihazqayırma zavodunda sahə rəisi, sex rəisi vəzifələrində çalışmışdır. 2002-2011 illərdə biznes sahəsində fəaliyyətini uğurla davam etdirmişdir. 2011-ci ildən bir çox tanınmış şirkətlərdə direktor vəzifəsində çalışmışdır. 35 ilə yaxın iş fəaliyyəti dövründə bir çox rəhbər vəzifələri icra etmişdir. 2024-cü ildən 'RR İnvestment' MMC-nin direktorudur."
+
+  }
+],
+"chooseus":[ {
+    "id": 22,
+    "image": { "url": "/assets/choose.svg" },
+    "name": "Peşəkarlıq və Təcrübə",
+    "desc":"15 ildən artıq təcrübəmizlə tikinti sektorunda etibarlı tərəfdaş olmağı bacarmışıq. Hər layihədə yüksək keyfiyyət və dəqiqliklə fərqlənirik."
+  },
+  {
+    "id": 23,
+    "image": { "url": "/assets/choose.svg" },
+    "name": "Vətənə Dəstək Missiyası",
+    "desc":"Biz yalnız tikmirik – biz Azərbaycanın gələcəyini qururuq. Qarabağ və digər regionlarda həyata keçirdiyimiz layihələrlə ölkəmizin inkişafına töhfə veririk."
+
+  }, {
+    "id": 24,
+    "image": { "url": "/assets/choose.svg" },
+    "name": "Genişmiqyaslı Layihələr",
+    "desc":"Yaşayış komplekslərindən sənaye obyektlərinə qədər müxtəlif sahələrdə uğurla reallaşdırdığımız layihələr müştərilərimizin bizə olan etibarının göstəricisidir."
+  },
+  {
+    "id": 25,
+    "image": { "url": "/assets/choose.svg" },
+    "name": "Müştəri Məmnuniyyəti Prioritetimizdir",
+    "desc":"Hər bir müştəri ilə şəffaf və etibarlı əməkdaşlıq qururuq. Göstərdiyimiz xidmətlərdə məmnuniyyət səviyyəsi 90%-dən yüksəkdir."
+
+  }
+],
+"projectcards":[
+  {
+    "id": 26,
+    "image": { "url": "/assets/projpage1.svg" },
+    "name": "Bakıda Ticarət və Logistika mərkəzi",
+    "desc": "'GreenHill Residence' layihəsi, müasir yaşayış standartlarına cavab verən, enerji effektivliyi və dayanıqlı memarlıq prinsiplərinə əsaslanan bir kompleksdir",
+    "date": "19.10.12",
+    "customer": "Grotesk MMC",
+    "context": "<p>İstifadə olunan materiallar və texnologiyalar:</p><ul><li>Beton və dəmir konstruksiyalar: C35 sinifli beton və B500C tipli armaturla təmin olunmuşdur.</li><li>İzolyasiya: Alman istehsalı olan \"Knauf\" markasının istilik və səs izolyasiya materialları istifadə olunmuşdur.</li><li>Fasad: İqlimə davamlı və nəfəs alan ventilasiya olunan fasad sistemi tətbiq edilmişdir.</li></ul>"
+
+
+
+  },
+  {
+    "id": 27,
+    "image": { "url": "/assets/projpage2.svg" },
+    "name": "Ağdam rayonunun Xıdırlı kəndinin su təchizatı ",
+    "desc":"'GreenHill Residence' layihəsi, müasir yaşayış standartlarına cavab verən, enerji effektivliyinə əsaslanır"
+  },
+  {
+    "id": 28,
+    "image": { "url": "/assets/projpage2.svg" },
+    "name": "Ağdam rayonunun Xıdırlı kəndinin su təchizatı ",
+    "desc":"'GreenHill Residence' layihəsi, müasir yaşayış standartlarına cavab verən, enerji effektivliyinə əsaslanır"
+  },
+  {
+    "id": 29,
+    "image": { "url": "/assets/projpage3.svg" },
+    "name": "Ağdam rayonunun Xıdırlı kəndinin su təchizatı ",
+    "desc":"'GreenHill Residence' layihəsi, müasir yaşayış standartlarına cavab verən, enerji effektivliyinə əsaslanır"
+  },
+  {
+    "id": 30,
+    "image": { "url": "/assets/projpage1.svg" },
+    "name": "Ağdam rayonunun Xıdırlı kəndinin su təchizatı ",
+    "desc":"'GreenHill Residence' layihəsi, müasir yaşayış standartlarına cavab verən, enerji effektivliyinə əsaslanır"
+  },
+  {
+    "id": 31,
+    "image": { "url": "/assets/projpage2.svg" },
+    "name": "Ağdam rayonunun Xıdırlı kəndinin su təchizatı ",
+    "desc":"'GreenHill Residence' layihəsi, müasir yaşayış standartlarına cavab verən, enerji effektivliyinə əsaslanır"
+  },
+  {
+    "id": 32,
+    "image": { "url": "/assets/projpage3.svg" },
+    "name": "Ağdam rayonunun Xıdırlı kəndinin su təchizatı ",
+    "desc":"'GreenHill Residence' layihəsi, müasir yaşayış standartlarına cavab verən, enerji effektivliyinə əsaslanır"
+  }
+],
+"newscards":[
+  {
+    "id": 33,
+    "image": { "url": "/assets/news1.svg" },
+    "name": "Qida Təhlükəsizlik Formu",
+    "desc": "18 iyul Milla süd emalı zavodunda qida təhlükəsizlik formu keçirilib.",
+    "context": "Fəaliyyətə başladığı gündən etibarən işğaldan azad olunmuş ərazilərdə yenidənqurma işləri ilə məşğul olan 'Qarabağ Aqro 44'MMC bu dəfə öz  layihə və gələcək planlarını COP29 çərçivəsində göstərib. 20 Noyabr COP29 Yaşıl zonada 'Sürdürülebilir Gelecek Platformu' pavilyonunda təqdimat keçirilib. Azərbaycan-Türkiyə İş Adamları (ATİB) İdarə heyətinin üzvü 'Qarabağ Aqro 44'MMC-nin  layihə rəhbəri Ərəstun Qarayev işğaldan azad olunmuş Qarabağ iqtisadi rayonunda dayanıqlı kənd təsərrüfatı fəaliyyəti barədə qonaqlara təqdimat edib."
+
+  },
+  {
+    "id": 34,
+    "image": { "url": "/assets/news2.svg" },
+    "name": "Anım Günü",
+    "desc":"18 iyul Milla süd emalı zavodunda karyera günü keçirilib",
+    "context": "Fəaliyyətə başladığı gündən etibarən işğaldan azad olunmuş ərazilərdə yenidənqurma işləri ilə məşğul olan 'Qarabağ Aqro 44'MMC bu dəfə öz  layihə və gələcək planlarını COP29 çərçivəsində göstərib. 20 Noyabr COP29 Yaşıl zonada 'Sürdürülebilir Gelecek Platformu' pavilyonunda təqdimat keçirilib. Azərbaycan-Türkiyə İş Adamları (ATİB) İdarə heyətinin üzvü 'Qarabağ Aqro 44'MMC-nin  layihə rəhbəri Ərəstun Qarayev işğaldan azad olunmuş Qarabağ iqtisadi rayonunda dayanıqlı kənd təsərrüfatı fəaliyyəti barədə qonaqlara təqdimat edib."
+  },
+  {
+    "id": 35,
+    "image": { "url": "/assets/news3.svg" },
+    "name": "Cənab Prezdentin ad günü  ",
+    "desc":"Cənab prezident İlham Əliyevin ad günü qeyd olunub."
+  },
+  {
+    "id": 36,
+    "image": { "url": "/assets/news3.svg" },
+    "name": "Cənab Prezdentin ad günü ",
+    "desc":"Cənab prezident İlham Əliyevin ad günü qeyd olunub."
+  },
+  {
+    "id": 37,
+    "image": { "url": "/assets/news1.svg" },
+    "name": "MMC COP29 ",
+    "desc":"18 iyul Milla süd emalı zavodunda qida təhlükəsizlik formu keçirilib."
+  },
+  {
+    "id": 38,
+    "image": { "url": "/assets/news2.svg" },
+    "name": "Anım Günü ",
+    "desc":"18 iyul Milla süd emalı zavodunda karyera günü keçirilib"
+  }
+],
+"newsswip": [
+  { "id": 39, "image": { "url": "/assets/newsswip1.svg" } },
+  { "id": 40, "image": { "url": "/assets/newsswip2.svg" } },
+  { "id": 41, "image": { "url": "/assets/newsswip1.svg" } },
+  { "id": 42, "image": { "url": "/assets/newsswip2.svg" } }
+],
+"ksms":[
+  {
+    "id": 43,
+    "image": { "url": "/assets/ksm1.svg" },
+    "name": "KSM Siyasətimiz",
+    "desc": "RR Group of Companies-in fəaliyyətinin əsasını yalnız qazanc əldə etmək təşkil etmir.",
+    "context": "Fəaliyyətə başladığı gündən etibarən işğaldan azad olunmuş ərazilərdə yenidənqurma işləri ilə məşğul olan 'Qarabağ Aqro 44'MMC bu dəfə öz  layihə və gələcək planlarını COP29 çərçivəsində göstərib. 20 Noyabr COP29 Yaşıl zonada 'Sürdürülebilir Gelecek Platformu' pavilyonunda təqdimat keçirilib. Azərbaycan-Türkiyə İş Adamları (ATİB) İdarə heyətinin üzvü 'Qarabağ Aqro 44'MMC-nin  layihə rəhbəri Ərəstun Qarayev işğaldan azad olunmuş Qarabağ iqtisadi rayonunda dayanıqlı kənd təsərrüfatı fəaliyyəti barədə qonaqlara təqdimat edib."
+
+  },
+  {
+    "id": 44,
+    "image": { "url": "/assets/ksm2.svg" },
+    "name": "KSM konsepsiyası",
+    "desc":"RR Group of Companies-in fəaliyyətinin əsasını yalnız qazanc əldə etmək təşkil etmir.",
+    "context": "Fəaliyyətə başladığı gündən etibarən işğaldan azad olunmuş ərazilərdə yenidənqurma işləri ilə məşğul olan 'Qarabağ Aqro 44'MMC bu dəfə öz  layihə və gələcək planlarını COP29 çərçivəsində göstərib. 20 Noyabr COP29 Yaşıl zonada 'Sürdürülebilir Gelecek Platformu' pavilyonunda təqdimat keçirilib. Azərbaycan-Türkiyə İş Adamları (ATİB) İdarə heyətinin üzvü 'Qarabağ Aqro 44'MMC-nin  layihə rəhbəri Ərəstun Qarayev işğaldan azad olunmuş Qarabağ iqtisadi rayonunda dayanıqlı kənd təsərrüfatı fəaliyyəti barədə qonaqlara təqdimat edib."
+  },
+  {
+    "id": 45,
+    "image": { "url": "/assets/ksm3.svg" },
+    "name": "Tədbirlər  ",
+    "desc":"RR Group of Companies-in fəaliyyətinin əsasını yalnız qazanc əldə etmək təşkil etmir."
   }
 ]
-
-
   }
   

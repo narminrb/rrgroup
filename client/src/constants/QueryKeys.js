@@ -13,5 +13,10 @@ export const QueryKeys = {
     CERTIFICATES:"certificates",
     FILTERS:"filters",
     ABOUTVALUES:"aboutvalues",
-    ABOUTBOARDS:"aboutboards"
+    ABOUTBOARDS:"aboutboards",
+    CHOOSEUS:"chooseus",
+    PROJECTCARDS:"projectcards",
+    NEWSCARDS:"newscards",
+    NEWSSWIP:"newsswip",
+    KSMS:"ksms"
   };
