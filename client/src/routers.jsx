@@ -9,6 +9,12 @@ import NewsTemplates from "./components/templates/newsTemplates";
 import NewsDetailTemplate from "./components/templates/newsDetailTemplates";
 import KsmTemplates from "./components/templates/ksmTemplates";
 import KsmDetailTemplates from "./components/templates/ksmDetailTemplates";
+import ServiceTemplates from "./components/templates/serviceTemplates";
+import ServiceDetailsTemplates from "./components/templates/serviceDetailTemplates";
+import ServiceOfficeTemplates from "./components/templates/serviceOfficeTemplates";
+import CareerTemplates from "./components/templates/careerTemplates";
+import CareerDetailTemplates from "./components/templates/careerDetailTemplates";
+import ContactTemplates from "./components/templates/contactTemplates";
 
 
 
@@ -65,6 +71,46 @@ export const router = createBrowserRouter([
                 path: ":id", 
                 element: <KsmDetailTemplates />,
               },
+            ],
+          }
+          ,
+          {
+            path: "services",
+            children: [
+              {
+                path: "",
+                element: <ServiceTemplates />,
+              },
+              {
+                path: ":id", 
+                element: <ServiceDetailsTemplates />,
+              },
+              {
+                path:"offices/:id",
+                element:<ServiceOfficeTemplates/>
+              }
+            ],
+          },
+          {
+            path: "career",
+            children: [
+              {
+                path: "",
+                element: <CareerTemplates />,
+              },
+              {
+                path: ":id", 
+                element: <CareerDetailTemplates />,
+              }
+            ],
+          },
+          {
+            path: "contact",
+            children: [
+              {
+                path: "",
+                element: <ContactTemplates />,
+              }
             ],
           }
         ],

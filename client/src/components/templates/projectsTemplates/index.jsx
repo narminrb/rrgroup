@@ -5,7 +5,6 @@ const ProjectsTemplates = () => {
   return (
     <div>
         <ProjectsPage/>
-        
     </div>
   )
 }

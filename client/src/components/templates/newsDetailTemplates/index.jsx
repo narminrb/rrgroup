@@ -36,27 +36,30 @@ const NewsDetailTemplate = () => {
 
   return (
     <div className="container mx-auto my-20 px-4 max-w-screen-xl">
-        <div className='grid grid-cols-2 gap-4'>
-        <div className={clsx(styles.desccont)}>
-     <div className='flex gap-6 py-4'>
-      <h1 className={clsx(styles.detailname)}> {name}</h1>
-      </div>
-      <div className='flex gap-6 py-4'>
-      <p className={clsx(styles.detname)}> {context}</p>
-      </div>
-
-     </div>
-            <div className={clsx(styles.projectimage)}>
-           <img
-              className={clsx(styles.projectimg)}
-              src={imageUrl}
-              alt={name}
-            />
-           </div>
+      <div className="flex flex-col md:flex-row gap-6">
+        <div className="md:w-1/2 bg-[#F7F7F7] p-5">
+          <h1 className="text-2xl md:text-3xl font-semibold text-black mb-4">
+            {name}
+          </h1>
+          <p className={clsx(styles.detname)}>
+            {context}
+          </p>
         </div>
-   <NewsSwiper/>
+        <div className="md:w-1/2">
+          <img
+            className="w-full h-auto object-cover rounded"
+            src={imageUrl}
+            alt={name}
+          />
+        </div>
+      </div>
+  
+      <div className="mt-12">
+        <NewsSwiper />
+      </div>
     </div>
-  )
+  );
+  
 }
 
 export default NewsDetailTemplate

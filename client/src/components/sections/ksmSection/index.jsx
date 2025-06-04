@@ -16,11 +16,13 @@ export default function KsmSection() {
 
   return (
     <div className="container max-w-screen-xl mx-auto my-10 px-3 relative"> 
-      <div className='grid grid-cols-3 gap-0'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6'>
       {ksmData?.map((el, index) => (
        <div key={index}>
          <KsmCards ImageSrc={el.image?.url} 
+         hoverImageSrc={el.hoverimage.url}
           name={el.name}
+          id={el.id}
           desc={el.desc}
           />
        </div>

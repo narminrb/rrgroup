@@ -33,7 +33,6 @@ const ProjectDetailTemplate = () => {
   const name = project.name || 'No name'
   const date = project.date || 'No date'
   const customer = project.customer || 'No customer'
-  const context = project.context || 'No context'
 
 
   return (

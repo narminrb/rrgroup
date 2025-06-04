@@ -14,3 +14,7 @@ const AxiosInstance = axios.create({
 export const getAPiData = async (url, ...config) => {
   return await AxiosInstance.get(url, ...config).then((res) => res?.data);
 };
+
+export const postApiData = async (url, data, ...config) => {
+  return await AxiosInstance.post(url, data, ...config).then((res) => res?.data);
+};

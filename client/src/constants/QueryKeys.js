@@ -18,5 +18,14 @@ export const QueryKeys = {
     PROJECTCARDS:"projectcards",
     NEWSCARDS:"newscards",
     NEWSSWIP:"newsswip",
-    KSMS:"ksms"
+    KSMS:"ksms",
+    SERVICES:"services",
+    SERVICESWIPERS:"serviceswipers",
+    SERVICECOMMERCESWIPERS:"servicecommerceswipers",
+    SERVICESCOMMERCE:"servicescommerce",
+    SERVICESLOGISTICS:"serviceslogistics",
+    SERVICEOFFICES:"serviceoffices",
+    SERVICESETEMS:"servicesetems",
+    SERVICEDETAILSWIPER:"servicedetailswiper",
+    CAREERSWIPER:"careerswiper"
   };

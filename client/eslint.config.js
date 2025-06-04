@@ -29,6 +29,7 @@ export default [
         { allowConstantExport: true },
       ],
       'no-undef':'off',
+      'no-unused-wars':'off'
     },
   },
 ]

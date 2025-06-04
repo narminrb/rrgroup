@@ -26,7 +26,7 @@ export default function NewsSwiper() {
 
   return (
     <div className="about-certificate-swiper container max-w-screen-xl mx-auto my-10 px-3 relative"> 
-    <div className="swiper-button-prev-cert custom-swiper-button">
+    <div className="swiper-button-prev-cert custom-swiper-button hidden sm:flex">
       <ArrowLeft />
     </div>
     <Swiper
@@ -37,6 +37,20 @@ export default function NewsSwiper() {
         nextEl: '.swiper-button-next-cert',
         prevEl: '.swiper-button-prev-cert',
       }}
+      breakpoints={{
+        640: {
+          slidesPerView: 1,
+        },
+        768: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+        },
+        1280: {
+          slidesPerView: 3,
+        },
+      }}
       modules={[Navigation]}
       className="about-swiper"
     >
@@ -46,7 +60,7 @@ export default function NewsSwiper() {
         </SwiperSlide>
       ))}
     </Swiper>
-    <div className="swiper-button-next-cert custom-swiper-button">
+    <div className="swiper-button-next-cert custom-swiper-button hidden sm:flex">
       <ArrowRight />
     </div>
   </div>

@@ -2,10 +2,10 @@ import { styled } from "styled-components";
 
 
 export const ProjSwiperCardContainer = styled.div`
-   display: flex;
+display: flex;
 width: 100%;
-height: 500px;
-padding: 33px 19px;
+height: 600px;
+padding: 30px 19px;
 flex-direction: column;
 gap: 10px;
 border-radius: 20px;
@@ -14,14 +14,14 @@ background: rgba(217, 217, 217, 0.20);
 `;
 
 export const ProjSwiperImage = styled.div`
-  width: 544px;
-height: 308px;
-flex-shrink: 0;
-aspect-ratio: 4/3;
-border-radius: 10px;
-align-self: center;
-overflow: hidden;
-`;
+  width: 564px;
+  height: 400px;
+  flex-shrink: 0;
+  aspect-ratio: 4/3;
+  border-radius: 10px;
+  align-self: center;
+  overflow: hidden;
+  `;
 export const ProjImageCont = styled.img`
 width: 100%;
   height: 100%;
