@@ -39,6 +39,17 @@ export default function ServiceDetailSwiper() {
       }}
       modules={[Navigation]}
       className="about-swiper"
+      breakpoints={{
+        340: {
+          slidesPerView: 1,
+        },
+        768: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 2,
+        },
+      }}
     >
       {newswip?.map((el, index) => (
         <SwiperSlide className="font-worksans" key={index}>

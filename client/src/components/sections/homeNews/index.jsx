@@ -1,27 +1,50 @@
-import React from 'react'
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { useQuery } from '@tanstack/react-query';
+import { QueryKeys } from '../../../constants/QueryKeys';
+import { getAPiData } from '../../../http/api'; 
+import './style.css'; 
+import NewsCard from '@/components/shared/newsCard';
+import clsx from 'clsx';
+import styles from './style.module.scss'
+export default function HomeNews() {
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: [QueryKeys.NEWSCARDS],
+    queryFn: async () => await getAPiData('newscards')
+  });
 
-const HomeNews = () => {
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Error: {error.message}</p>;
+
   return (
-    <div>
-        <div class="flex px-3 py-3">
-    <div class="max-w-sm rounded overflow-hidden shadow-lg">
-        <img class="w-full" src="https://tailwindcss.com/img/card-top.jpg" alt="Sunset in the mountains"/>
-        <div class="px-6 py-4">
-            <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-            <p class="text-gray-700 text-base">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et
-                perferendis eaque, exercitationem praesentium nihil.
-            </p>
-        </div>
-        <div class="px-6 py-4">
-            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#photography</span>
-            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#travel</span>
-            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">#winter</span>
-        </div>
-    </div>
-</div>
-    </div>
-  )
-}
+    <div className="container max-w-screen-xl mx-auto my-10 px-3 relative"> 
+    <h1 className={clsx(styles.mission)}>Xəbərlər</h1>
+      <Swiper
+        slidesPerView={3}
+        spaceBetween={10}
+        grabCursor={true} 
+        className="mySwiper"
+        breakpoints={{
+            340: {
+              slidesPerView: 1,
+            },
+            768: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 3,
+            },
+          }}
+      >
+        {data?.map((el, index) => (
+          <SwiperSlide className="font-worksans" key={index}>
+            <NewsCard news={el} />
 
-export default HomeNews
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
+  );
+}

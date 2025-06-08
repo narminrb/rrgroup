@@ -47,7 +47,7 @@ const CareerCv = () => {
 
   return (
    <div className="container max-w-screen-xl mx-auto my-10 px-3 relative">
-     <div className='grid grid-cols-2'>
+     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <form onSubmit={handleSubmit} className={styles.formGrid}>
       <h2 className={styles.title}>CV göndər</h2>
 

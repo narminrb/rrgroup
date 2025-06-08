@@ -20,10 +20,25 @@ line-height: normal;
 .choosename{
     color: #0F2431;
 font-family: "Hanken Grotesk";
-font-size: 24px;
+font-size: 36px;
 font-style: normal;
 font-weight: 500;
 line-height: normal;
-margin: 10px 0;
+margin: 20px 0;
 }
+
+.plusline {
+    @media (max-width: 340px) {
+      display: none;
+      opacity: 0;
+    }
+  }
+  
+
+  @media (max-width: 640px) {
+    .plusline {
+      display: none;
+    }
+  }
+  
 

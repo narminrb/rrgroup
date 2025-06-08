@@ -45,6 +45,18 @@ export default function CareerSwiper() {
       }}
       modules={[Navigation]}
       className="mySwiper"
+      breakpoints={{
+        340: {
+          slidesPerView: 1,
+        },
+        768: {
+          slidesPerView: 3,
+        },
+        1024: {
+          slidesPerView: 3,
+        },
+      }}
+
     >
       {data?.map((el, index) => (
         <SwiperSlide className="font-worksans" key={index}>

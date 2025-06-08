@@ -27,5 +27,6 @@ export const QueryKeys = {
     SERVICEOFFICES:"serviceoffices",
     SERVICESETEMS:"servicesetems",
     SERVICEDETAILSWIPER:"servicedetailswiper",
-    CAREERSWIPER:"careerswiper"
+    CAREERSWIPER:"careerswiper",
+    SPECIALPROJECTS:"specialprojects"
   };

@@ -14,7 +14,7 @@ background: rgba(217, 217, 217, 0.20);
 `;
 
 export const ProjSwiperImage = styled.div`
-  width: 564px;
+  max-width: 564px;
   height: 400px;
   flex-shrink: 0;
   aspect-ratio: 4/3;

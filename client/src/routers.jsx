@@ -15,6 +15,7 @@ import ServiceOfficeTemplates from "./components/templates/serviceOfficeTemplate
 import CareerTemplates from "./components/templates/careerTemplates";
 import CareerDetailTemplates from "./components/templates/careerDetailTemplates";
 import ContactTemplates from "./components/templates/contactTemplates";
+import SpecialProjectsTemplates from "./components/templates/specialProjectsTemplates";
 
 
 
@@ -48,7 +49,7 @@ export const router = createBrowserRouter([
             ],
           },
           {
-            path: "projects",
+            path: "layihələr",
             children: [
               {
                 path: "",
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
                 path: ":id", 
                 element: <ProjectDetailTemplate />,
               },
+              {
+                path:"yenilayihələr/:id",
+                element:<SpecialProjectsTemplates/>
+              }
             ],
           },
           {

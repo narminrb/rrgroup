@@ -15,51 +15,58 @@ const HomeChoose = () => {
   if (isError) return <p>Error: {error.message}</p>;
 
   return (
-    <div className="container max-w-screen-xl mx-auto my-20 px-3 space-y-6">
+    <div className="container max-w-screen-xl mx-auto my-20 px-3 space-y-6 relative">
       <h1 className={clsx(styles.aboutus)}>Niyə bizi seçməlisiniz?</h1>
 
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative">
+        <div
+        className={clsx(styles.plusline)}
+          style={{
+            position: 'absolute',
+            top: '10%',  
+            bottom: '10%',  
+            left: '50%',
+            width: '1px',
+            background: 'rgba(0, 0, 0, 0.20)',
+            transform: 'translateX(-50%)',
+            zIndex: 0,
+          }}
+        ></div>
+
+        <div
+        className={clsx(styles.plusline)}
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '5%',
+            right: '5%',
+            height: '1px',
+            background: 'rgba(0, 0, 0, 0.20)',
+            transform: 'translateY(-50%)',
+            zIndex: 0,
+          }}
+        ></div>
+
         {boardData?.slice(0, 4).map((board) => {
-          const { id, image, name,desc } = board;
+          const { id, image, name, desc } = board;
           const imageUrl = image?.url
             ? `${import.meta.env.VITE_API_BASE_URL}${image.url}`
             : 'https://via.placeholder.com/150';
 
           return (
-       <div  key={id}>
-         <div className="bg-white dark:bg-gray-800 flex justify-center items-center  p-5">
-         <div className="relative plus-border max-w-2xl p-6 rounded-lg dark:bg-gray-700 dark:text-gray-300">
-
-            <div className="flex gap-2 items-start">
-            <img className="h-16 w-16" src={imageUrl}
-              alt={name}/>
-
-            <div>
-            <h5 className={clsx(styles.choosename)}>{name}</h5>
-            <p className={clsx(styles.choosedesc)}>
-            {desc}   </p>
+            <div key={id}>
+              <div className="bg-white dark:bg-gray-800 flex justify-center items-center p-5">
+                <div className="relative plus-border max-w-2xl p-6 rounded-lg dark:bg-gray-700 dark:text-gray-300">
+                  <div className="flex gap-2 items-start">
+                    <img className="h-16 w-16" src={imageUrl} alt={name} />
+                    <div>
+                      <h5 className={clsx(styles.choosename)}>{name}</h5>
+                      <p className={clsx(styles.choosedesc)}>{desc}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            </div>
-        </div>
-        </div>
-            {/* <div
-            key={id}
-            className="bg-white  shadow-sm p-4 flex items-start gap-4"
-          >
-            <img
-              className="w-[100px] h-[100px] object-cover rounded"
-              src={imageUrl}
-              alt={name}
-            />
-            <div className="flex flex-col justify-start">
-              <h5 className="text-[20px] font-medium text-black mb-2">{name}</h5>
-              <p className="text-sm text-gray-700">
-                {desc}
-              </p>
-            </div>
-          </div> */}
-       </div>
-          
           );
         })}
       </div>

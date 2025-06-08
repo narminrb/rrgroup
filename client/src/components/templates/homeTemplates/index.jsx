@@ -4,6 +4,7 @@ import AboutUs from '@/components/sections/aboutUs'
 import HomeRanking from '@/components/sections/homeRanking'
 import HomeProjects from '@/components/sections/homeProjects'
 import HomeChoose from '@/components/sections/homeChoose'
+import HomeNews from '@/components/sections/homeNews'
 
 const HomeTemplates = () => {
   return (
@@ -13,6 +14,7 @@ const HomeTemplates = () => {
         <HomeRanking/>
         <HomeProjects/>
         <HomeChoose/>
+        <HomeNews/>
     </div>
   )
 }

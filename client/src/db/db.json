@@ -684,6 +684,15 @@
       "position": "front-end",
       "motivation": "bjhvh",
       "fileName": "Transcript.PDF"
+    },
+    {
+      "id": "d347",
+      "fullName": "Narmin Balakishiyeva",
+      "phone": "0773710281",
+      "email": "nbalakishi@gmail.com",
+      "position": "front-end",
+      "motivation": " ds,ms,v",
+      "fileName": "Transcript.PDF"
     }
   ],
   "contacts": [
@@ -718,6 +727,56 @@
       "email": "nbalakishi@gmail.com",
       "position": "front-end",
       "motivation": "njb"
+    }
+  ],
+  "specialprojects": [
+    {
+      "id": "95",
+      "image": {
+        "url": "/assets/news1.svg"
+      },
+      "name": "Garabkh Town Məhəlləsi",
+      "desc": "Ərazinin xüsusi məhəllə formasında təşkili, habelə əlverişli logistika imkanları layihənin uğurla həyata keçəcəyinə təminat verir.",
+      "context": "Ağdam rayonunda yerləşən Garabagh Town iqtisadi zonası 10 ha ərazini əhatə edir. Ərazinin xüsusi məhəllə formasında təşkili habelə əlverişli logistika imkanları layihənin uğurla həyata keçəcəyinə təminat verir.İqtisadi zonanın Məhəllə formasında fəaliyyət göstərməsi barədə tədbirlər görülür. Garabagh Town məhəlləsində sahibkarlara təqdim olunan güzəştlər:Gömrük rüsumlarından, torpaq və əmlak vergisi və mənfəət vergisindən 100% azad olması;İstehsal məqsədilə idxal olunan texnika və avadanlıqların ƏDV-dən azad olması İnvestisiyalara dövlət təminatı verilməsi.Əlverişli logistik imkanlar:Rusiya bazarına çıxış;Türkiyə bazarına çıxış – yeni tikilmiş Bakı–Kars dəmir yolu xəttinin Gəncə-Kars məsafəsi - 220 km-dir;İran bazarına çıxış;Bakı şəhərindən 300 km məsafə.      Müəssisələr arasında sıx ticari əməkdaşlıq imkanları:Məhəllədə fəaliyyət göstərən müəssisələrin ilk növbədə qarşılıqlı əməkdaşlığı təşviq ediləcək; Garabagh Town məhəlləsində təşkil olunacaq əsas fəaliyyət istiqamətləri:Emal Sənayesi müəssisələri Meyvə şirələri və konservləşdirilmiş meyvə və tərəvəz istehsalı;Geyim və tikiş məhsullarının istehsalı;Xalça və kilim məhsullarının istehsalı;İplik məhsullarının emalı və boyanması; Yun, pambıq, ipək parçaların toxunması; Ət və süd məhsullarının istehsalı. Kənd Təsərrüfatı müəssisələriİstixana təsərrüfatı;Yun, pambıq, ipək ipliklərin tədarükü;İri buynuzlu fermer təsərrüfatı.",
+      "specialimages": [
+        {
+          "url": "/assets/special1.svg"
+        },
+        {
+          "url": "/assets/special2.svg"
+        },
+        {
+          "url": "/assets/special3.svg"
+        },
+        {
+          "url": "/assets/special4.svg"
+        }
+      ]
+    },
+    {
+      "id": "96",
+      "image": {
+        "url": "/assets/news2.svg"
+      },
+      "name": "North-West Town Məhəlləsi",
+      "desc": "Ərazınin əlverişli logistika imkanları layihənin uğurla həyata keçəcəyinə təminat verir",
+      "context": "Fəaliyyətə başladığı gündən etibarən işğaldan azad olunmuş ərazilərdə yenidənqurma işləri ilə məşğul olan 'Qarabağ Aqro 44'MMC bu dəfə öz  layihə və gələcək planlarını COP29 çərçivəsində göstərib. 20 Noyabr COP29 Yaşıl zonada 'Sürdürülebilir Gelecek Platformu' pavilyonunda təqdimat keçirilib. Azərbaycan-Türkiyə İş Adamları (ATİB) İdarə heyətinin üzvü 'Qarabağ Aqro 44'MMC-nin  layihə rəhbəri Ərəstun Qarayev işğaldan azad olunmuş Qarabağ iqtisadi rayonunda dayanıqlı kənd təsərrüfatı fəaliyyəti barədə qonaqlara təqdimat edib."
+    },
+    {
+      "id": "97",
+      "image": {
+        "url": "/assets/news3.svg"
+      },
+      "name": "Cənab Prezdentin ad günü  ",
+      "desc": "Cənab prezident İlham Əliyevin ad günü qeyd olunub."
+    },
+    {
+      "id": "98",
+      "image": {
+        "url": "/assets/news3.svg"
+      },
+      "name": "Cənab Prezdentin ad günü ",
+      "desc": "Cənab prezident İlham Əliyevin ad günü qeyd olunub."
     }
   ]
 }

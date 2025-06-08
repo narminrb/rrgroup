@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import { getAPiData } from '@/http/api'
 import clsx from 'clsx'
 import styles from './style.module.scss'
-const ServiceOfficeTemplates = () => {
+const SpecialProjectsTemplates = () => {
   const { id } = useParams()
 
   const {
@@ -14,7 +14,7 @@ const ServiceOfficeTemplates = () => {
     error,
   } = useQuery({
     queryKey: ['all-projects'],
-    queryFn: async () => await getAPiData('serviceoffices'), 
+    queryFn: async () => await getAPiData('specialprojects'), 
   })
 
   if (isLoading) return <p>Loading...</p>
@@ -45,9 +45,9 @@ const ServiceOfficeTemplates = () => {
 </div>
      </div>
      <div className='grid grid-cols-1'>
-     {project.officeimage?.length > 0 && (
-  <div className="grid grid-cols-2 gap-4">
-    {project.officeimage.map((img, idx) => {
+     {project.specialimages?.length > 0 && (
+  <div className={clsx(styles.imagebox)}>
+    {project.specialimages.map((img, idx) => {
       const fullUrl = img.url.startsWith('http')
         ? img.url
         : `${import.meta.env.VITE_API_BASE_URL}${img.url}`
@@ -64,9 +64,10 @@ const ServiceOfficeTemplates = () => {
   </div>
 )}
 
+
      </div>
     </div>
   )
 }
 
-export default ServiceOfficeTemplates
+export default SpecialProjectsTemplates

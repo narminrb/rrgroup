@@ -11,6 +11,8 @@ import './aboutcertificate.css';
 import ArrowLeft from '../../../assets/arrow-left.svg';
 import ArrowRight from '../../../assets/arrow-right.svg';
 import CertificateSwiperCard from '@/components/shared/aboutCertificateCard';
+import clsx from 'clsx';
+import styles from './style.module.scss'
 
 
 
@@ -26,6 +28,7 @@ export default function AboutCertificate() {
 
   return (
     <div className="about-certificate-swiper container max-w-screen-xl mx-auto my-10 px-3 relative"> 
+    <h1 className={clsx(styles.history, "text-center mb-6")}>Sertifikatlar</h1>
     <div className="swiper-button-prev-cert custom-swiper-button">
       <ArrowLeft />
     </div>
@@ -39,6 +42,17 @@ export default function AboutCertificate() {
       }}
       modules={[Navigation]}
       className="about-swiper"
+      breakpoints={{
+        340: {
+          slidesPerView: 1,
+        },
+        768: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+        },
+      }}
     >
       {certificate?.map((el, index) => (
         <SwiperSlide className="font-worksans" key={index}>

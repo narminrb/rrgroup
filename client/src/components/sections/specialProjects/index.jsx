@@ -6,12 +6,14 @@ import { useQuery } from '@tanstack/react-query';
 import { QueryKeys } from '../../../constants/QueryKeys';
 import { getAPiData } from '../../../http/api'; 
 import './style.css'; 
-import ServiceSwiperCard from '../serviceSwiperCard';
-
-export default function ServiceCommerceSwiper() {
+import NewsCard from '@/components/shared/newsCard';
+import clsx from 'clsx';
+import styles from './style.module.scss'
+import SpecialProjectsCard from '@/components/shared/specialProjectsCard';
+export default function SpecialProjects() {
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: [QueryKeys.SERVICECOMMERCESWIPERS],
-    queryFn: async () => await getAPiData('servicecommerceswipers')
+    queryKey: [QueryKeys.SPECIALPROJECTS],
+    queryFn: async () => await getAPiData('specialprojects')
   });
 
   if (isLoading) return <p>Loading...</p>;
@@ -19,29 +21,28 @@ export default function ServiceCommerceSwiper() {
 
   return (
     <div className="container max-w-screen-xl mx-auto my-10 px-3 relative"> 
+    <h1 className={clsx(styles.mission)}>Özəl layihələr</h1>
       <Swiper
-        slidesPerView={3}
-        spaceBetween={10}
+        slidesPerView={2}
+        spaceBetween={2}
         grabCursor={true} 
         className="mySwiper"
         breakpoints={{
-          340: {
-            slidesPerView: 1,
-          },
-          768: {
-            slidesPerView: 3,
-          },
-          1024: {
-            slidesPerView: 3,
-          },
-        }}
-        
+            340: {
+              slidesPerView: 1,
+            },
+            768: {
+              slidesPerView: 1,
+            },
+            1024: {
+              slidesPerView: 2,
+            },
+          }}
       >
         {data?.map((el, index) => (
           <SwiperSlide className="font-worksans" key={index}>
-            <ServiceSwiperCard
-              desc={el.desc}
-            />
+            <SpecialProjectsCard news={el} />
+
           </SwiperSlide>
         ))}
       </Swiper>
