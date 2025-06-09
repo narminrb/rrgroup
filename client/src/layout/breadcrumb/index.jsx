@@ -16,7 +16,7 @@ const Breadcrumb = () => {
   const handleBack = () => navigate(-1)
 
   return (
-    <div className="container mx-auto my-20 px-4 max-w-screen-xl">
+    <div className="container mx-auto my-10 px-4 max-w-screen-xl">
     <div className="breadcrumb-container px-4 py-2">
       <nav className="flex items-center space-x-2 text-lg text-[#0F2431] dark:text-gray-300">
         <button

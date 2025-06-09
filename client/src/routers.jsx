@@ -16,6 +16,9 @@ import CareerTemplates from "./components/templates/careerTemplates";
 import CareerDetailTemplates from "./components/templates/careerDetailTemplates";
 import ContactTemplates from "./components/templates/contactTemplates";
 import SpecialProjectsTemplates from "./components/templates/specialProjectsTemplates";
+import AdminLayout from "./pages/admin/AdminLayout";
+import AdminPage from "./pages/admin/AdminPage";
+import AdminAbout from "./pages/admin/AdminAbout";
 
 
 
@@ -122,5 +125,20 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "rrgroup/admin",
+    element: <AdminLayout />,
+    children : [
+      {
+        path:'',
+        element:<AdminPage/>
+      },
+      {
+        path:'about',
+        element:<AdminAbout/>
+      }
+    ]
+    
+  }
 ]);
 
