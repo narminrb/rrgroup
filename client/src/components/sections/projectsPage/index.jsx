@@ -6,7 +6,7 @@ import { getAPiData } from '@/http/api'
 const ProjectsPage = () => {
   const { data:projectData, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.PROJECTCARDS],
-    queryFn: async () => await getAPiData('projectcards?populate=*'),
+    queryFn: async () => await getAPiData('/v1/projects/getAllProjects'),
   });
 
   if (isLoading) return <p>Loading...</p>

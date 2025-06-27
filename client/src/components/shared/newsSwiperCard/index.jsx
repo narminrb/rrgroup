@@ -2,10 +2,9 @@ import React from 'react'
 import { NewsSwiperImage, NewsSwiperImageContainerWithHover } from '@/ui/newsSwiper';
 
 const NewsSwiperCard = ({ ImageSrc,  }) => {
-  const basePath = import.meta.env.BASE_URL || '';
     return (
         <NewsSwiperImageContainerWithHover>
-        <NewsSwiperImage src={`${basePath}${ImageSrc}`} alt={name} />
+        <NewsSwiperImage src={ImageSrc} alt={name} />
       </NewsSwiperImageContainerWithHover>
     )
 }

@@ -19,9 +19,10 @@ import styles from './style.module.scss'
 export default function AboutValues() {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.ABOUTVALUES],
-    queryFn: async () => await getAPiData('aboutvalues?populate=*')
+    queryFn: async () => await getAPiData('/v1/values')
   });
   console.log(data)
+  //const values = data?.values
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error: {error.message}</p>;
@@ -56,14 +57,21 @@ export default function AboutValues() {
         },
       }}
     >
-      {data?.map((el, index) => (
-        <SwiperSlide className="font-worksans" key={index}>
-          <InstaSwiperCard ImageSrc={el.image?.url} 
-          name={el.name}
-          desc={el.desc}
-          />
-        </SwiperSlide>
-      ))}
+      {data?.map((el, index) => {
+            const imageUrl = el.icon
+              ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${el.icon}`
+              : 'https://via.placeholder.com/150';
+          
+            return (
+              <SwiperSlide className="font-worksans" key={index}>
+                <InstaSwiperCard 
+                  ImageSrc={imageUrl} 
+                  name={el.title}
+                  desc={el.paragraph}
+                />
+              </SwiperSlide>
+            );
+          })}
     </Swiper>
     <div className="swiper-button-next custom-swiper-button">
       <ArrowRight/>

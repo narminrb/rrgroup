@@ -1,12 +1,16 @@
 import axios from "axios";
 
-const API = axios.create({
-  baseURL: "http://localhost:3001",
+const AxiosInstance = axios.create({
+  baseURL: import.meta.env.VITE_API_BASE_URL, 
+  timeout: 5000,
 });
 
-export const getAboutValues = () => API.get("/aboutvalues");
-export const deleteAboutValue = (id) => API.delete(`/aboutvalues/${id}`);
-export const createAboutValue = (data) => API.post("/aboutvalues", data);
-export const updateAboutValue = (id, data) => API.put(`/aboutvalues/${id}`, data);
+
+export const getAboutValues = () => AxiosInstance.get('/v1/values');
+export const getAboutValue = (id) => AxiosInstance.get(`/v1/values/${id}`);
+export const createAboutValue = (data) => AxiosInstance.post('/v1/values', data);
+export const updateAboutValue = (id, data) => AxiosInstance.put(`/v1/values/${id}`, data);
+export const deleteAboutValue = (id) => AxiosInstance.delete(`/v1/values/${id}`);
+
 
   

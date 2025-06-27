@@ -13,7 +13,7 @@ const ServiceSetem = () => {
 
   const { data: boardData, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.SERVICESETEMS],
-    queryFn: async () => await getAPiData('servicesetems?populate=*')
+    queryFn: async () => await getAPiData('/v1/setem')
   });
 
   const closeModal = () => {
@@ -33,10 +33,11 @@ const ServiceSetem = () => {
 
       <div className="flex flex-wrap gap-6 justify-center">
         {boardData?.map((board) => {
-          const { id, image, name, desc} = board;
-          const imageUrl = image?.url
-            ? `${import.meta.env.VITE_API_BASE_URL}${image.url}`
-            : 'https://via.placeholder.com/150';
+          const { id, icon, header, description} = board;
+          const imageUrl = icon
+                ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${icon}`
+                : 'https://via.placeholder.com/150';
+                console.log('Image URL:', imageUrl);
 
           return (
             <div
@@ -47,14 +48,14 @@ const ServiceSetem = () => {
                 <img
                   className="w-full object-cover h-[260px]"
                   src={imageUrl}
-                  alt={name}
+                  alt={header}
                 />
               </div>
               <div className="p-2 text-center">
-                <h5 className={clsx(styles.setemname)}>{name}</h5>
+                <h5 className={clsx(styles.setemname)}>{header}</h5>
               </div>
               <div className="p-2 text-center">
-                <p className={clsx(styles.setemdesc)}>{desc}</p>
+                <p className={clsx(styles.setemdesc)}>{description}</p>
               </div>
             </div>
           );

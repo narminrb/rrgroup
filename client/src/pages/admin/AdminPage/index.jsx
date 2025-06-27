@@ -1,8 +1,12 @@
 import React from 'react'
+import AdminHomeAbout from '../shared/AdminHomeAbout'
 
 const AdminPage = () => {
   return (
-    <div className='bg-[#F4F3FF]'>AdminPage</div>
+    <div>
+      <AdminHomeAbout/>
+      
+    </div>
   )
 }
 

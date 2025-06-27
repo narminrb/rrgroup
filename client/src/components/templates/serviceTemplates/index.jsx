@@ -9,8 +9,8 @@ const ServiceTemplates = () => {
   return (
     <div>
         <ServiceConstruction/>
-        <ServiceCommerce/>
-        <ServiceLogistics/>
+        {/* <ServiceCommerce/>
+        <ServiceLogistics/> */}
         <ServiceOffices/>
         <ServiceSetem/>
     </div>

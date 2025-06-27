@@ -3,14 +3,18 @@ import styles from './style.module.scss'
 import clsx from 'clsx'
 import { Link } from 'react-router-dom'
 
+const truncateText = (text, maxLength = 180) => {
+  if (!text) return '';
+  if (text.length <= maxLength) return text;
+  return text.slice(0, maxLength).trimEnd() + '...';
+};
 const SpecialProjectsCard = ({ news }) => {
   const title = news?.name || 'No Title'
-  const description = news?.desc || 'No Description'
-  const imageUrl = news?.image?.url
-  ? news.image.url.startsWith('http')
-    ? news.image.url
-    : `${import.meta.env.VITE_API_BASE_URL}${news.image.url}`
-  : 'https://via.placeholder.com/300'
+  const description = truncateText(news?.content, 120);
+  const image = news?.images[0]
+  const imageUrl = image
+  ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${image}`
+  : 'https://via.placeholder.com/150';
 
 
   return (

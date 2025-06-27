@@ -26,6 +26,7 @@
     "remixicon": "^4.6.0",
     "sass": "^1.89.0",
     "styled-components": "^6.1.18",
+    "swagger-ui-react": "^5.25.2",
     "swiper": "^11.2.6",
     "tailwindcss": "^4.1.7"
   },

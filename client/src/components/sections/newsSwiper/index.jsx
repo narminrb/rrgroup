@@ -17,7 +17,7 @@ import NewsSwiperCard from '@/components/shared/newsSwiperCard';
 export default function NewsSwiper() {
   const { data:newswip, isLoading:certificateLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.NEWSSWIP],
-    queryFn: async () => await getAPiData('newsswip?populate=*')
+    queryFn: async () => await getAPiData('/v1/news')
   });
   console.log(newswip)
 
@@ -54,11 +54,17 @@ export default function NewsSwiper() {
       modules={[Navigation]}
       className="about-swiper"
     >
-      {newswip?.map((el, index) => (
+      {newswip?.map((el, index) => {
+         const firstImage = el.images?.[0];
+         const imageUrl = firstImage
+           ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${firstImage}`
+           : 'https://via.placeholder.com/300';
+           return(
         <SwiperSlide className="font-worksans" key={index}>
-          <NewsSwiperCard ImageSrc={el.image?.url} />
+          <NewsSwiperCard ImageSrc={imageUrl} />
         </SwiperSlide>
-      ))}
+           )
+})}
     </Swiper>
     <div className="swiper-button-next-cert custom-swiper-button hidden sm:flex">
       <ArrowRight />

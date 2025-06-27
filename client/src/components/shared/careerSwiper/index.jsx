@@ -20,13 +20,23 @@ import CareerSwiperCard from '../careerSwiperCard';
 export default function CareerSwiper() {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.CAREERSWIPER],
-    queryFn: async () => await getAPiData('careerswiper?populate=*')
+    queryFn: async () => await getAPiData('/v1/vacancy')
+
   });
   console.log(data)
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error: {error.message}</p>;
 
+  function formatDate(isoString) {
+    const date = new Date(isoString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); 
+    const year = String(date.getFullYear()).slice(-2); 
+  
+    return `${day}.${month}.${year}`;
+  }
+  
   return (
     <div className="container max-w-screen-xl mx-auto my-10 px-3 relative"> 
     <div className='flex my-5 mx-auto px-4'>
@@ -58,17 +68,25 @@ export default function CareerSwiper() {
       }}
 
     >
-      {data?.map((el, index) => (
-        <SwiperSlide className="font-worksans" key={index}>
-          <Link to={`/rrgroup/career/${el.id}`}>
-          <CareerSwiperCard
-          ImageSrc={el.image?.url} 
-          name={el.name}
-          desc={el.desc}
-          />
-          </Link>
-        </SwiperSlide>
-      ))}
+    {data?.map((item, index) => {
+  const imageUrl = item.images
+    ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${item.images}`
+    : 'https://via.placeholder.com/150';
+
+  return (
+    <SwiperSlide className="font-worksans" key={index}>
+      <Link to={`/rrgroup/career/${item.id}`}>
+        <CareerSwiperCard
+          ImageSrc={imageUrl}
+          name={item.title}
+          desc={formatDate(item.createdAt)}
+        />
+      </Link>
+    </SwiperSlide>
+  );
+})}
+
+
     </Swiper>
     <div className="swiper-button-next custom-swiper-button">
       <ArrowRight/>

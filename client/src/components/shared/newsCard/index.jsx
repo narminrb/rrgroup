@@ -4,14 +4,28 @@ import clsx from 'clsx'
 import { Link } from 'react-router-dom'
 
 const NewsCard = ({ news }) => {
-  const title = news?.name || 'No Title'
-  const description = news?.desc || 'No Description'
-  const imageUrl = news?.image?.url
-  ? news.image.url.startsWith('http')
-    ? news.image.url
-    : `${import.meta.env.VITE_API_BASE_URL}${news.image.url}`
-  : 'https://via.placeholder.com/300'
+  const title = news?.title || 'No Title'
+  const paragraph = news?.paragraph || 'No Description'
+  // const imageUrl = news?.images?.url
+  // ? news.image.url.startsWith('http')
+  //   ? news.image.url
+  //   : `${import.meta.env.VITE_API_BASE_URL}${news.image.url}`
+  // : 'https://via.placeholder.com/300'
+  const icon = news?.images?.[0]; 
+  // const imageUrl = icon
+  //               ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${icon}`
+  //               : 'https://via.placeholder.com/150';
+  //               console.log('Image URL:', imageUrl);
+  const truncateWords = (text, limit) => {
+    if (!text) return '';
+    const words = text.split(' ');
+    if (words.length <= limit) return text;
+    return words.slice(0, limit).join(' ') + '...';
+  };
 
+  const imageUrl = icon
+  ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${icon}`
+  : 'https://via.placeholder.com/150';
 
   return (
    <div>
@@ -26,7 +40,7 @@ const NewsCard = ({ news }) => {
      </div>
       <div className="p-3">
         <h3 className={clsx(styles.newsname)}>{title}</h3>
-        <p className={clsx(styles.newsdesc)}>{description}</p>
+        <p className={clsx(styles.newsdesc)}>{truncateWords(paragraph, 6)}</p>
       </div>
     </div>
     </Link>

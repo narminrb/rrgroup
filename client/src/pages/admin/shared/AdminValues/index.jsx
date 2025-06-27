@@ -3,7 +3,7 @@ import {
   getAboutValues,
   deleteAboutValue,
   createAboutValue,
-  updateAboutValue, // make sure this is defined in your API utils
+  updateAboutValue, 
 } from "../../../../http/event";
 import Open from "../../../../assets/open.svg";
 import clsx from "clsx";
@@ -30,9 +30,24 @@ const AdminValues = () => {
 
   useEffect(() => {
     getAboutValues()
-      .then((res) => setAboutValues(res.data))
-      .catch((err) => console.error(err));
+      .then(res => {
+        const items = res.data; 
+        const normalized = items.map(item => ({
+          id: item.id,
+          name: item.title,
+          desc: item.paragraph,
+          image: {
+            url: item.icon
+              ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${item.icon}`
+              : "https://via.placeholder.com/150"
+          }
+        }));
+        setAboutValues(normalized);
+      })
+      .catch(console.error);
   }, []);
+  
+  
 
   const handleDelete = (id) => {
     deleteAboutValue(id).then(() => {
@@ -43,14 +58,20 @@ const AdminValues = () => {
   const handleEdit = (val) => {
     setIsEditing(true);
     setEditId(val.id);
+  
     setNewValue({
       name: val.name,
-      desc: val.desc,
-      image: { url: val.image.url },
+      image: {
+        file: undefined, 
+        url: val.image.url, 
+      },
     });
+  
     setContent(val.desc);
     setModalOpen(true);
   };
+  
+  
 
   const resetForm = () => {
     setNewValue({ name: "", desc: "", image: { url: "" } });
@@ -59,28 +80,52 @@ const AdminValues = () => {
     setIsEditing(false);
     setEditId(null);
   };
-
-  const handleSubmit = (e) => {
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!newValue.name || !content || !newValue.image.url) return;
-
-    const payload = { ...newValue, desc: content };
-
-    if (isEditing) {
-      updateAboutValue(editId, payload).then((res) => {
+  
+    if (!newValue.name.trim() || !content.trim()) {
+      alert("Zəhmət olmasa bütün xanaları doldurun.");
+      return;
+    }
+  
+    try {
+      const formData = new FormData();
+  
+      const dto = {
+        title: newValue.name.trim(),
+        paragraph: content.trim(),
+      };
+  
+      formData.append("dto", new Blob([JSON.stringify(dto)], { type: "application/json" }));
+  
+      if (newValue.image.file) {
+        formData.append("file", newValue.image.file);
+      }
+  
+      let response;
+      if (isEditing) {
+        response = await updateAboutValue(editId, formData);
         setAboutValues((prev) =>
-          prev.map((item) => (item.id === editId ? res.data : item))
+          prev.map((item) => (item.id === editId ? response.data : item))
         );
-        resetForm();
-      });
-    } else {
-      createAboutValue(payload).then((res) => {
-        setAboutValues((prev) => [...prev, res.data]);
-        resetForm();
-      });
+      } else {
+        response = await createAboutValue(formData);
+        setAboutValues((prev) => [...prev, response.data]);
+      }
+  
+      resetForm();
+    } catch (err) {
+      console.error(
+        isEditing ? "Update failed:" : "Create failed:",
+        err.response?.data || err.message
+      );
+      alert("Əməliyyat zamanı xəta baş verdi.");
     }
   };
-
+  
+  
+  
   return (
     <div className="p-8 mx-auto">
       {modalOpen && (
@@ -113,18 +158,24 @@ const AdminValues = () => {
               />
 
               <RichTextEditor value={content} onChange={setContent} />
-              <input
-                type="text"
-                placeholder="Image URL"
-                className="border p-2 w-full"
-                value={newValue.image.url}
-                onChange={(e) =>
-                  setNewValue({
-                    ...newValue,
-                    image: { url: e.target.value },
-                  })
-                }
-              />
+                        <input
+            type="file"
+            accept="image/*"
+            className="border p-2 w-full"
+            onChange={(e) => {
+              const file = e.target.files[0];
+              if (file) {
+                setNewValue((prev) => ({
+                  ...prev,
+                  image: {
+                    file,
+                    url: URL.createObjectURL(file), 
+                  },
+                }));
+              }
+            }}
+          />
+
               <button className={clsx(styles.modalbtn)} type="submit">
                 {isEditing ? "Yenilə" : "Yadda saxla"}
               </button>
@@ -166,11 +217,12 @@ const AdminValues = () => {
               </td>
             </tr>
 
-            {aboutValues
-              .filter((val) =>
-                val.name.toLowerCase().includes(searchTerm.toLowerCase())
-              )
-              .map((val) => (
+                      {aboutValues
+            .filter(val => {
+              if (!val?.name || typeof val.name !== 'string') return false;
+              return val.name.toLowerCase().includes(searchTerm.toLowerCase());
+            })
+              .map(val => (
                 <tr key={val.id}>
                   <td className="w-15">
                     <img

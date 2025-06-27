@@ -13,8 +13,10 @@ const AboutBoard = () => {
 
   const { data: boardData, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.ABOUTBOARDS],
-    queryFn: async () => await getAPiData('aboutboards?populate=*')
+    queryFn: async () => await getAPiData('/v1/team')
   });
+
+  // const manageTeams = boardData?.manageTeams
 
   const openModal = (board) => {
     setSelectedBoard(board);
@@ -36,36 +38,38 @@ const AboutBoard = () => {
       </div>
 
       <div className="flex flex-wrap gap-6 justify-center">
-        {boardData?.map((board) => {
-          const { id, image, name } = board;
-          const imageUrl = image?.url
-            ? `${import.meta.env.VITE_API_BASE_URL}${image.url}`
-            : 'https://via.placeholder.com/150';
+      {boardData?.map((board) => {
+  const { id, image, title } = board;
 
-          return (
-            <div
-              key={id}
-              className="max-w-sm bg-[#EBEBEB] rounded-lg"
-            >
-              <div className="p-3">
-                <img
-                  className="w-full object-cover h-[260px]"
-                  src={imageUrl}
-                  alt={name}
-                />
-              </div>
-              <div className="p-2 text-center">
-                <h5 className="mb-3 text-[20px] font-[500] text-black">{name}</h5>
-                <button
-                  onClick={() => openModal(board)}
-                  className="inline-flex items-center my-5 px-6 py-2 text-sm font-medium text-white bg-[#444B73] rounded-lg hover:bg-blue-800"
-                >
-                  Ətraflı
-                </button>
-              </div>
-            </div>
-          );
-        })}
+  const imageUrl = image
+    ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${image}`
+    : 'https://via.placeholder.com/150';
+
+  return (
+    <div
+      key={id}
+      className="max-w-sm bg-[#EBEBEB] rounded-lg"
+    >
+      <div className="p-3">
+        <img
+          className="w-full object-cover h-[260px]"
+          src={imageUrl}
+          alt={title}
+        />
+      </div>
+      <div className="p-2 text-center">
+        <h5 className="mb-3 text-[20px] font-[500] text-black">{title}</h5>
+        <button
+          onClick={() => openModal(board)}
+          className="inline-flex items-center my-5 px-6 py-2 text-sm font-medium text-white bg-[#444B73] rounded-lg hover:bg-blue-800"
+        >
+          Ətraflı
+        </button>
+      </div>
+    </div>
+  );
+})}
+
       </div>
 
       {isModalOpen && (

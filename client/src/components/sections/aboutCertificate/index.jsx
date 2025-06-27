@@ -19,9 +19,11 @@ import styles from './style.module.scss'
 export default function AboutCertificate() {
   const { data:certificate, isLoading:certificateLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.CERTIFICATES],
-    queryFn: async () => await getAPiData('certificates?populate=*')
+    queryFn: async () => await getAPiData('/v1/certificate')
   });
   console.log(certificate)
+
+  // const certificates = certificate?.certificates
 
   if (certificateLoading) return <p>Loading...</p>;
   if (isError) return <p>Error: {error.message}</p>;
@@ -54,11 +56,24 @@ export default function AboutCertificate() {
         },
       }}
     >
-      {certificate?.map((el, index) => (
+      {/* {certificate?.map((el, index) => (
         <SwiperSlide className="font-worksans" key={index}>
           <CertificateSwiperCard ImageSrc={el.image?.url} />
         </SwiperSlide>
-      ))}
+      ))} */}
+      {certificate?.map((el, index) => {
+                  const imageUrl = el.image
+                    ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${el.image}`
+                    : 'https://via.placeholder.com/150';
+                
+                  return (
+                    <SwiperSlide className="font-worksans" key={index}>
+                      <CertificateSwiperCard 
+                        ImageSrc={imageUrl} 
+                      />
+                    </SwiperSlide>
+                  );
+                })}
     </Swiper>
     <div className="swiper-button-next-cert custom-swiper-button">
       <ArrowRight />

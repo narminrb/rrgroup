@@ -19,9 +19,10 @@ import styles from './style.module.scss'
 export default function InstaSwiper() {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.INSTASWIPERS],
-    queryFn: async () => await getAPiData('instaswipers?populate=*')
+    queryFn: async () => await getAPiData('/v1/missions')
   });
   console.log(data)
+  // const missions = data?.missions
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error: {error.message}</p>;
@@ -55,15 +56,21 @@ export default function InstaSwiper() {
           slidesPerView: 3,
         },
       }}
-    >
-      {data?.map((el, index) => (
+    >{data?.map((el, index) => {
+      const imageUrl = el.icon
+        ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${el.icon}`
+        : 'https://via.placeholder.com/150';
+    
+      return (
         <SwiperSlide className="font-worksans" key={index}>
-          <InstaSwiperCard ImageSrc={el.image?.url} 
-          name={el.name}
-          desc={el.desc}
+          <InstaSwiperCard 
+            ImageSrc={imageUrl} 
+            name={el.title}
+            desc={el.description}
           />
         </SwiperSlide>
-      ))}
+      );
+    })}
     </Swiper>
     <div className="swiper-button-next custom-swiper-button">
       <ArrowRight/>

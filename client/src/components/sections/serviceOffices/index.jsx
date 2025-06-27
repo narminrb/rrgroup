@@ -20,7 +20,7 @@ import { Link } from 'react-router-dom';
 export default function ServiceOffices() {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.SERVICEOFFICES],
-    queryFn: async () => await getAPiData('serviceoffices?populate=*')
+    queryFn: async () => await getAPiData('/v1/foreign/all')
   });
   console.log(data)
 
@@ -53,20 +53,26 @@ export default function ServiceOffices() {
           slidesPerView: 2,
         },
         1024: {
-          slidesPerView: 2,
+          slidesPerView: 3,
         },
       }}
     >
-      {data?.map((el, index) => (
-        <SwiperSlide className="font-worksans" key={index}>
+      {data?.map((el, index) => {
+        const imageUrl = el.icon
+        ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${el.icon}`
+        : 'https://via.placeholder.com/150';
+    
+        return (
+          <SwiperSlide className="font-worksans" key={index}>
           <Link to={`/rrgroup/services/offices/${el.id}`}>
-          <InstaSwiperCard ImageSrc={el.image?.url} 
-          name={el.name}
-          desc={el.desc}
+          <InstaSwiperCard ImageSrc={imageUrl} 
+          name={el.header}
+          desc={el.description}
           />
           </Link>
         </SwiperSlide>
-      ))}
+        )
+})}
     </Swiper>
     <div className="swiper-button-next custom-swiper-button">
       <ArrowRight/>

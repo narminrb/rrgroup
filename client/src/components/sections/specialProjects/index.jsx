@@ -13,7 +13,7 @@ import SpecialProjectsCard from '@/components/shared/specialProjectsCard';
 export default function SpecialProjects() {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.SPECIALPROJECTS],
-    queryFn: async () => await getAPiData('specialprojects')
+    queryFn: async () => await getAPiData('/specials')
   });
 
   if (isLoading) return <p>Loading...</p>;

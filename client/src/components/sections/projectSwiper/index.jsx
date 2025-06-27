@@ -13,7 +13,7 @@ import ProjectSwiperCard from '@/components/shared/projectSwiperCard';
 export default function ProjectSwiper() {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.PROJECTCARDS],
-    queryFn: async () => await getAPiData('projectcards')
+    queryFn: async () => await getAPiData(`/v1/projects/getAllProjects`)
   });
 
   if (isLoading) return <p>Loading...</p>;
@@ -42,15 +42,32 @@ export default function ProjectSwiper() {
           },
         }}
       >
-        {data?.map((el, index) => (
+        {/* {data?.map((el, index) => (
           <SwiperSlide className="font-worksans" key={index}>
             <ProjectSwiperCard
               ImageSrc={el.image?.url} 
               name={el.name}
-              desc={el.desc}
+              desc={el.content}
             />
           </SwiperSlide>
-        ))}
+        ))} */}
+  {data?.map((el, index) => {
+  const firstImage = el.images?.[0];
+  const imageUrl = firstImage
+    ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${firstImage}`
+    : 'https://via.placeholder.com/300';
+
+  return (
+    <SwiperSlide className="font-worksans" key={index}>
+      <ProjectSwiperCard
+        ImageSrc={imageUrl}
+        name={el.name}
+        desc={el.content}
+      />
+    </SwiperSlide>
+  );
+})}
+
       </Swiper>
     </div>
   );

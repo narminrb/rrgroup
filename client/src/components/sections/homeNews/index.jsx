@@ -12,12 +12,12 @@ import styles from './style.module.scss'
 export default function HomeNews() {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.NEWSCARDS],
-    queryFn: async () => await getAPiData('newscards')
+    queryFn: async () => await getAPiData('/v1/home')
   });
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error: {error.message}</p>;
-
+  const news = data?.news;
   return (
     <div className="container max-w-screen-xl mx-auto my-10 px-3 relative"> 
     <h1 className={clsx(styles.mission)}>Xəbərlər</h1>
@@ -38,10 +38,9 @@ export default function HomeNews() {
             },
           }}
       >
-        {data?.map((el, index) => (
+        {news?.map((el, index) => (
           <SwiperSlide className="font-worksans" key={index}>
-            <NewsCard news={el} />
-
+            <NewsCard news={el} icon={el.images?.[0]}/>
           </SwiperSlide>
         ))}
       </Swiper>

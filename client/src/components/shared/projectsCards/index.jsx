@@ -5,12 +5,11 @@ import { Link } from 'react-router-dom'
 
 const ProjectsCard = ({ project }) => {
   const title = project?.name || 'No Title'
-  const description = project?.desc || 'No Description'
-  const imageUrl = project?.image?.url
-  ? project.image.url.startsWith('http')
-    ? project.image.url
-    : `${import.meta.env.VITE_API_BASE_URL}${project.image.url}`
-  : 'https://via.placeholder.com/300'
+  const description = project?.content || 'No Description'
+  const image = project?.images[0]
+  const imageUrl = image
+    ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${image}`
+    : 'https://via.placeholder.com/150';
 
 
   return (

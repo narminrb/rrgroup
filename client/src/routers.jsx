@@ -19,6 +19,7 @@ import SpecialProjectsTemplates from "./components/templates/specialProjectsTemp
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminPage from "./pages/admin/AdminPage";
 import AdminAbout from "./pages/admin/AdminAbout";
+import SwaggerDocs from "./components/templates/SwaggerDocs";
 
 
 
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: "rrgroup",
         children: [
+          {
+            path: "docs",
+            element: <SwaggerDocs />,
+          },          
           {
             path: "about", 
             element: <AboutTemplates />,
