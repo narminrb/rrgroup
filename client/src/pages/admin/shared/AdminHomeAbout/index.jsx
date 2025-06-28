@@ -6,63 +6,71 @@ import { getHomeAbout, updateHomeAbout } from "@/http/homeabout";
 
 const AdminHomeAbout = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [activeCardIndex, setActiveCardIndex] = useState(null);
-  const [editedCard, setEditedCard] = useState({ title: "", description: "" });
-  const [aboutCards, setAboutCards] = useState([]);
-const [paragraph, setParagraph] = useState("");
-const [image, setImage] = useState("");
+  const [editedCard, setEditedCard] = useState({ id: null, title: "", description: "" });
+  const [cards, setCards] = useState([]);
+  
 
-const [id, setId] = useState(null);
+  useEffect(() => {
+    getHomeAbout()
+      .then((res) => {
+        setCards(res.data || []);
+      })
+      .catch(console.error);
+  }, []);
 
-useEffect(() => {
-  getHomeAbout()
-    .then((res) => {
-      const item = res.data;
-      setId(item.id); // store ID
-      setAboutCards(item.aboutCards || []);
-      setParagraph(item.paragraph || "");
-      setImage(item.image || "");
-    })
-    .catch(console.error);
-}, []);
-
-
-
-  const openModal = (index) => {
-    setActiveCardIndex(index);
-    setEditedCard({ ...aboutCards[index] });
+  const openModal = (card) => {
+    setEditedCard({ ...card });
     setModalOpen(true);
   };
 
   const resetForm = () => {
     setModalOpen(false);
-    setActiveCardIndex(null);
-    setEditedCard({ title: "", description: "" });
+    setEditedCard({ id: null, title: "", description: "" });
   };
-
+  // const handleDelete = async (id) => {
+  //   if (!confirm("Silmək istədiyinizə əminsiniz?")) return;
+  
+  //   try {
+  //     await deleteHomeAbout(id);
+  //     setCards((prevCards) => prevCards.filter((card) => card.id !== id));
+  //   } catch (err) {
+  //     console.error(err.response?.data || err.message);
+  //     alert("Silinərkən xəta baş verdi.");
+  //   }
+  // };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
   
     try {
-      const updatedCards = [...aboutCards];
-      updatedCards[activeCardIndex] = { ...editedCard };
+      const formData = new FormData();
   
-      const fullBody = {
-        id, // ✅ now include ID
-        paragraph,
-        image,
-        aboutCards: updatedCards,
+      const request = {
+        title: editedCard.title.trim(),
+        paragraph: editedCard.description.trim(),
       };
   
-      await updateHomeAbout(fullBody);
-      setAboutCards(updatedCards);
+      formData.append(
+        "request",
+        new Blob([JSON.stringify(request)], { type: "application/json" })
+      );
+  
+      // 👇 Use PUT with ID
+      await updateHomeAbout(editedCard.id, formData);
+  
+      // 🛠 Update local state
+      setCards((prevCards) =>
+        prevCards.map((card) =>
+          card.id === editedCard.id ? { ...card, ...editedCard } : card
+        )
+      );
+  
       resetForm();
     } catch (err) {
-      console.error("Update failed:", err.response?.data || err.message);
+      console.error(err.response?.data || err.message);
       alert("Əməliyyat zamanı xəta baş verdi.");
     }
   };
-  
   
 
   return (
@@ -116,18 +124,26 @@ useEffect(() => {
             <tr>
               <td className={clsx(styles.cardname)}>Dəyərlərimiz</td>
             </tr>
-            {aboutCards.map((card, idx) => (
-              <tr key={idx}>
+            {cards.map((card) => (
+              <tr key={card.id}>
                 <td className={clsx(styles.cardrow, "flex justify-between items-center")}>
                   <div>
                     <strong>{card.title}</strong>: {card.description}
                   </div>
                   <button
                     className={clsx(styles.cardedit)}
-                    onClick={() => openModal(idx)}
+                    onClick={() => openModal(card)}
                   >
                     <Edit />
                   </button>
+                  {/* <button
+  className="ml-4 text-red-600 hover:text-red-800"
+  onClick={() => handleDelete(card.id)}
+  title="Sil"
+>
+  ✖
+</button> */}
+
                 </td>
               </tr>
             ))}

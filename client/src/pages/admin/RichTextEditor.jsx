@@ -11,7 +11,7 @@ const RichTextEditor = ({ value = "", onChange }) => {
   const quillInstance = useRef(null);
 
   useEffect(() => {
-    if (!editorRef.current || quillInstance.current) return; // <-- prevents multiple initializations
+    if (!editorRef.current || quillInstance.current) return; 
   
     const quill = new Quill(editorRef.current, {
       theme: "snow",
@@ -70,7 +70,7 @@ const RichTextEditor = ({ value = "", onChange }) => {
         <button className="ql-image" />
       </div>
 
-      <div ref={editorRef} style={{ minHeight: "200px", maxHeight:"300px" }} />
+      <div ref={editorRef} style={{ minHeight: "100px", maxHeight:"150px" }} />
     </>
   );
 };

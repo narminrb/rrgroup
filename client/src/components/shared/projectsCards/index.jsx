@@ -25,7 +25,11 @@ const ProjectsCard = ({ project }) => {
      </div>
       <div className="p-5">
         <h3 className={clsx(styles.projectname)}>{title}</h3>
-        <p className={clsx(styles.projectdesc)}>{description}</p>
+        {/* <p className={clsx(styles.projectdesc)}>{description}</p> */}
+        <p
+                                className={clsx(styles.choosedesc)}
+                                dangerouslySetInnerHTML={{ __html: description }}
+                              />
       </div>
     </div>
     </Link>

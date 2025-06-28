@@ -18,7 +18,6 @@ const HomeChoose = () => {
   if (isError) return <p>Error: {error.message}</p>;
  
 
-  // const whyChooseUs = data?.whyChooseUs;
   console.log(data)
 
   if (!data || !Array.isArray(data)) return <p>No data found.</p>;
@@ -72,7 +71,10 @@ const HomeChoose = () => {
                     <img className="h-16 w-16" src={imageUrl} alt={title} />
                     <div>
                       <h5 className={clsx(styles.choosename)}>{title}</h5>
-                      <p className={clsx(styles.choosedesc)}>{paragraph}</p>
+                      <p
+                        className={clsx(styles.choosedesc)}
+                        dangerouslySetInnerHTML={{ __html: paragraph }}
+                      />
                     </div>
                   </div>
                 </div>

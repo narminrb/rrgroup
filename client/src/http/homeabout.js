@@ -8,7 +8,13 @@ const AxiosInstance = axios.create({
 
 export const getHomeAbout= () => AxiosInstance.get('/v1/home/about');
 export const createAboutMission = (data) => AxiosInstance.post('/v1/home/about', data);
-export const updateHomeAbout = (data) => AxiosInstance.post('/v1/home/about', data);
+export const updateHomeAbout = (id, formData) =>
+  AxiosInstance.put(`/v1/home/about/${id}`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+
 export const deleteHomeAbout = (id) => AxiosInstance.delete(`/v1/home/about/${id}`);
 
 

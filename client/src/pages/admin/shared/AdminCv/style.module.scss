@@ -1,0 +1,42 @@
+
+
+.card{
+    display: flex;
+    max-width: 900px;
+width: 100%;
+height: 100%;
+padding: 25px 20px;
+flex-direction: column;
+align-items: flex-start;
+border-radius: 20px;
+background: var(--Secondary-Primary-White, #FFF);
+position: relative;
+}
+
+  .flexCelll {
+    display: flex;
+    min-width: 120px;        /* Minimum width for small content */
+    max-width: 100%;         /* Don't grow beyond container */
+    height: 46px;
+    padding: 10.5px 10px;
+    align-items: center;
+    gap: 12px;
+    overflow-wrap: anywhere;
+    flex-grow: 1;            /* Allow cell to grow */
+    box-sizing: border-box;  /* Include padding in width */
+  }
+  .flexCell {
+    display: flex;
+    min-width: 120px;        /* Minimum width for small content */
+    max-width: 100%;         /* Don't grow beyond container */
+    height: 46px;
+    padding: 10.5px 10px;
+    align-items: center;
+    gap: 12px;
+    overflow-wrap: anywhere;
+    flex-grow: 1;            /* Allow cell to grow */
+    box-sizing: border-box;
+     border-radius: 10px;
+    border: 1px solid rgba(115, 103, 255, 0.15); /* Include padding in width */
+  }
+    

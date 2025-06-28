@@ -23,22 +23,23 @@ const ContactTemplates = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
-        {[data].map(({ title, desciption, icon }, idx) => (
-          <div key={idx} className="flex mx-auto items-center gap-4">
-            <div className={clsx(styles.contactimg)}>
-              <img
-                src={`${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${icon}`}
-                alt={`${title} icon`}
-                className="w-12 h-12"
-              />
-            </div>
-            <div className="flex flex-col gap-2 px-3">
-              <h1 className={clsx(styles.contactname)}>{title}</h1>
-              <p>{desciption}</p>
-            </div>
+      {data.map(({ title, description, icon }, idx) => (
+        <div key={idx} className="flex mx-auto items-center gap-4">
+          <div className={clsx(styles.contactimg)}>
+            <img
+              src={`${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${icon}`}
+              alt={`${title} icon`}
+              className="w-12 h-12"
+            />
           </div>
-        ))}
-      </div>
+          <div className="flex flex-col gap-2 px-3">
+            <h1 className={clsx(styles.contactname)}>{title}</h1>
+            <p>{description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
     </div>
   );
 };

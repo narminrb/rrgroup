@@ -7,8 +7,8 @@ const Contact = () => {
     fullName: '',
     phone: '',
     email: '',
-    position: '',
-    motivation: '',
+    topic: '',
+    message: '',
   })
 
   const handleChange = (e) => {
@@ -22,18 +22,18 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { fullName, phone, email, position, motivation } = formData;
+    const { fullName, phone, email, topic, message } = formData;
 
     const contactData = {
       fullName,
       phone,
       email,
-      position,
-      motivation,
+      topic,
+      message,
     };
 
     try {
-      await postApiData("contacts", contactData);
+      await postApiData("/v1/contact/apply", contactData);
       alert("Məlumat uğurla göndərildi!");
     } catch (error) {
       console.error("Error submitting contact form:", error);
@@ -78,7 +78,7 @@ const Contact = () => {
           <input
             type="text"
             placeholder="Mövzu"
-            name="position"
+            name="topic"
             onChange={handleChange}
             required
             className={styles.input}
@@ -86,7 +86,7 @@ const Contact = () => {
         </div>
         <div className={styles.inputGroupFull}>
           <textarea
-            name="motivation"
+            name="message"
             placeholder="Mesaj"
             onChange={handleChange}
             required

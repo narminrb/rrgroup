@@ -49,31 +49,28 @@ import { getAPiData } from '../../../http/api';
 
 const HomeRanking = () => {
   const [aboutCards, setAboutCards] = useState([]);
-  const [image, setImage] = useState('');
 
   useEffect(() => {
     getAPiData('/v1/home/about')
       .then(data => {
-        setAboutCards(data?.aboutCards || []);
-        setImage(data?.image || '');
+        setAboutCards(data || []);
       })
       .catch(err => console.error('HomeRanking error:', err));
   }, []);
+
 
   return (
     <div className="mx-auto my-2 px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         
         <div className="flex justify-center">
-          <div className={clsx(styles.homeimg)}>
-            {image && (
-              <img
-                src={`${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${image}`}
-                alt="Home"
-                className="w-full max-w-md md:max-w-full object-contain"
-              />
-            )}
-          </div>
+        <div className={clsx(styles.homeimg)}>
+          <img
+              src={`${import.meta.env.BASE_URL}assets/home.svg`}
+              alt="Home"
+              className="w-full max-w-md md:max-w-full object-contain"
+            />
+         </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

@@ -9,10 +9,7 @@ import {
 } from '@/ui/ksmCards';
 import { Link } from 'react-router-dom';
 
-export default function KsmCards({ id, ImageSrc, hoverImageSrc, name, desc }) {
-  //const basePath = import.meta.env.BASE_URL || '';
-  const [isHovered, setIsHovered] = useState(false);
-
+export default function KsmCards({ id, ImageSrc, name, desc }) {
   return (
     <KsmSwiperCardContainer
       onMouseEnter={() => setIsHovered(true)}
@@ -20,7 +17,7 @@ export default function KsmCards({ id, ImageSrc, hoverImageSrc, name, desc }) {
     >
       <KsmSwiperImage>
         <KsmImageCont
-          src={`${isHovered ? hoverImageSrc : ImageSrc}`}
+          src={ImageSrc}
           alt={name}
         />
       </KsmSwiperImage>

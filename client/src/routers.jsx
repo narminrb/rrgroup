@@ -20,6 +20,11 @@ import AdminLayout from "./pages/admin/AdminLayout";
 import AdminPage from "./pages/admin/AdminPage";
 import AdminAbout from "./pages/admin/AdminAbout";
 import SwaggerDocs from "./components/templates/SwaggerDocs";
+import AdminProjects from "./pages/admin/AdminProjects";
+import AdminKsm from "./pages/admin/AdminKsm";
+import AdminNews from "./pages/admin/AdminNews";
+import AdminContact from "./pages/admin/AdminContact";
+import AdminCareer from "./pages/admin/AdminCareer";
 
 
 
@@ -141,7 +146,28 @@ export const router = createBrowserRouter([
       {
         path:'about',
         element:<AdminAbout/>
+      },
+      {
+        path:'projects',
+        element:<AdminProjects/>
+      },
+      {
+        path:'ksm',
+        element:<AdminKsm/>
+      },
+      {
+        path:'news',
+        element:<AdminNews/>
+      },
+      {
+        path:'contact',
+        element:<AdminContact/>
+      },
+      {
+        path:'career',
+        element:<AdminCareer/>
       }
+
     ]
     
   }
