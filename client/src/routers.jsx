@@ -25,6 +25,9 @@ import AdminKsm from "./pages/admin/AdminKsm";
 import AdminNews from "./pages/admin/AdminNews";
 import AdminContact from "./pages/admin/AdminContact";
 import AdminCareer from "./pages/admin/AdminCareer";
+import ProtectedRoute from "./pages/admin/component/ProtectedRoute";
+import LoginPage from "./pages/admin/context/AdminLoginPage";
+import AdminService from "./pages/admin/AdminService";
 
 
 
@@ -56,7 +59,7 @@ export const router = createBrowserRouter([
                 element: <NewsTemplates />,
               },
               {
-                path: ":id", 
+                path: ":slug", 
                 element: <NewsDetailTemplate />,
               },
             ],
@@ -69,11 +72,11 @@ export const router = createBrowserRouter([
                 element: <ProjectsTemplates />,
               },
               {
-                path: ":id", 
+                path: ":slug", 
                 element: <ProjectDetailTemplate />,
               },
               {
-                path:"yenilayihələr/:id",
+                path:"yenilayihələr/:slug",
                 element:<SpecialProjectsTemplates/>
               }
             ],
@@ -86,7 +89,7 @@ export const router = createBrowserRouter([
                 element: <KsmTemplates />,
               },
               {
-                path: ":id", 
+                path: ":slug", 
                 element: <KsmDetailTemplates />,
               },
             ],
@@ -100,11 +103,11 @@ export const router = createBrowserRouter([
                 element: <ServiceTemplates />,
               },
               {
-                path: ":id", 
+                path: ":slug", 
                 element: <ServiceDetailsTemplates />,
               },
               {
-                path:"offices/:id",
+                path:"offices/:slug",
                 element:<ServiceOfficeTemplates/>
               }
             ],
@@ -166,10 +169,36 @@ export const router = createBrowserRouter([
       {
         path:'career',
         element:<AdminCareer/>
+      },
+      {
+        path:'services',
+        element:<AdminService/>
       }
 
     ]
     
   }
+  // {
+  //   path: "rrgroup/admin",
+  //   element: (
+  //     <ProtectedRoute>
+  //       <AdminLayout />
+  //     </ProtectedRoute>
+  //   ),
+  //   children: [
+  //     { path: "", element: <AdminPage /> },
+  //     { path: "about", element: <AdminAbout /> },
+  //     { path: "projects", element: <AdminProjects /> },
+  //     { path: "ksm", element: <AdminKsm /> },
+  //     { path: "news", element: <AdminNews /> },
+  //     { path: "contact", element: <AdminContact /> },
+  //     { path: "career", element: <AdminCareer /> },
+  //   ],
+  // },
+  // {
+  //   path: "rrgroup/admin/login",
+  //   element: <LoginPage />,
+  // }
+  
 ]);
 

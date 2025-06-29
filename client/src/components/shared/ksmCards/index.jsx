@@ -9,7 +9,8 @@ import {
 } from '@/ui/ksmCards';
 import { Link } from 'react-router-dom';
 
-export default function KsmCards({ id, ImageSrc, name, desc }) {
+export default function KsmCards({ slug, ImageSrc, name, desc }) {
+  const [isHovered, setIsHovered] = useState(false);
   return (
     <KsmSwiperCardContainer
       onMouseEnter={() => setIsHovered(true)}
@@ -22,8 +23,8 @@ export default function KsmCards({ id, ImageSrc, name, desc }) {
         />
       </KsmSwiperImage>
       <KsmSwiperName>{name}</KsmSwiperName>
-      <KsmSwiperDesc>{desc}</KsmSwiperDesc>
-      <Link to={`/rrgroup/ksm/${id}`}>
+      <KsmSwiperDesc dangerouslySetInnerHTML={{ __html: desc }} />
+      <Link to={`/rrgroup/ksm/${slug}`}>
       <KsmButton>Ətraflı</KsmButton>
       </Link>
     </KsmSwiperCardContainer>

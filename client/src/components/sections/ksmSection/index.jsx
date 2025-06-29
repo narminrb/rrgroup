@@ -43,7 +43,7 @@ export default function KsmSection() {
             : 'https://via.placeholder.com/150'
         }
         name={el.title}
-        id={el.id}
+        slug={el.slug}
         desc={el.description}
       />
     </div>

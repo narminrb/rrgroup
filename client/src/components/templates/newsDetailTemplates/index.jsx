@@ -73,7 +73,7 @@ import styles from './style.module.scss';
 import NewsSwiper from '@/components/sections/newsSwiper';
 
 const NewsDetailTemplate = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
 
   const {
     data: news,
@@ -81,9 +81,9 @@ const NewsDetailTemplate = () => {
     isError,
     error,
   } = useQuery({
-    queryKey: ['news-detail', id],
-    queryFn: async () => await getAPiData(`/v1/news/${id}`),
-    enabled: !!id,
+    queryKey: ['news-detail', slug],
+    queryFn: async () => await getAPiData(`/v1/news/slug/${slug}`),
+    enabled: !!slug,
   });
 
   if (isLoading) return <p>Loading...</p>;
@@ -95,8 +95,8 @@ const NewsDetailTemplate = () => {
     ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${image}`
     : 'https://via.placeholder.com/150';
 
-  const name = news.name || 'No name';
-  const context = news.context || 'No context';
+  const name = news.title || 'No name';
+  const context = news.paragraph || 'No context';
 
   return (
     <div className="container mx-auto my-20 px-4 max-w-screen-xl">

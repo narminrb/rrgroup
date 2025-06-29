@@ -100,7 +100,6 @@ const ServiceConstruction = () => {
     queryFn: () => getAPiData('/v1/service/card/all'),
   });
 
-  // ✅ Function to handle subcategory selection
   const handleSubCategoryClick = (slug) => {
     setSelectedSlug(slug === selectedSlug ? null : slug);
   };
@@ -115,7 +114,7 @@ const ServiceConstruction = () => {
         const filteredCards = serviceCards.filter(
           card =>
             card.headCategorySlug === category.slug &&
-            (!selectedSlug || card.subCategorySlug === selectedSlug) // apply filter
+            (!selectedSlug || card.subCategorySlug === selectedSlug) 
         );
 
         return (

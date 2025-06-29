@@ -79,7 +79,7 @@ import clsx from 'clsx';
 import styles from './style.module.scss';
 
 const KsmDetailTemplates = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
 
   const {
     data: ksm,
@@ -87,9 +87,9 @@ const KsmDetailTemplates = () => {
     isError,
     error,
   } = useQuery({
-    queryKey: ['ksm', id],
-    queryFn: async () => await getAPiData(`/v1/ksm/${id}`),
-    enabled: !!id,
+    queryKey: ['ksm', slug],
+    queryFn: async () => await getAPiData(`/v1/ksm/slug/${slug}`),
+    enabled: !!slug,
   });
 
   if (isLoading) return <p>Loading...</p>;
@@ -103,7 +103,7 @@ const KsmDetailTemplates = () => {
       <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
         <div className={clsx(styles.desccont)}>
           <div className="py-6">
-            <p className={clsx(styles.detname)}>{context}</p>
+          <div className={clsx(styles.detname)} dangerouslySetInnerHTML={{ __html: context }} />
           </div>
         </div>
       </div>

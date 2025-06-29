@@ -79,7 +79,7 @@ import clsx from 'clsx';
 import styles from './style.module.scss';
 
 const SpecialProjectsTemplates = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
 
   const {
     data: project,
@@ -87,10 +87,13 @@ const SpecialProjectsTemplates = () => {
     isError,
     error,
   } = useQuery({
-    queryKey: ['special-project', id],
-    queryFn: () => getAPiData(`/specials/${id}`),
-    enabled: !!id,
+    queryKey: ['special-project', slug],
+    queryFn: () => getAPiData(`/v1/specials/slug/${slug}`),
+    enabled: !!slug,
   });
+  console.log("slug:", slug);
+console.log("project:", project);
+
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error: {error.message}</p>;
@@ -106,15 +109,15 @@ const SpecialProjectsTemplates = () => {
         </div>
 
         <div className="flex justify-start gap-6 py-6">
-          <div className={clsx(styles.detname)}>
-            {project.content ? (
-              project.content.split('\n\n').map((paragraph, idx) => (
-                <p key={idx} className="mb-4">{paragraph}</p>
-              ))
-            ) : (
-              <p className="text-gray-500">Məlumat mövcud deyil.</p>
-            )}
-          </div>
+        <div className={clsx(styles.detname)}>
+      {project.content ? (
+        <div
+          dangerouslySetInnerHTML={{ __html: project.content }}
+        />
+      ) : (
+        <p className="text-gray-500">Məlumat mövcud deyil.</p>
+      )}
+    </div>
         </div>
       </div>
 

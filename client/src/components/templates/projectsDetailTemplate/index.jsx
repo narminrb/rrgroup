@@ -80,7 +80,7 @@ import styles from './style.module.scss';
 import ProjectSwiper from '@/components/sections/projectSwiper';
 
 const ProjectDetailTemplate = () => {
-  const { id } = useParams(); // get id from URL
+  const { slug } = useParams(); 
 
   const {
     data: project,
@@ -88,9 +88,9 @@ const ProjectDetailTemplate = () => {
     isError,
     error,
   } = useQuery({
-    queryKey: ['project', id],
-    queryFn: () => getAPiData(`/v1/projects/${id}`), // fetch project by id
-    enabled: !!id, // only run if id exists
+    queryKey: ['project', slug],
+    queryFn: () => getAPiData(`/v1/projects/slug/${slug}`), 
+    enabled: !!slug, 
   });
 
   if (isLoading) return <p>Loading...</p>;

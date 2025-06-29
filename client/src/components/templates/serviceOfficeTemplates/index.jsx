@@ -5,26 +5,29 @@ import { getAPiData } from '@/http/api'
 import clsx from 'clsx'
 import styles from './style.module.scss'
 const ServiceOfficeTemplates = () => {
-  const { id } = useParams()
+  const { slug } = useParams()
 
   const {
-    data: allProjects,
+    data: project,
     isLoading,
     isError,
     error,
   } = useQuery({
-    queryKey: ['all-projects'],
-    queryFn: async () => await getAPiData('serviceoffices'), 
-  })
+    queryKey: ['foreign-office', slug],
+    queryFn: async () => await getAPiData(`/v1/foreign/slug/${slug}`),
+    enabled: !!slug,
+  });
+  
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Error: {error.message}</p>;
+  if (!project) return <p>Project not found.</p>;
+  
 
-  if (isLoading) return <p>Loading...</p>
-  if (isError) return <p>Error: {error.message}</p>
 
-  const project = allProjects.find((p) => String(p.id) === id)
 
   if (!project) return <p>Project not found.</p>
 
-  const name = project.name || 'No name'
+  const name = project.header || 'No name'
 
 
   return (
@@ -35,8 +38,8 @@ const ServiceOfficeTemplates = () => {
               </div>
       <div className='flex justify-start gap-6 py-6'>
       <div className={clsx(styles.detname)}>
-  {project.context
-    ? project.context.split('\n\n').map((paragraph, idx) => (
+  {project.description
+    ? project.description.split('\n\n').map((paragraph, idx) => (
         <p key={idx} className="mb-4">{paragraph}</p>
       ))
     : <p className="text-gray-500">Məlumat mövcud deyil.</p>
