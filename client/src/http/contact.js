@@ -6,16 +6,16 @@ const AxiosInstance = axios.create({
 });
 
 
-export const getContacts = () => AxiosInstance.get('v1/contact');
-export const getContact = (id) => AxiosInstance.get(`/v1/contact/${id}`);
-export const createContact = (data) => AxiosInstance.post('/v1/contact', data);
+export const getContacts = () => AxiosInstance.get('v1/contact/getAll');
+export const getContact = (id) => AxiosInstance.get(`/v1/contact/get/${id}`);
+export const createContact = (data) => AxiosInstance.post('/v1/contact/add', data);
 export const updateContact = (id, formData) =>
-  AxiosInstance.put(`/v1/contact/${id}`, formData, {
+  AxiosInstance.put(`/v1/contact/update/${id}`, formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
   });
-export const deleteContact = (id) => AxiosInstance.delete(`/v1/contact/${id}`);
+export const deleteContact = (id) => AxiosInstance.delete(`/v1/contact/delete/${id}`);
 
 
   

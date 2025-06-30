@@ -229,10 +229,12 @@ import AdminKsm from "./pages/admin/AdminKsm";
 import AdminNews from "./pages/admin/AdminNews";
 import AdminContact from "./pages/admin/AdminContact";
 import AdminCareer from "./pages/admin/AdminCareer";
-import ProtectedRoute from "./pages/admin/component/ProtectedRoute";
-import LoginPage from "./pages/admin/context/AdminLoginPage";
 import AdminService from "./pages/admin/AdminService";
 import SpecialProjectsTemplates from "./components/templates/specialProjectsTemplates";
+import PrivateRoute from "./pages/admin/component/ProtectedRoute";
+import Login from "./pages/admin/context/AdminLoginPage";
+import ForgetPassword from "./pages/admin/context/ForgetPassword";
+import ResetPassword from "./pages/admin/context/ResetPassword";
 
 
 
@@ -267,7 +269,7 @@ export const router = createBrowserRouter([
             ],
           },
           {
-            path: "layihələr",
+            path: "projects",
             children: [
               {
                 path: "",
@@ -278,7 +280,7 @@ export const router = createBrowserRouter([
                 element: <ProjectDetailTemplate />,
               },
               {
-                path:"yenilayihələr/:slug",
+                path:"newprojects/:slug",
                 element:<SpecialProjectsTemplates/>
               }
             ],
@@ -322,7 +324,7 @@ export const router = createBrowserRouter([
                 element: <CareerTemplates />,
               },
               {
-                path: ":id", 
+                path: ":slug", 
                 element: <CareerDetailTemplates />,
               }
             ],
@@ -379,27 +381,67 @@ export const router = createBrowserRouter([
     ]
     
   }
+  
   // {
-  //   path: "rrgroup/admin",
-  //   element: (
-  //     <ProtectedRoute>
-  //       <AdminLayout />
-  //     </ProtectedRoute>
-  //   ),
+  //   path: "/admin",
   //   children: [
-  //     { path: "", element: <AdminPage /> },
-  //     { path: "about", element: <AdminAbout /> },
-  //     { path: "projects", element: <AdminProjects /> },
-  //     { path: "ksm", element: <AdminKsm /> },
-  //     { path: "news", element: <AdminNews /> },
-  //     { path: "contact", element: <AdminContact /> },
-  //     { path: "career", element: <AdminCareer /> },
-  //   ],
-  // },
-  // {
-  //   path: "rrgroup/admin/login",
-  //   element: <LoginPage />,
+  //     {
+  //       path: "login",
+  //       element: <Login />
+  //     },
+  //     {
+  //       path: "forget-password",
+  //       element: <ForgetPassword />
+  //     },
+  //     {
+  //       path: "reset-password",
+  //       element: <ResetPassword />
+  //     },
+  //     {
+  //       path: "",
+  //       element: (
+  //         <PrivateRoute>
+  //           <AdminLayout />
+  //         </PrivateRoute>
+  //       ),
+  //       children: [
+  //         {
+  //           path: "",
+  //           element: <AdminPage />,
+  //         },
+  //         {
+  //           path: "about",
+  //           element: <AdminAbout />,
+  //         },
+  //         {
+  //           path: "projects",
+  //           element: <AdminProjects />,
+  //         },
+  //         {
+  //           path: "ksm",
+  //           element: <AdminKsm />,
+  //         },
+  //         {
+  //           path: "news",
+  //           element: <AdminNews />,
+  //         },
+  //         {
+  //           path: "contact",
+  //           element: <AdminContact />,
+  //         },
+  //         {
+  //           path: "career",
+  //           element: <AdminCareer />,
+  //         },
+  //         {
+  //           path: "services",
+  //           element: <AdminService />,
+  //         }
+  //       ]
+  //     }
+  //   ]
   // }
+  
   
 ]);
 

@@ -77,6 +77,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getAPiData } from '@/http/api';
 import clsx from 'clsx';
 import styles from './style.module.scss';
+import KsmDetailSwiper from '@/components/sections/ksmDetailSwiper';
 
 const KsmDetailTemplates = () => {
   const { slug } = useParams();
@@ -88,7 +89,7 @@ const KsmDetailTemplates = () => {
     error,
   } = useQuery({
     queryKey: ['ksm', slug],
-    queryFn: async () => await getAPiData(`/v1/ksm/slug/${slug}`),
+    queryFn: async () => await getAPiData(`/v1/ksm/getBySlug/${slug}`),
     enabled: !!slug,
   });
 
@@ -127,6 +128,7 @@ const KsmDetailTemplates = () => {
           </div>
         )}
       </div>
+      <KsmDetailSwiper images={ksm.images} />
     </div>
   );
 };

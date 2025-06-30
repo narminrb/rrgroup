@@ -8,7 +8,7 @@ import clsx from 'clsx'
 const ProjectsPage = () => {
   const { data:projectData, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.PROJECTCARDS],
-    queryFn: async () => await getAPiData('/v1/projects/getAllProjects'),
+    queryFn: async () => await getAPiData('/v1/projects/getAll'),
   });
 
   if (isLoading) return <p>Loading...</p>

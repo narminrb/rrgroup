@@ -19,7 +19,7 @@ import styles from './style.module.scss'
 export default function AboutValues() {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.ABOUTVALUES],
-    queryFn: async () => await getAPiData('/v1/values')
+    queryFn: async () => await getAPiData('/v1/values/getAll')
   });
   console.log(data)
   //const values = data?.values

@@ -6,16 +6,16 @@ const AxiosInstance = axios.create({
 });
 
 
-export const getSetems = () => AxiosInstance.get('v1/setem');
-export const getSetem = (id) => AxiosInstance.get(`/v1/setem/${id}`);
-export const createSetem = (data) => AxiosInstance.post('/v1/setem', data);
+export const getSetems = () => AxiosInstance.get('v1/setem/getAll');
+export const getSetem = (id) => AxiosInstance.get(`/v1/setem/get/${id}`);
+export const createSetem = (data) => AxiosInstance.post('/v1/setem/add', data);
 export const updateSetem = (id, formData) =>
-  AxiosInstance.put(`/v1/setem/${id}`, formData, {
+  AxiosInstance.put(`/v1/setem/update/${id}`, formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
   });
-export const deleteSetem = (id) => AxiosInstance.delete(`/v1/setem/${id}`);
+export const deleteSetem = (id) => AxiosInstance.delete(`/v1/setem/delete/${id}`);
 
 
   

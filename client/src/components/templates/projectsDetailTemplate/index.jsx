@@ -89,7 +89,7 @@ const ProjectDetailTemplate = () => {
     error,
   } = useQuery({
     queryKey: ['project', slug],
-    queryFn: () => getAPiData(`/v1/projects/slug/${slug}`), 
+    queryFn: () => getAPiData(`/v1/projects/getBySlug/${slug}`), 
     enabled: !!slug, 
   });
 

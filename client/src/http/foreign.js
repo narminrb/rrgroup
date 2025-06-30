@@ -6,16 +6,16 @@ const AxiosInstance = axios.create({
 });
 
 
-export const getForeigns = () => AxiosInstance.get('v1/foreign/all');
-export const getForeign = (id) => AxiosInstance.get(`/v1/foreign/${id}`);
-export const createForeign = (data) => AxiosInstance.post('/v1/foreign', data);
+export const getForeigns = () => AxiosInstance.get('v1/foreign/getAll');
+export const getForeign = (id) => AxiosInstance.get(`/v1/foreign/get/${id}`);
+export const createForeign = (data) => AxiosInstance.post('/v1/foreign/add', data);
 export const updateForeign = (id, formData) =>
-  AxiosInstance.put(`/v1/foreign/${id}`, formData, {
+  AxiosInstance.put(`/v1/foreign/update/${id}`, formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
   });
-export const deleteForeign = (id) => AxiosInstance.delete(`/v1/foreign/${id}`);
+export const deleteForeign = (id) => AxiosInstance.delete(`/v1/foreign/delete/${id}`);
 
 
   

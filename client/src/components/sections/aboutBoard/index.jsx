@@ -13,7 +13,7 @@ const AboutBoard = () => {
 
   const { data: boardData, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.ABOUTBOARDS],
-    queryFn: async () => await getAPiData('/v1/team')
+    queryFn: async () => await getAPiData('/v1/team/getAll')
   });
 
   // const manageTeams = boardData?.manageTeams

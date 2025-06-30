@@ -6,8 +6,8 @@ const AxiosInstance = axios.create({
 });
 
 
-export const getAboutHistory = () => AxiosInstance.get('/v1/history');
-export const updateAboutHistory = (data) => AxiosInstance.post('/v1/history', data); 
+export const getAboutHistory = () => AxiosInstance.get('/v1/history/get');
+export const updateAboutHistory = (data) => AxiosInstance.post('/v1/history/edit', data); 
 
 
 

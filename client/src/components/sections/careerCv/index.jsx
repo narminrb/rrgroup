@@ -183,7 +183,7 @@ const CareerCv = () => {
     form.append('file', file);
 
     try {
-      await postApiData('/v1/vacancy/apply', form, {
+      await postApiData('/v1/vacancy/applicant/apply', form, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

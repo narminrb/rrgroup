@@ -8,7 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 const HomeChoose = () => {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.CHOOSEUS],
-    queryFn: () => getAPiData('/v1/whyChooseUs') 
+    queryFn: () => getAPiData('/v1/whyChooseUs/getAll') 
     ,
   });
 

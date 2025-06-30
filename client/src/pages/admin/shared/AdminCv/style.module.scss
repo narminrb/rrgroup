@@ -40,3 +40,50 @@ position: relative;
     border: 1px solid rgba(115, 103, 255, 0.15); /* Include padding in width */
   }
     
+
+  
+.modal{
+  display: flex;
+width: 804px;
+height: 800px;
+padding: 35px 30px;
+flex-direction: column;
+position: relative;
+align-items: flex-start;
+gap: 14px;
+flex-shrink: 0;
+background-color: white;
+border-radius: 20px;
+background: var(--Secondary-Primary-White, #FFF);
+}
+
+.modalinput{
+  display: flex;
+width: 670px;
+height: 45px;
+padding: 10.5px 10px;
+align-items: center;
+gap: 12px;
+border-radius: 10px;
+border: 1px solid var(--style-stroke-for-inputs, rgba(115, 103, 255, 0.15));
+}
+.modalbtn{
+display: flex;
+width: 124px;
+height: 42px;
+padding: 16px 0px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+position: absolute;
+right: 30px;
+bottom: 30px;
+border-radius: 12px;
+background: #5C648C;
+color: #FFF;
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 300;
+line-height: normal;
+}

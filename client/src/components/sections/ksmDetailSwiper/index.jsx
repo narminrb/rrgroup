@@ -14,8 +14,8 @@ import NewsSwiperCard from '@/components/shared/newsSwiperCard';
 
 
 
-export default function NewsSwiper({ images = [] }) {
-  if (!images || images.length === 0) return null;
+export default function KsmDetailSwiper({ images = [] }) {
+    if (!images || images.length === 0) return null;
 
   return (
     <div className="about-certificate-swiper container max-w-screen-xl mx-auto my-10 px-3 relative"> 

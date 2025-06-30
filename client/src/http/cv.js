@@ -6,8 +6,8 @@ const AxiosInstance = axios.create({
 });
 
 
-export const getCv = () => AxiosInstance.get('v1/vacancy/applicant');
-//export const deleteCv = (id) => AxiosInstance.delete(`/v1/contact/delete/contactMessages/${id}`);
+export const getCv = () => AxiosInstance.get('v1/vacancy/applicant/getAll');
+export const deleteCv = (id) => AxiosInstance.delete(`/v1/vacancy/applicant/delete/${id}`);
 
 
   

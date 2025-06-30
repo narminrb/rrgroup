@@ -6,16 +6,16 @@ const AxiosInstance = axios.create({
 });
 
 
-export const getKsms = () => AxiosInstance.get('/v1/ksm');
-export const getKsm = (id) => AxiosInstance.get(`/v1/ksm/${id}`);
-export const createKsm = (data) => AxiosInstance.post('/v1/ksm', data);
+export const getKsms = () => AxiosInstance.get('/v1/ksm/getAll');
+export const getKsm = (id) => AxiosInstance.get(`/v1/ksm/get/${id}`);
+export const createKsm = (data) => AxiosInstance.post('/v1/ksm/add', data);
 export const updateKsm = (id, formData) =>
-  AxiosInstance.put(`/v1/ksm/${id}`, formData, {
+  AxiosInstance.put(`/v1/ksm/update/${id}`, formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
   });
-export const deleteKsm = (id) => AxiosInstance.delete(`/v1/ksm/${id}`);
+export const deleteKsm = (id) => AxiosInstance.delete(`/v1/ksm/delete/${id}`);
 
 
   

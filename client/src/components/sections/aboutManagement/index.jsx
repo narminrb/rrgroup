@@ -7,7 +7,7 @@ import { getAPiData } from '@/http/api';
 const AboutManagement = () => {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['MANAGEMENT_STRUCTURE'],
-    queryFn: () => getAPiData('/v1/management-structure'),
+    queryFn: () => getAPiData('/v1/management-structure/get'),
   });
 
   if (isLoading) return <p>Loading...</p>;

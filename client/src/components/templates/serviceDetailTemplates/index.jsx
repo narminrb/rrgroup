@@ -16,7 +16,7 @@ const ServiceDetailsTemplates = () => {
     error,
   } = useQuery({
     queryKey: ['service-card', slug],
-    queryFn: async () => await getAPiData(`/v1/service/card/slug/${slug}`),
+    queryFn: async () => await getAPiData(`/v1/service/card/getBySlug/${slug}`),
     enabled: !!slug,
   });
 

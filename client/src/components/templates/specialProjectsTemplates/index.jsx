@@ -172,7 +172,7 @@ const SpecialProjectsTemplates = () => {
     error,
   } = useQuery({
     queryKey: ['special-project', slug],
-    queryFn: () => getAPiData(`/v1/specials/slug/${slug}`),
+    queryFn: () => getAPiData(`/v1/specials/getBySlug/${slug}`),
     enabled: !!slug,
   });
 

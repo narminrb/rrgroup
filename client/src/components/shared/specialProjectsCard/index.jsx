@@ -19,7 +19,7 @@ const SpecialProjectsCard = ({ news }) => {
 
   return (
    <div>
-    <Link to={`/layihələr/yenilayihələr/${news?.slug}`}>
+    <Link to={`/projects/newprojects/${news?.slug}`}>
      <div className={clsx(styles.newscard)}>
      <div className={clsx(styles.newsimage)}>
      <img

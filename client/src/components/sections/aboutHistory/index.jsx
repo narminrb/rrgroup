@@ -34,7 +34,7 @@ import { getAPiData } from '@/http/api';
 const AboutHistory = () => {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['HISTORY'],
-    queryFn: () => getAPiData('/v1/history'),
+    queryFn: () => getAPiData('/v1/history/get'),
   });
 
   if (isLoading) return <p>Loading...</p>;

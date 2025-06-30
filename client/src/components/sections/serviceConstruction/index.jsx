@@ -87,17 +87,17 @@ const ServiceConstruction = () => {
 
   const { data: headCategories = [] } = useQuery({
     queryKey: ['headCategories'],
-    queryFn: () => getAPiData('/v1/service/head-category/all'),
+    queryFn: () => getAPiData('/v1/service/head-category/getAll'),
   });
 
   const { data: subCategories = [] } = useQuery({
     queryKey: ['subCategories'],
-    queryFn: () => getAPiData('/v1/service/sub-category/all'),
+    queryFn: () => getAPiData('/v1/service/sub-category/getAll'),
   });
 
   const { data: serviceCards = [] } = useQuery({
     queryKey: ['serviceCards'],
-    queryFn: () => getAPiData('/v1/service/card/all'),
+    queryFn: () => getAPiData('/v1/service/card/getAll'),
   });
 
   const handleSubCategoryClick = (slug) => {

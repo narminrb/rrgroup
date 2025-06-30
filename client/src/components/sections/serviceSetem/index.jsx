@@ -13,7 +13,7 @@ const ServiceSetem = () => {
 
   const { data: boardData, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.SERVICESETEMS],
-    queryFn: async () => await getAPiData('/v1/setem')
+    queryFn: async () => await getAPiData('/v1/setem/getAll')
   });
 
   const closeModal = () => {

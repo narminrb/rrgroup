@@ -6,7 +6,7 @@ import NewsCard from '@/components/shared/newsCard'
 const NewsPage = () => {
   const { data:newsData, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.NEWSCARDS],
-    queryFn: async () => await getAPiData('/v1/news'),
+    queryFn: async () => await getAPiData('/v1/news/getAll'),
   });
 
   if (isLoading) return <p>Loading...</p>

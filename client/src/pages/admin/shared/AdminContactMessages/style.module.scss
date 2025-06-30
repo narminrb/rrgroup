@@ -39,4 +39,68 @@ position: relative;
      border-radius: 10px;
     border: 1px solid rgba(115, 103, 255, 0.15); /* Include padding in width */
   }
+
+  
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+
+
+.modal{
+    display: flex;
+width: 804px;
+height: 800px;
+padding: 35px 30px;
+flex-direction: column;
+position: relative;
+align-items: flex-start;
+gap: 14px;
+flex-shrink: 0;
+background-color: white;
+border-radius: 20px;
+background: var(--Secondary-Primary-White, #FFF);
+}
+
+.modalinput{
+    display: flex;
+width: 670px;
+height: 45px;
+padding: 10.5px 10px;
+align-items: center;
+gap: 12px;
+border-radius: 10px;
+border: 1px solid var(--style-stroke-for-inputs, rgba(115, 103, 255, 0.15));
+}
+.modalbtn{
+display: flex;
+width: 124px;
+height: 42px;
+padding: 16px 0px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+position: absolute;
+right: 30px;
+bottom: 30px;
+border-radius: 12px;
+background: #5C648C;
+color: #FFF;
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 300;
+line-height: normal;
+}
+
+.cardedit{
+    display: flex;
+width: 24px;
+height: 24px;
+padding: 2.88px 2.88px 3.84px 3.84px;
+justify-content: center;
+align-items: center;
+flex-shrink: 0;
+}
+
+
     

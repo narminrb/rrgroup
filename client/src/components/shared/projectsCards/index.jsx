@@ -14,7 +14,7 @@ const ProjectsCard = ({ project }) => {
 
   return (
    <div>
-    <Link to={`/layihələr/${project.slug}`}>
+    <Link to={`/projects/${project.slug}`}>
      <div className={clsx(styles.projectcard)}>
      <div className={clsx(styles.projectimage)}>
      <img

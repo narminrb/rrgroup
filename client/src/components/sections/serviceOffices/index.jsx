@@ -20,7 +20,7 @@ import { Link } from 'react-router-dom';
 export default function ServiceOffices() {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.SERVICEOFFICES],
-    queryFn: async () => await getAPiData('/v1/foreign/all')
+    queryFn: async () => await getAPiData('/v1/foreign/getAll')
   });
   console.log(data)
 

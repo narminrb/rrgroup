@@ -7,7 +7,7 @@ import KsmCards from '@/components/shared/ksmCards';
 export default function KsmSection() {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.KSMS],
-    queryFn: async () => await getAPiData('/v1/ksm')
+    queryFn: async () => await getAPiData('/v1/ksm/getAll')
   });
 
   // const ksmCards = ksmData?.ksmCards

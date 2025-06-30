@@ -9,11 +9,12 @@ import './style.css';
 import clsx from 'clsx';
 import styles from './style.module.scss'
 import ProjectSwiperCard from '@/components/shared/projectSwiperCard';
+import { Link } from 'react-router-dom';
 
 export default function ProjectSwiper() {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.PROJECTCARDS],
-    queryFn: async () => await getAPiData(`/v1/projects/getAllProjects`)
+    queryFn: async () => await getAPiData(`/v1/projects/getAll`)
   });
 
   if (isLoading) return <p>Loading...</p>;
@@ -59,11 +60,13 @@ export default function ProjectSwiper() {
 
   return (
     <SwiperSlide className="font-worksans" key={index}>
+      <Link to={`/projects/${el.slug}`}>
       <ProjectSwiperCard
         ImageSrc={imageUrl}
         name={el.name}
         desc={el.content}
       />
+      </Link>
     </SwiperSlide>
   );
 })}

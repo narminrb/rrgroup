@@ -12,7 +12,7 @@ import styles from './style.module.scss'
 export default function HomeNews() {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.NEWSCARDS],
-    queryFn: async () => await getAPiData('/v1/home')
+    queryFn: async () => await getAPiData('/v1/home/all')
   });
 
   if (isLoading) return <p>Loading...</p>;

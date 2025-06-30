@@ -19,7 +19,7 @@ import styles from './style.module.scss'
 export default function AboutCertificate() {
   const { data:certificate, isLoading:certificateLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.CERTIFICATES],
-    queryFn: async () => await getAPiData('/v1/certificate')
+    queryFn: async () => await getAPiData('/v1/certificates/getAll')
   });
   console.log(certificate)
 

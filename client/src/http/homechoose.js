@@ -6,16 +6,16 @@ const AxiosInstance = axios.create({
 });
 
 
-export const getHomeChoose= () => AxiosInstance.get('/v1/whyChooseUs');
-export const createHomeChoose = (data) => AxiosInstance.post('/v1/whyChooseUs', data);
+export const getHomeChoose= () => AxiosInstance.get('/v1/whyChooseUs/getAll');
+export const createHomeChoose = (data) => AxiosInstance.post('/v1/whyChooseUs/add', data);
 export const updateHomeChoose = (id, formData) =>
-  AxiosInstance.put(`/v1/whyChooseUs/${id}`, formData, {
+  AxiosInstance.put(`/v1/whyChooseUs/update/${id}`, formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
   });
 
-export const deleteHomeChoose = (id) => AxiosInstance.delete(`/v1/whyChooseUs/${id}`);
+export const deleteHomeChoose = (id) => AxiosInstance.delete(`/v1/whyChooseUs/delete/${id}`);
 
 
 

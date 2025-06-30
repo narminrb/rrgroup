@@ -7,7 +7,7 @@ import { getAPiData } from '@/http/api';
 const AboutVision = () => {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['VISION'],
-    queryFn: () => getAPiData('/v1/vision'),
+    queryFn: () => getAPiData('/v1/vision/get'),
   });
 
   if (isLoading) return <p>Loading...</p>;

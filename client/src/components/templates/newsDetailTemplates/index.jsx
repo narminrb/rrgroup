@@ -82,7 +82,7 @@ const NewsDetailTemplate = () => {
     error,
   } = useQuery({
     queryKey: ['news-detail', slug],
-    queryFn: async () => await getAPiData(`/v1/news/slug/${slug}`),
+    queryFn: async () => await getAPiData(`/v1/news/getBySlug/${slug}`),
     enabled: !!slug,
   });
 
@@ -117,7 +117,7 @@ const NewsDetailTemplate = () => {
       </div>
 
       <div className="mt-12">
-        <NewsSwiper />
+        <NewsSwiper images={news.images}/>
       </div>
     </div>
   );

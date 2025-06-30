@@ -6,11 +6,11 @@ const AxiosInstance = axios.create({
 });
 
 
-export const getAboutValues = () => AxiosInstance.get('/v1/values');
-export const getAboutValue = (id) => AxiosInstance.get(`/v1/values/${id}`);
-export const createAboutValue = (data) => AxiosInstance.post('/v1/values', data);
-export const updateAboutValue = (id, data) => AxiosInstance.put(`/v1/values/${id}`, data);
-export const deleteAboutValue = (id) => AxiosInstance.delete(`/v1/values/${id}`);
+export const getAboutValues = () => AxiosInstance.get('/v1/values/getAll');
+export const getAboutValue = (id) => AxiosInstance.get(`/v1/values/get/${id}`);
+export const createAboutValue = (data) => AxiosInstance.post('/v1/values/add', data);
+export const updateAboutValue = (id, data) => AxiosInstance.put(`/v1/values/update/${id}`, data);
+export const deleteAboutValue = (id) => AxiosInstance.delete(`/v1/values/delete/${id}`);
 
 
   

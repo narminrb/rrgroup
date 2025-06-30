@@ -19,7 +19,7 @@ import styles from './style.module.scss'
 export default function InstaSwiper() {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.INSTASWIPERS],
-    queryFn: async () => await getAPiData('/v1/missions')
+    queryFn: async () => await getAPiData('/v1/missions/getAll')
   });
   console.log(data)
   // const missions = data?.missions

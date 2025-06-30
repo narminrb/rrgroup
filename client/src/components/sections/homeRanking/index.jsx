@@ -51,7 +51,7 @@ const HomeRanking = () => {
   const [aboutCards, setAboutCards] = useState([]);
 
   useEffect(() => {
-    getAPiData('/v1/home/about')
+    getAPiData('/v1/home/about/get')
       .then(data => {
         setAboutCards(data || []);
       })

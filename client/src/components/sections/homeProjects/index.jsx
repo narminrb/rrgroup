@@ -84,7 +84,7 @@ const HomeProjects = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    getAPiData('/v1/projects/getAllProjects')
+    getAPiData('/v1/projects/getAll')
       .then((data) => setProjects(data || []))
       .catch((err) => console.error('Project fetch failed:', err));
   }, []);

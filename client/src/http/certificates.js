@@ -6,11 +6,11 @@ const AxiosInstance = axios.create({
 });
 
 
-export const getAboutCertificates = () => AxiosInstance.get('/v1/certificate');
-export const getAboutCertificate = (id) => AxiosInstance.get(`/v1/certificate/${id}`);
-export const createAboutCertificate = (data) => AxiosInstance.post('/v1/certificate', data);
-export const updateAboutCertificate = (id, data) => AxiosInstance.put(`/v1/certificate/${id}`, data);
-export const deleteAboutCertificate = (id) => AxiosInstance.delete(`/v1/certificate/${id}`);
+export const getAboutCertificates = () => AxiosInstance.get('/v1/certificates/getAll');
+export const getAboutCertificate = (id) => AxiosInstance.get(`/v1/certificates/get/${id}`);
+export const createAboutCertificate = (data) => AxiosInstance.post('/v1/certificates/add', data);
+export const updateAboutCertificate = (id, data) => AxiosInstance.put(`/v1/certificates/update/${id}`, data);
+export const deleteAboutCertificate = (id) => AxiosInstance.delete(`/v1/certificates/delete/${id}`);
 
 
   

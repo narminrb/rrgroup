@@ -14,7 +14,7 @@ const ServiceOfficeTemplates = () => {
     error,
   } = useQuery({
     queryKey: ['foreign-office', slug],
-    queryFn: async () => await getAPiData(`/v1/foreign/slug/${slug}`),
+    queryFn: async () => await getAPiData(`/v1/foreign/getBySlug/${slug}`),
     enabled: !!slug,
   });
   

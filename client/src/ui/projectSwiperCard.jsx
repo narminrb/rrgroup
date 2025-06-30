@@ -130,6 +130,8 @@ export const ProjSwiperCardContainer = styled.div`
   border-radius: 20px;
   align-items: flex-start;
   background: rgba(217, 217, 217, 0.20);
+  cursor:pointer;
+
 
   @media (min-width: 1024px) {
     /* laptop and up */

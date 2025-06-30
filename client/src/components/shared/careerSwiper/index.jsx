@@ -20,7 +20,7 @@ import CareerSwiperCard from '../careerSwiperCard';
 export default function CareerSwiper() {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.CAREERSWIPER],
-    queryFn: async () => await getAPiData('/v1/vacancy')
+    queryFn: async () => await getAPiData('/v1/vacancy/getAll')
 
   });
   console.log(data)
@@ -75,7 +75,7 @@ export default function CareerSwiper() {
 
   return (
     <SwiperSlide className="font-worksans" key={index}>
-      <Link to={`/career/${item.id}`}>
+      <Link to={`/career/${item.slug}`}>
         <CareerSwiperCard
           ImageSrc={imageUrl}
           name={item.title}

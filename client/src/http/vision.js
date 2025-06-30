@@ -6,8 +6,8 @@ const AxiosInstance = axios.create({
 });
 
 
-export const getAboutVision = () => AxiosInstance.get('/v1/vision');
-export const updateAboutVision = (data) => AxiosInstance.post('/v1/vision', data); 
+export const getAboutVision = () => AxiosInstance.get('/v1/vision/get');
+export const updateAboutVision = (data) => AxiosInstance.post('/v1/vision/edit', data); 
 
 
 
