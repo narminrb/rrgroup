@@ -120,7 +120,7 @@ export default function ServiceConstructSwiper({ data }) {
       >
         {data?.map((el, index) => (
           <SwiperSlide key={index}>
-            <Link to={`/rrgroup/services/${el.slug}`}>
+            <Link to={`/services/${el.slug}`}>
               <ProjectSwiperCard
                 ImageSrc={`${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${el.content?.mainImage}`}
                 name={el.header}

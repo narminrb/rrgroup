@@ -64,7 +64,7 @@ export default function ServiceOffices() {
     
         return (
           <SwiperSlide className="font-worksans" key={index}>
-          <Link to={`/rrgroup/services/offices/${el.slug}`}>
+          <Link to={`/services/offices/${el.slug}`}>
           <InstaSwiperCard ImageSrc={imageUrl} 
           name={el.header}
           desc={el.description}

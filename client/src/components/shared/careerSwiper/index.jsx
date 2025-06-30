@@ -75,7 +75,7 @@ export default function CareerSwiper() {
 
   return (
     <SwiperSlide className="font-worksans" key={index}>
-      <Link to={`/rrgroup/career/${item.id}`}>
+      <Link to={`/career/${item.id}`}>
         <CareerSwiperCard
           ImageSrc={imageUrl}
           name={item.title}

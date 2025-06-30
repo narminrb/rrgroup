@@ -24,7 +24,7 @@ export default function KsmCards({ slug, ImageSrc, name, desc }) {
       </KsmSwiperImage>
       <KsmSwiperName>{name}</KsmSwiperName>
       <KsmSwiperDesc dangerouslySetInnerHTML={{ __html: desc }} />
-      <Link to={`/rrgroup/ksm/${slug}`}>
+      <Link to={`/ksm/${slug}`}>
       <KsmButton>Ətraflı</KsmButton>
       </Link>
     </KsmSwiperCardContainer>

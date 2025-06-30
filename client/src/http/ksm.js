@@ -6,7 +6,7 @@ const AxiosInstance = axios.create({
 });
 
 
-export const getKsms = () => AxiosInstance.get('v1/ksm');
+export const getKsms = () => AxiosInstance.get('/v1/ksm');
 export const getKsm = (id) => AxiosInstance.get(`/v1/ksm/${id}`);
 export const createKsm = (data) => AxiosInstance.post('/v1/ksm', data);
 export const updateKsm = (id, formData) =>

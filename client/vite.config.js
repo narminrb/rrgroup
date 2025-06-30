@@ -26,7 +26,6 @@ import path from 'path'
 import tailwindcss from '@tailwindcss/vite'
 import svgr from "vite-plugin-svgr";
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
@@ -41,7 +40,7 @@ export default defineConfig({
       include: "**/*.svg",
     }),
   ],
-  base: process.env.VITE_BASE_PATH || "/rrgroup/",
+  base: process.env.VITE_BASE_PATH || "/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

@@ -19,7 +19,7 @@ const SpecialProjectsCard = ({ news }) => {
 
   return (
    <div>
-    <Link to={`/rrgroup/layihələr/yenilayihələr/${news?.slug}`}>
+    <Link to={`/layihələr/yenilayihələr/${news?.slug}`}>
      <div className={clsx(styles.newscard)}>
      <div className={clsx(styles.newsimage)}>
      <img
@@ -31,6 +31,11 @@ const SpecialProjectsCard = ({ news }) => {
       <div className="p-3">
         <h3 className={clsx(styles.newsname)}>{title}</h3>
         <p className={clsx(styles.newsdesc)}>{description}</p>
+        {/* <div
+  className={clsx(styles.newsdesc)}
+  dangerouslySetInnerHTML={{ __html: news?.content }}
+></div> */}
+
       </div>
     </div>
     </Link>

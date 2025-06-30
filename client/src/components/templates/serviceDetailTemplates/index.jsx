@@ -23,16 +23,16 @@ const ServiceDetailsTemplates = () => {
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error: {error.message}</p>;
   if (!project) return <p>Project not found.</p>;
-
+  const images = project.content?.images || [];
   // Fix image URL
-  const imageUrl = project.icon
-  ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${project.icon}`
+  const imageUrl = project.content?.mainImage
+  ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${project.content.mainImage}`
   : 'https://via.placeholder.com/300';
+
 
   const name = project.header || 'No name';
 
   const contentText = project.content?.contentWrite || '';
-  const images = project.content?.images || [];
 
   return (
     <div className="container mx-auto my-20 px-4 max-w-screen-xl">
@@ -54,7 +54,7 @@ const ServiceDetailsTemplates = () => {
         </div>
       </div>
 
-      <ServiceDetailSwiper />
+      <ServiceDetailSwiper images={images} />
     </div>
   );
 };

@@ -14,7 +14,7 @@ const ProjectsCard = ({ project }) => {
 
   return (
    <div>
-    <Link to={`/rrgroup/layihələr/${project.slug}`}>
+    <Link to={`/layihələr/${project.slug}`}>
      <div className={clsx(styles.projectcard)}>
      <div className={clsx(styles.projectimage)}>
      <img
@@ -27,7 +27,7 @@ const ProjectsCard = ({ project }) => {
         <h3 className={clsx(styles.projectname)}>{title}</h3>
         {/* <p className={clsx(styles.projectdesc)}>{description}</p> */}
         <p
-                                className={clsx(styles.choosedesc)}
+                                className={clsx(styles.projectdesc)}
                                 dangerouslySetInnerHTML={{ __html: description }}
                               />
       </div>

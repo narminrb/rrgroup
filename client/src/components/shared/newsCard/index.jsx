@@ -29,7 +29,7 @@ const NewsCard = ({ news }) => {
 
   return (
    <div>
-    <Link to={`/rrgroup/news/${news?.slug}`}>
+    <Link to={`/news/${news?.slug}`}>
      <div className={clsx(styles.newscard)}>
      <div className={clsx(styles.newsimage)}>
      <img

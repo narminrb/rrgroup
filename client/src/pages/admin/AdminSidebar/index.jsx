@@ -15,7 +15,7 @@ const AdminSidebar = () => {
                <div className={clsx(styles.smth)}>
                <nav className={clsx(styles.nav)}>
                                 <NavLink
-                    to="/rrgroup/admin/"
+                    to="/admin/"
                     className={({ isActive }) =>
                         clsx(styles.items, isActive && styles.active)
                     }
@@ -23,13 +23,13 @@ const AdminSidebar = () => {
                     Ana səhifə
                     </NavLink>
 
-                <NavLink className={({ isActive }) => clsx(styles.items, isActive && styles.active)} to="/rrgroup/admin/about">Haqqımızda</NavLink>
-                <NavLink className={({ isActive }) => clsx(styles.items, isActive && styles.active)} to="/rrgroup/admin/projects">Layihələrimiz</NavLink>
-                <NavLink className={({ isActive }) => clsx(styles.items, isActive && styles.active)} to="/rrgroup/admin/services">Xidmətlərimiz</NavLink>
-                <NavLink className={({ isActive }) => clsx(styles.items, isActive && styles.active)} to="/rrgroup/admin/career">Karyera</NavLink>
-                <NavLink className={({ isActive }) => clsx(styles.items, isActive && styles.active)} to="/rrgroup/admin/ksm">KSM</NavLink>
-                <NavLink className={({ isActive }) => clsx(styles.items, isActive && styles.active)} to="/rrgroup/admin/contact">Əlaqə</NavLink>
-                <NavLink className={({ isActive }) => clsx(styles.items, isActive && styles.active)} to="/rrgroup/admin/news">Xəbərlər</NavLink>
+                <NavLink className={({ isActive }) => clsx(styles.items, isActive && styles.active)} to="/admin/about">Haqqımızda</NavLink>
+                <NavLink className={({ isActive }) => clsx(styles.items, isActive && styles.active)} to="/admin/projects">Layihələrimiz</NavLink>
+                <NavLink className={({ isActive }) => clsx(styles.items, isActive && styles.active)} to="/admin/services">Xidmətlərimiz</NavLink>
+                <NavLink className={({ isActive }) => clsx(styles.items, isActive && styles.active)} to="/admin/career">Karyera</NavLink>
+                <NavLink className={({ isActive }) => clsx(styles.items, isActive && styles.active)} to="/admin/ksm">KSM</NavLink>
+                <NavLink className={({ isActive }) => clsx(styles.items, isActive && styles.active)} to="/admin/contact">Əlaqə</NavLink>
+                <NavLink className={({ isActive }) => clsx(styles.items, isActive && styles.active)} to="/admin/news">Xəbərlər</NavLink>
 
                 </nav>
                 <div className={clsx(styles.logoedit)}>

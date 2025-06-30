@@ -48,7 +48,7 @@ const AboutBoard = () => {
   return (
     <div
       key={id}
-      className="max-w-sm bg-[#EBEBEB] rounded-lg"
+       className="w-[400px] min-h-[420px] bg-[#EBEBEB] rounded-lg flex flex-col justify-between"
     >
       <div className="p-3">
         <img
@@ -61,7 +61,7 @@ const AboutBoard = () => {
         <h5 className="mb-3 text-[20px] font-[500] text-black">{title}</h5>
         <button
           onClick={() => openModal(board)}
-          className="inline-flex items-center my-5 px-6 py-2 text-sm font-medium text-white bg-[#444B73] rounded-lg hover:bg-blue-800"
+          className="inline-flex items-center cursor-pointer my-5 px-6 py-2 text-sm font-medium text-white bg-[#444B73] rounded-lg hover:bg-[#363c5e]"
         >
           Ətraflı
         </button>
