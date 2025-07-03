@@ -373,16 +373,6 @@ const AdminSubCategories = () => {
                 required
               />
 
-              <input
-                type="text"
-                placeholder="Təsvir"
-                value={newSub.description}
-                onChange={(e) =>
-                  setNewSub({ ...newSub, description: e.target.value })
-                }
-                className={clsx(styles.modalinput)}
-              />
-
               <select
                 value={newSub.headCategory?.id || ""}
                 onChange={(e) => {

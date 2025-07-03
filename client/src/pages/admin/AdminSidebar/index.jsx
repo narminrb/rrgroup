@@ -94,8 +94,9 @@ const AdminSidebar = () => {
                 </div>
                 <div className={clsx(styles.exit)}>
                     <Link to="/admin/profile">
-                    <div className='py-3'>
+                    <div className='py-3 flex justify-center text-center items-center gap-2'>
                     <Profile/>
+                    <h1>Profile</h1>
                     </div>
                     </Link>
                 </div>

@@ -117,7 +117,25 @@ const RichTextEditor = ({ value = "", onChange }) => {
         <button className="ql-image" />
       </div>
 
-      <div ref={editorRef} style={{ minHeight: "100px", maxHeight:"150px" }} />
+      {/* <div ref={editorRef} style={{ minHeight: "100px", maxHeight:"150px" }} /> */}
+      <div
+  ref={editorRef}
+  style={{
+    minHeight: "150px",
+    maxHeight: "300px",
+    overflowY: "auto",
+    whiteSpace: "normal",
+    overflowWrap: "break-word",
+    wordBreak: "break-word",
+    border: "1px solid #ccc",
+    padding: "10px",
+    borderRadius: "4px",
+    width: "100%",       // add this
+    maxWidth: "100%",    // add this
+    boxSizing: "border-box",  // good practice to include padding/border in width
+  }}
+/>
+
     </>
   );
 };

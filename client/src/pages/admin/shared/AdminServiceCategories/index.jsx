@@ -1181,7 +1181,13 @@ const AdminServiceCard = () => {
               )
               .map((card) => (
                 <tr key={card.id}>
-                  <td>{card.header}</td>
+                  <td>{card.header}
+                  <span className="text-xs text-gray-500">
+                      ({card.headCategory || "No Head Category"})
+                    </span>
+
+                  </td>
+                  
                   <td>
                     <button onClick={() => handleEdit(card)}>
                       <Edit />

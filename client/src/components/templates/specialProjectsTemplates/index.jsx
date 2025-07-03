@@ -193,6 +193,7 @@ const SpecialProjectsTemplates = () => {
           <div className={clsx(styles.detname)}>
             {project.content ? (
               <div
+              className='ql-editor'
                 dangerouslySetInnerHTML={{ __html: project.content }}
               />
             ) : (

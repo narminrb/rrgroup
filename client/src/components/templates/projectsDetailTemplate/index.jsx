@@ -127,10 +127,8 @@ const ProjectDetailTemplate = () => {
         </div>
         <div className="flex gap-6 py-6">
           <h2 className={clsx(styles.detailname)}>Məzmun</h2>
-          <div
-            className={clsx(styles.detname)}
-            dangerouslySetInnerHTML={{ __html: project.content || '' }}
-          />
+          <div className={clsx(styles.detname, 'ql-editor')} dangerouslySetInnerHTML={{ __html: project.content || '' }} />
+
         </div>
       </div>
       <ProjectSwiper images={project.images || []} />

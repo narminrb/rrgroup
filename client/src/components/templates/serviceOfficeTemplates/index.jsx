@@ -52,6 +52,13 @@ const ServiceOfficeTemplates = () => {
   }
 </div>
 </div>
+{project.content?.contentWrite && (
+  <div
+    className={clsx(styles.detname, 'ql-editor')}
+    dangerouslySetInnerHTML={{ __html: project.content.contentWrite }}
+  />
+)}
+
      </div>
      <div className='grid grid-cols-1'>
      {project.officeimage?.length > 0 && (
