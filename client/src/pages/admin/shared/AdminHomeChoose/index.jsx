@@ -12,6 +12,7 @@ const AdminHomeChoose = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [editId, setEditId] = useState(null);
   const [content, setContent] = useState("");
+  
   const [form, setForm] = useState({
     title: "",
     paragraph: "",

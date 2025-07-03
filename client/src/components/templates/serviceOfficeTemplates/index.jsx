@@ -4,6 +4,12 @@ import { useQuery } from '@tanstack/react-query'
 import { getAPiData } from '@/http/api'
 import clsx from 'clsx'
 import styles from './style.module.scss'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
+import NewsSwiperCard from '@/components/shared/newsSwiperCard'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { Navigation } from 'swiper/modules';
 const ServiceOfficeTemplates = () => {
   const { slug } = useParams()
 
@@ -68,6 +74,54 @@ const ServiceOfficeTemplates = () => {
 )}
 
      </div>
+     {project.content?.images?.length > 0 && (
+          <div className="about-certificate-swiper container max-w-screen-xl mx-auto my-10 px-3 relative"> 
+          <div className="swiper-button-prev-cert custom-swiper-button hidden sm:flex">
+            <ArrowLeft />
+          </div>
+          <Swiper
+            slidesPerView={3}
+            spaceBetween={0}
+            pagination={{ clickable: true }}
+            navigation={{
+              nextEl: '.swiper-button-next-cert',
+              prevEl: '.swiper-button-prev-cert',
+            }}
+            breakpoints={{
+              640: {
+                slidesPerView: 1,
+              },
+              768: {
+                slidesPerView: 2,
+              },
+              1024: {
+                slidesPerView: 3,
+              },
+              1280: {
+                slidesPerView: 3,
+              },
+            }}
+            modules={[Navigation]}
+            className="about-swiper"
+          >
+                    {project.content?.images?.map((filename, index) => {
+            const imageUrl = filename
+                ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${filename}`
+                : 'https://via.placeholder.com/300';
+
+            return (
+                <SwiperSlide className="font-worksans" key={index}>
+                <NewsSwiperCard ImageSrc={imageUrl} />
+                </SwiperSlide>
+            );
+            })}
+
+          </Swiper>
+          <div className="swiper-button-next-cert custom-swiper-button hidden sm:flex">
+            <ArrowRight />
+          </div>
+        </div>
+      )}
     </div>
   )
 }

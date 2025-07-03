@@ -6,33 +6,48 @@ import Logo from '../../../assets/Logo1.svg'
 import Profile from '../../../assets/profile.svg'
 import Exit from '../../../assets/dashboardcont.svg'
 import { logout } from '@/http/auth'
+import { jwtDecode } from 'jwt-decode'
 
 const AdminSidebar = () => {
+    const [loading, setLoading] = React.useState(false);
+
     const navigate = useNavigate();
     const handleLogout = async () => {
-        const email = localStorage.getItem("email"); // or wherever you stored it
+      
+        const accessToken = localStorage.getItem("accessToken");
         const refreshToken = localStorage.getItem("refreshToken");
-    
+      
+        let email = null;
+        if (accessToken) {
+          try {
+            const decoded = jwtDecode(accessToken);
+            email = decoded?.email || decoded?.sub || decoded?.username;
+          } catch (err) {
+            console.error("Token decode failed:", err);
+          }
+        }
+      
         if (!email || !refreshToken) {
           alert("Çıxış etmək mümkün olmadı. Məlumatlar tapılmadı.");
           return;
         }
-    
+      
         try {
           await logout({ email, refreshToken });
-    
-          // Clear storage
+      
+          // Clear all tokens
           localStorage.removeItem("accessToken");
           localStorage.removeItem("refreshToken");
           localStorage.removeItem("email");
-    
-          // Redirect to login
+      
+          // Redirect to login page
           navigate("/login");
         } catch (err) {
-          console.error("Logout error:", err);
+          console.error("Logout failed:", err);
           alert("Çıxış zamanı xəta baş verdi.");
         }
       };
+    
   return (
     <div className="admin-panel flex">
         <div className={clsx(styles.sidebar)}>
@@ -40,8 +55,17 @@ const AdminSidebar = () => {
         </div>
                <div className={clsx(styles.smth)}>
                <nav className={clsx(styles.nav)}>
-                                <NavLink
+                                {/* <NavLink
                     to="/admin/"
+                    className={({ isActive }) =>
+                        clsx(styles.items, isActive && styles.active)
+                    }
+                    >
+                    Ana səhifə
+                    </NavLink> */}
+                    <NavLink
+                    to="/admin/"
+                    end
                     className={({ isActive }) =>
                         clsx(styles.items, isActive && styles.active)
                     }
@@ -70,16 +94,21 @@ const AdminSidebar = () => {
                 </div>
                 <div className={clsx(styles.exit)}>
                     <Link to="/admin/profile">
+                    <div className='py-3'>
                     <Profile/>
+                    </div>
                     </Link>
                 </div>
-                <div 
-                 className={clsx(styles.exit)}
-                 onClick={handleLogout}
-                 role="button"
-                 tabIndex={0}>
-                        <Exit />
-                </div>
+               <div 
+            className={clsx(styles.exit)}
+            onClick={handleLogout}
+            role="button"
+            tabIndex={0}
+            aria-disabled={loading}
+            style={{ cursor: loading ? "not-allowed" : "pointer" }}
+            >
+            <Exit />
+            </div>
                </div>
               </div>
     </div>

@@ -155,7 +155,7 @@ const AdminSpecialProjects = () => {
               &times;
             </button>
 
-            <div className={clsx(styles.cardname)}>Dəyərlərimiz</div>
+            <div className={clsx(styles.cardname)}> Özəl layihələr</div>
             <form onSubmit={handleSubmit} className="space-y-4">
               <input
                 type="text"

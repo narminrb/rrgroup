@@ -470,7 +470,7 @@ useEffect(() => {
               &times;
             </button>
 
-            <div className={clsx(styles.cardname)}>Dəyərlərimiz</div>
+            <div className={clsx(styles.cardname)}>İdarə heyəti</div>
             <form onSubmit={handleSubmit} className="space-y-4">
               <input
                 type="text"
@@ -482,7 +482,6 @@ useEffect(() => {
                 }
               />
               
-              {/* Added Work Input */}
               <input
                 type="text"
                 placeholder="Work"
@@ -512,7 +511,13 @@ useEffect(() => {
                   }
                 }}
               />
-
+            {newValue.image.url && (
+                            <img
+                              src={newValue.image.url}
+                              alt="Preview"
+                              className="w-20 h-20 object-contain"
+                            />
+                          )}
               <button className={clsx(styles.modalbtn)} type="submit">
                 {isEditing ? "Yenilə" : "Yadda saxla"}
               </button>

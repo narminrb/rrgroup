@@ -10,8 +10,48 @@ const RichTextEditor = ({ value = "", onChange }) => {
   const editorRef = useRef(null);
   const quillInstance = useRef(null);
 
+  // useEffect(() => {
+  //   if (!editorRef.current || quillInstance.current) return; 
+  
+  //   const quill = new Quill(editorRef.current, {
+  //     theme: "snow",
+  //     modules: {
+  //       toolbar: {
+  //         container: "#toolbar",
+  //         handlers: {
+  //           image: function () {
+  //             const input = document.createElement("input");
+  //             input.setAttribute("type", "file");
+  //             input.setAttribute("accept", "image/*");
+  //             input.click();
+  
+  //             input.onchange = () => {
+  //               const file = input.files[0];
+  //               if (file) {
+  //                 const reader = new FileReader();
+  //                 reader.onload = () => {
+  //                   const range = quill.getSelection();
+  //                   quill.insertEmbed(range.index, "image", reader.result);
+  //                 };
+  //                 reader.readAsDataURL(file);
+  //               }
+  //             };
+  //           }
+  //         }
+  //       },
+  //       imageResize: {},
+  //     },
+  //   });
+  
+  //   quill.root.innerHTML = value;
+  //   quill.on("text-change", () => {
+  //     onChange(quill.root.innerHTML);
+  //   });
+  
+  //   quillInstance.current = quill; // <-- save reference
+  // }, []);
   useEffect(() => {
-    if (!editorRef.current || quillInstance.current) return; 
+    if (!editorRef.current || quillInstance.current) return;
   
     const quill = new Quill(editorRef.current, {
       theme: "snow",
@@ -31,13 +71,13 @@ const RichTextEditor = ({ value = "", onChange }) => {
                   const reader = new FileReader();
                   reader.onload = () => {
                     const range = quill.getSelection();
-                    quill.insertEmbed(range.index, "image", reader.result);
+                    quill.insertEmbed(range?.index || 0, "image", reader.result);
                   };
                   reader.readAsDataURL(file);
                 }
               };
-            }
-          }
+            },
+          },
         },
         imageResize: {},
       },
@@ -48,8 +88,15 @@ const RichTextEditor = ({ value = "", onChange }) => {
       onChange(quill.root.innerHTML);
     });
   
-    quillInstance.current = quill; // <-- save reference
+    quillInstance.current = quill;
   }, []);
+  
+  // ✅ NEW useEffect to respond to prop changes
+  useEffect(() => {
+    if (quillInstance.current && value !== quillInstance.current.root.innerHTML) {
+      quillInstance.current.root.innerHTML = value;
+    }
+  }, [value]);
   
   
   return (

@@ -60,7 +60,7 @@ const AdminAboutManagementStructure = () => {
               &times;
             </button>
 
-            <div className={clsx(styles.cardname)}>Korporativ Tarix</div>
+            <div className={clsx(styles.cardname)}>İdarəetmə strukturu</div>
             <form onSubmit={handleSubmit} className="space-y-4 w-full">
               <RichTextEditor value={paragraph} onChange={setparagraph} />
 
