@@ -15,6 +15,7 @@ const AdminSocial = () => {
   const [editId, setEditId] = useState(null);
   const [newValue, setNewValue] = useState({
     title: "",
+    link:"",
     imageFile: null,
     imagePreview: null,
     existingImage: "",
@@ -52,21 +53,35 @@ const AdminSocial = () => {
     }
   };
 
+  // const handleEdit = (item) => {
+  //   setIsEditing(true);
+  //   setEditId(item.id);
+  //   setNewValue({
+  //     title: item.title || "",
+  //     imageFile: null,
+  //     imagePreview: item.imagePreview || null,
+  //     existingImage: item.image || "",
+  //   });
+  //   setModalOpen(true);
+  // };
   const handleEdit = (item) => {
     setIsEditing(true);
     setEditId(item.id);
     setNewValue({
       title: item.title || "",
+      link: item.link || "",
       imageFile: null,
       imagePreview: item.imagePreview || null,
       existingImage: item.image || "",
     });
     setModalOpen(true);
   };
+  
 
   const resetForm = () => {
     setNewValue({
       title: "",
+      link:"",
       imageFile: null,
       imagePreview: null,
       existingImage: "",
@@ -87,16 +102,22 @@ const AdminSocial = () => {
     try {
       const formData = new FormData();
       formData.append(
-        "request",
-        new Blob([JSON.stringify({ title: newValue.title.trim() })], {
-          type: "application/json",
-        })
+        "dto",
+        new Blob(
+          [
+            JSON.stringify({
+              title: newValue.title.trim(),
+              link: newValue.link.trim(),
+            }),
+          ],
+          { type: "application/json" }
+        )
       );
+      
 
       if (newValue.imageFile) {
         formData.append("image", newValue.imageFile);
       } else if (newValue.existingImage) {
-        // fetch existing image as file to send again if not changed
         const response = await fetch(
           `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${newValue.existingImage}`
         );
@@ -158,6 +179,17 @@ const AdminSocial = () => {
                 className={clsx(styles.modalinput)}
                 required
               />
+              <input
+                type="text"
+                placeholder="Link"
+                value={newValue.link}
+                onChange={(e) =>
+                  setNewValue((prev) => ({ ...prev, link: e.target.value }))
+                }
+                className={clsx(styles.modalinput)}
+                required
+              />
+
 
               <label className="block font-semibold">Şəkil yüklə (tək):</label>
               <input
@@ -195,7 +227,9 @@ const AdminSocial = () => {
           <tbody>
             <tr>
               <td className={clsx(styles.cardname)}>
-                Sosial Şəbəkələr
+                Sosial 
+                <br />
+                Şəbəkələr
                 <div
                   className={clsx(styles.cardsearch, "flex items-center gap-2")}
                 >

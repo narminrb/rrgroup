@@ -1,12 +1,38 @@
 import clsx from 'clsx'
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import styles from './style.module.scss'
 import Logo from '../../../assets/Logo1.svg'
 import Profile from '../../../assets/profile.svg'
 import Exit from '../../../assets/dashboardcont.svg'
+import { logout } from '@/http/auth'
 
 const AdminSidebar = () => {
+    const navigate = useNavigate();
+    const handleLogout = async () => {
+        const email = localStorage.getItem("email"); // or wherever you stored it
+        const refreshToken = localStorage.getItem("refreshToken");
+    
+        if (!email || !refreshToken) {
+          alert("Çıxış etmək mümkün olmadı. Məlumatlar tapılmadı.");
+          return;
+        }
+    
+        try {
+          await logout({ email, refreshToken });
+    
+          // Clear storage
+          localStorage.removeItem("accessToken");
+          localStorage.removeItem("refreshToken");
+          localStorage.removeItem("email");
+    
+          // Redirect to login
+          navigate("/login");
+        } catch (err) {
+          console.error("Logout error:", err);
+          alert("Çıxış zamanı xəta baş verdi.");
+        }
+      };
   return (
     <div className="admin-panel flex">
         <div className={clsx(styles.sidebar)}>
@@ -47,7 +73,11 @@ const AdminSidebar = () => {
                     <Profile/>
                     </Link>
                 </div>
-                <div className={clsx(styles.exit)}>
+                <div 
+                 className={clsx(styles.exit)}
+                 onClick={handleLogout}
+                 role="button"
+                 tabIndex={0}>
                         <Exit />
                 </div>
                </div>

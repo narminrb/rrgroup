@@ -30,9 +30,12 @@ const AboutModal = ({ data, onClose }) => {
 
         <div className="p-4 text-center">
           <h3 className="text-lg md:text-xl font-semibold mb-2">{data.title}</h3>
-          <p className={clsx(styles.modaldesc, 'text-sm md:text-base break-words')}>
-            {data.paragraph}
-          </p>
+          <h3 className="text-lg md:text-xl font-semibold mb-2">{data.work}</h3>
+          <div
+  className={clsx(styles.modaldesc, 'text-sm md:text-base break-words ql-editor')}
+  dangerouslySetInnerHTML={{ __html: data.paragraph }}
+/>
+
         </div>
       </div>
     </div>

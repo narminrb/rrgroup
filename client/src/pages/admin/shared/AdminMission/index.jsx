@@ -30,7 +30,7 @@ const AdminAboutMissions = () => {
         const normalized = items.map(item => ({
           id: item.id,
           name: item.title,
-          desc: item.paragraph,
+          desc: item.description,
           image: {
             url: item.icon
               ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${item.icon}`
@@ -43,7 +43,17 @@ const AdminAboutMissions = () => {
   }, []);
   
   
-
+  const normalizeMission = (item) => ({
+    id: item.id,
+    name: item.title,
+    desc: item.description,
+    image: {
+      url: item.icon
+        ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${item.icon}`
+        : "https://via.placeholder.com/150",
+    },
+  });
+  
   const handleDelete = (id) => {
     deleteAboutMission(id).then(() => {
       setAboutValues((prev) => prev.filter((val) => val.id !== id));
@@ -56,6 +66,7 @@ const AdminAboutMissions = () => {
   
     setNewValue({
       name: val.name,
+      desc: val.desc,
       image: {
         file: undefined, 
         url: val.image.url, 
@@ -89,7 +100,7 @@ const AdminAboutMissions = () => {
   
       const dto = {
         title: newValue.name.trim(),
-        paragraph: content.trim(),
+        description: content.trim(),
       };
   
       formData.append("dto", new Blob([JSON.stringify(dto)], { type: "application/json" }));
@@ -101,12 +112,14 @@ const AdminAboutMissions = () => {
       let response;
       if (isEditing) {
         response = await updateAboutMission(editId, formData);
+        const normalized = normalizeMission(response.data);
         setAboutValues((prev) =>
-          prev.map((item) => (item.id === editId ? response.data : item))
+          prev.map((item) => (item.id === editId ? normalized : item))
         );
       } else {
         response = await createAboutMission(formData);
-        setAboutValues((prev) => [...prev, response.data]);
+        const normalized = normalizeMission(response.data);
+        setAboutValues((prev) => [...prev, normalized]);
       }
   
       resetForm();
@@ -118,6 +131,7 @@ const AdminAboutMissions = () => {
       alert("Əməliyyat zamanı xəta baş verdi.");
     }
   };
+  
   
   
   

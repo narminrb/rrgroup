@@ -268,7 +268,7 @@ const handleSubmit = async (e) => {
               &times;
             </button>
 
-            <div className={clsx(styles.cardname)}>KSM Dəyərləri</div>
+            <div className={clsx(styles.cardname)}> SƏTƏƏM</div>
             <form onSubmit={handleSubmit} className="space-y-4">
             <input
   type="text"

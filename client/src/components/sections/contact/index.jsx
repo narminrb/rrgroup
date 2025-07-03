@@ -21,9 +21,9 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const { fullName, phone, email, topic, message } = formData;
-
+  
     const contactData = {
       fullName,
       phone,
@@ -31,15 +31,25 @@ const Contact = () => {
       topic,
       message,
     };
-
+  
     try {
       await postApiData("/v1/contact/apply", contactData);
       alert("Məlumat uğurla göndərildi!");
+  
+      // Clear form
+      setFormData({
+        fullName: '',
+        phone: '',
+        email: '',
+        topic: '',
+        message: '',
+      });
     } catch (error) {
       console.error("Error submitting contact form:", error);
       alert("Göndərmə zamanı xəta baş verdi.");
     }
   };
+  
 
   return (
     <div className="container max-w-screen-xl mx-auto my-10 px-3 relative">
@@ -49,6 +59,7 @@ const Contact = () => {
             type="text"
             placeholder="Ad və soyad"
             name="fullName"
+            value={formData.fullName}
             onChange={handleChange}
             required
             className={styles.input}
@@ -59,6 +70,7 @@ const Contact = () => {
             type="email"
             placeholder="E-mail"
             name="email"
+            value={formData.email}
             onChange={handleChange}
             required
             className={styles.input}
@@ -69,6 +81,7 @@ const Contact = () => {
             type="text"
             placeholder="Əlaqə nömrəsi"
             name="phone"
+            value={formData.phone}
             onChange={handleChange}
             required
             className={styles.input}
@@ -79,6 +92,7 @@ const Contact = () => {
             type="text"
             placeholder="Mövzu"
             name="topic"
+            value={formData.topic}
             onChange={handleChange}
             required
             className={styles.input}
@@ -88,6 +102,7 @@ const Contact = () => {
           <textarea
             name="message"
             placeholder="Mesaj"
+            value={formData.message}
             onChange={handleChange}
             required
             className={styles.textarea}

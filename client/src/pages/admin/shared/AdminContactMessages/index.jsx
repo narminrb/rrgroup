@@ -1,72 +1,3 @@
-// import { useEffect, useState } from "react";
-// import clsx from "clsx";
-// import styles from "./style.module.scss";
-// import Trash from "../../../../assets/trash.svg";
-// import { deleteContactMessages, getContactsMessages } from "@/http/contactMessages";
-
-// const AdminContactMessages = () => {
-//   const [messages, setMessages] = useState([]);
-
-//   useEffect(() => {
-//     getContactsMessages()
-//       .then((res) => {
-//         const data = Array.isArray(res?.data) ? res.data : [res.data];
-//         setMessages(data);
-//       })
-//       .catch((err) => {
-//         console.error("Failed to fetch contact messages", err);
-//         setMessages([]);
-//       });
-//   }, []);
-
-//   const handleDelete = async (id) => {
-//     try {
-//       await deleteContactMessages(id);
-//       setMessages((prev) => prev.filter((msg) => msg.id !== id));
-//     } catch (err) {
-//       console.error("Delete failed", err);
-//     }
-//   };
-
-//   return (
-//     <div className={clsx(styles.card)}>
-//       <div className="overflow-auto">
-//       <table>
-//   <thead>
-//     <tr>
-//       <th><div className={styles.flexCelll}>Ad və soyad</div></th>
-//       <th><div className={styles.flexCelll}>Mövzu</div></th>
-//       <th><div className={styles.flexCelll}>Tarix</div></th>
-//       <th><div className={styles.flexCelll}>Nömrə</div></th>
-//       <th><div className={styles.flexCelll}>E-mail</div></th>
-//       <th><div className={styles.flexCelll}>Mesaj</div></th>
-//       <th><div className={styles.flexCelll}>Sil</div></th>
-//     </tr>
-//   </thead>
-//   <tbody>
-//     {messages.map((item) => (
-//       <tr key={item.id}>
-//         <td><div className={styles.flexCell}>{item.fullName}</div></td>
-//         <td><div className={styles.flexCell}>{item.topic}</div></td>
-//         <td><div className={styles.flexCell}>{new Date(item.createdAt).toLocaleDateString()}</div></td>
-//         <td><div className={styles.flexCell}>{item.phone}</div></td>
-//         <td><div className={styles.flexCell}>{item.email}</div></td>
-//         <td><div className={styles.flexCell} style={{ overflowWrap: "break-word" }}>{item.message}</div></td>
-//         <td>
-//           <button onClick={() => handleDelete(item.id)}><Trash /></button>
-//         </td>
-//       </tr>
-//     ))}
-//   </tbody>
-// </table>
-
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default AdminContactMessages;
-
 import { useEffect, useState } from "react";
 import Open from "../../../../assets/open.svg";
 import clsx from "clsx";
@@ -76,11 +7,13 @@ import {
   deleteContactMessages,
   getContactsMessages,
 } from "@/http/contactMessages";
+import { SearchIcon } from "lucide-react";
 
 const AdminContactMessages = () => {
   const [messages, setMessages] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedMessage, setSelectedMessage] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     getContactsMessages()
@@ -93,7 +26,9 @@ const AdminContactMessages = () => {
         setMessages([]);
       });
   }, []);
-
+  const filteredMessages = messages.filter(item =>
+    item.fullName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   const handleDelete = async (id) => {
     if (!window.confirm("Silinsin?")) return;
     try {
@@ -126,30 +61,38 @@ const AdminContactMessages = () => {
       <div className="overflow-auto">
       <table>
    <thead>
+   <div className={clsx(styles.cardsearch, "flex items-center gap-2")}>
+                                <input
+                                  type="text"
+                                  value={searchTerm}
+                                  onChange={(e) => setSearchTerm(e.target.value)}
+                                  className="border-b border-gray-400 px-0 w-full text-sm outline-none"
+                                  placeholder="Axtar..."
+                                />
+                                <SearchIcon className="w-5 h-5 text-gray-500" />
+                              </div>
     <tr>
       <th><div className={styles.flexCelll}>Ad və soyad</div></th>
        <th><div className={styles.flexCelll}>Mövzu</div></th>
        <th><div className={styles.flexCelll}>Tarix</div></th>
       <th><div className={styles.flexCelll}>Nömrə</div></th>
        <th><div className={styles.flexCelll}>E-mail</div></th>
-       <th><div className={styles.flexCelll}>Mesaj</div></th>
        <th><div className={styles.flexCelll}>Sil</div></th>
      </tr>
    </thead>
    <tbody>
-     {messages.map((item) => (
+     {filteredMessages.map((item) => (
       <tr key={item.id}>
         <td><div className={styles.flexCell}>{item.fullName}</div></td>
         <td><div className={styles.flexCell}>{item.topic}</div></td>
         <td><div className={styles.flexCell}>{new Date(item.createdAt).toLocaleDateString()}</div></td>
         <td><div className={styles.flexCell}>{item.phone}</div></td>
         <td><div className={styles.flexCell}>{item.email}</div></td>
-        <td><div className={styles.flexCell} style={{ overflowWrap: "break-word" }}>{item.message}</div></td>
         <td
   style={{
     display: "flex",
-    alignItems: "center",  // vertical centering
-    gap: "8px",            // horizontal space between buttons
+    alignItems: "center",  
+    gap: "8px",          
   }}
 >
   <button
@@ -218,9 +161,10 @@ const AdminContactMessages = () => {
               </div>
               <div>
                 <strong>Mesaj:</strong>
-                <p className="whitespace-pre-wrap border p-3 rounded-md bg-gray-50">
-                  {selectedMessage.message}
-                </p>
+                <p className="whitespace-pre-wrap break-words border p-3 rounded-md bg-gray-50">
+            {selectedMessage.message}
+          </p>
+
               </div>
             </div>
           </div>

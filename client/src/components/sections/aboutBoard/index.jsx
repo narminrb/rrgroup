@@ -39,7 +39,7 @@ const AboutBoard = () => {
 
       <div className="flex flex-wrap gap-6 justify-center">
       {boardData?.map((board) => {
-  const { id, image, title } = board;
+  const { id, image, title,work } = board;
 
   const imageUrl = image
     ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${image}`
@@ -59,6 +59,7 @@ const AboutBoard = () => {
       </div>
       <div className="p-2 text-center">
         <h5 className="mb-3 text-[20px] font-[500] text-black">{title}</h5>
+        <h5 className="mb-2 text-[20px] font-[500] text-black">{work}</h5>
         <button
           onClick={() => openModal(board)}
           className="inline-flex items-center cursor-pointer my-5 px-6 py-2 text-sm font-medium text-white bg-[#444B73] rounded-lg hover:bg-[#363c5e]"

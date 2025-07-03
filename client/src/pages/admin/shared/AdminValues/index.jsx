@@ -47,6 +47,17 @@ const AdminValues = () => {
       .catch(console.error);
   }, []);
   
+  const normalizeValue = (item) => ({
+    id: item.id,
+    name: item.title,
+    desc: item.paragraph,
+    image: {
+      url: item.icon
+        ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${item.icon}`
+        : "https://via.placeholder.com/150",
+    },
+  });
+  
   
 
   const handleDelete = (id) => {
@@ -106,13 +117,16 @@ const AdminValues = () => {
       let response;
       if (isEditing) {
         response = await updateAboutValue(editId, formData);
+        const normalized = normalizeValue(response.data);
         setAboutValues((prev) =>
-          prev.map((item) => (item.id === editId ? response.data : item))
+          prev.map((item) => (item.id === editId ? normalized : item))
         );
       } else {
         response = await createAboutValue(formData);
-        setAboutValues((prev) => [...prev, response.data]);
+        const normalized = normalizeValue(response.data);
+        setAboutValues((prev) => [...prev, normalized]);
       }
+      
   
       resetForm();
     } catch (err) {

@@ -49,7 +49,7 @@ position: relative;
 .modal{
     display: flex;
 width: 804px;
-height: 800px;
+height: 500px;
 padding: 35px 30px;
 flex-direction: column;
 position: relative;
@@ -103,4 +103,13 @@ flex-shrink: 0;
 }
 
 
-    
+.modal {
+  word-wrap: break-word;     // Wrap long words
+  overflow-wrap: break-word; // Modern equivalent
+}
+
+.modal p, .modal .messageContent {
+  white-space: pre-wrap;     // Keeps line breaks
+  word-break: break-word;
+  overflow-wrap: break-word;
+}

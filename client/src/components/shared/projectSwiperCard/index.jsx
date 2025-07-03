@@ -10,7 +10,11 @@ export default function ProjectSwiperCard({ ImageSrc, name, desc }) {
       <ProjImageCont src={ImageSrc} alt={name} />
       </ProjSwiperImage>
       <ProjSwiperName>{name}</ProjSwiperName>
-      <ProjSwiperDesc>{desc}</ProjSwiperDesc>
+      {/* <ProjSwiperDesc>{desc}</ProjSwiperDesc> */}
+      <ProjSwiperDesc
+        className="ql_editor"
+        dangerouslySetInnerHTML={{ __html: desc }}
+      />
     </ProjSwiperCardContainer>
   );
 }

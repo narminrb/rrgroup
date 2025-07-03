@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { login } from "@/http/auth";
+import {  login } from "@/http/auth";
 import { setTokens } from "@/http/auth/token";
 import { Link, useNavigate } from "react-router-dom";
 import Loginn from "@/assets/login.jpg";

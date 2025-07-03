@@ -423,19 +423,19 @@ export const router = createBrowserRouter([
   },
   {
     path: "/forget-password/email",
-    element: <ForgotPasswordEmail />,       // Enter email page
+    element: <ForgotPasswordEmail />,       
   },
   {
     path: "/forget-password",
-    element: <ForgetPassword />,       // Enter email page
+    element: <ForgetPassword />,       
   },
   {
     path: "/forget-password/otp",
-    element: <ForgotPasswordOTP />,    // Enter OTP page
+    element: <ForgotPasswordOTP />,    
   },
   {
     path: "/reset-password",
-    element: <ResetPassword />,        // Enter new password page
+    element: <ResetPassword />,        
   },
   {
     path: "/register",

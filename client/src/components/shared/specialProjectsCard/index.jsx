@@ -16,7 +16,18 @@ const SpecialProjectsCard = ({ news }) => {
   ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${image}`
   : 'https://via.placeholder.com/150';
 
-
+  function stripHtml(html) {
+    const tmp = document.createElement('DIV');
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || '';
+  }
+  
+  function truncateText(text, maxLength = 300) {
+    if (!text) return '';
+    if (text.length <= maxLength) return text;
+    return text.slice(0, maxLength).trimEnd() + '...';
+  }
+  
   return (
    <div>
     <Link to={`/projects/newprojects/${news?.slug}`}>
@@ -31,10 +42,10 @@ const SpecialProjectsCard = ({ news }) => {
       <div className="p-3">
         <h3 className={clsx(styles.newsname)}>{title}</h3>
         {/* <p className={clsx(styles.newsdesc)}>{description}</p> */}
-        <div
-  className={clsx(styles.newsdesc, 'ql-editor')}
-  dangerouslySetInnerHTML={{ __html: news?.content }}
-></div>
+              <div className={clsx(styles.newsdesc, 'ql_editor')}>
+        {truncateText(stripHtml(news?.content))}
+      </div>
+
 
 
       </div>

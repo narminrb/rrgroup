@@ -44,13 +44,17 @@ const ServiceDetailsTemplates = () => {
         <h1 className={clsx(styles.detailname)}>{name}</h1>
 
         <div className="flex gap-6 py-6">
-          <div className={clsx(styles.detname)}>
-            {contentText
-              ? contentText.split('\n\n').map((paragraph, idx) => (
-                  <p key={idx} className="mb-4">{paragraph}</p>
-                ))
-              : <p className="text-gray-500">Məlumat mövcud deyil.</p>}
-          </div>
+        <div className={clsx(styles.detname)}>
+          {contentText ? (
+            <div
+              className="ql_editor"
+              dangerouslySetInnerHTML={{ __html: contentText }}
+            />
+          ) : (
+            <p className="ql_editor text-gray-500">Məlumat mövcud deyil.</p>
+          )}
+        </div>
+
         </div>
       </div>
 

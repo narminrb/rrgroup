@@ -255,12 +255,14 @@ export default function AdminResetPassword() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (newPassword !== confirmPassword) {
       alert("Yeni şifrə və təsdiq uyğun deyil!");
       return;
     }
-
+  
+    console.log({ oldPassword, newPassword, confirmPassword }); // Debug here
+  
     try {
       const token = localStorage.getItem("accessToken");
       if (!token) {
@@ -268,19 +270,27 @@ export default function AdminResetPassword() {
         navigate("/login");
         return;
       }
-
-      await resetPassword(
+  
+      const response = await resetPassword(
         { oldPassword, newPassword, confirmPassword },
-        { headers: { Authorization: `Bearer ${token}` } }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
       );
-
+  
       alert("Şifrə uğurla dəyişdirildi!");
       navigate("/admin/profile");
     } catch (err) {
+      console.error("Reset error response:", err.response);
       alert(err.response?.data?.message || "Şifrəni dəyişmək mümkün olmadı");
-      console.error(err.response?.data || err);
     }
   };
+  
+  
+  
 
   return (
     <div

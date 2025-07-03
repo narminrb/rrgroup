@@ -7,7 +7,7 @@
 import api from "./axios";
 
 
-export const getSocials = () => api.get('v1/social/getAll');
+export const getSocials = () => api.get('/v1/social/getAll');
 export const getSocial = (id) => api.get(`/v1/social/get/${id}`);
 export const createSocial = (data) => api.post('/v1/social/add', data);
 export const updateSocial = (id, formData) =>
