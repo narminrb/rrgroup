@@ -10,7 +10,7 @@ export default function CareerSwiperCard({ ImageSrc, name, desc }) {
       </CareerSwiperImage>
       <CareerNameCont>
       <CareerSwiperName>{name}</CareerSwiperName>
-      <CareerSwiperDesc>{desc}</CareerSwiperDesc>
+      <CareerSwiperDesc dangerouslySetInnerHTML={{ __html: desc }} />
       </CareerNameCont>
     </CareerSwiperCardContainer>
   );

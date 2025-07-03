@@ -235,6 +235,12 @@ import PrivateRoute from "./pages/admin/component/ProtectedRoute";
 import Login from "./pages/admin/context/AdminLoginPage";
 import ForgetPassword from "./pages/admin/context/ForgetPassword";
 import ResetPassword from "./pages/admin/context/ResetPassword";
+import Register from "./pages/admin/context/AdminRegister";
+import ForgotPasswordOTP from "./pages/admin/context/ForgetPasswordOtp";
+import ForgotPasswordEmail from "./pages/admin/context/ForgetPasswordEmail";
+import AdminProfile from "./pages/admin/context/AdminProfile";
+import AdminResetPassword from "./pages/admin/context/ResetPassword";
+import ResetEmailPage from "./pages/admin/context/AdminResetEmail";
 
 
 
@@ -341,46 +347,101 @@ export const router = createBrowserRouter([
         ],
       
   },
+  // {
+  //   path: "/admin",
+  //   element: <AdminLayout />,
+  //   children : [
+  //     {
+  //       path:'',
+  //       element:<AdminPage/>
+  //     },
+  //     {
+  //       path:'about',
+  //       element:<AdminAbout/>
+  //     },
+  //     {
+  //       path:'projects',
+  //       element:<AdminProjects/>
+  //     },
+  //     {
+  //       path:'ksm',
+  //       element:<AdminKsm/>
+  //     },
+  //     {
+  //       path:'news',
+  //       element:<AdminNews/>
+  //     },
+  //     {
+  //       path:'contact',
+  //       element:<AdminContact/>
+  //     },
+  //     {
+  //       path:'career',
+  //       element:<AdminCareer/>
+  //     },
+  //     {
+  //       path:'services',
+  //       element:<AdminService/>
+  //     }
+
+  //   ]
+    
+  // }
   {
     path: "/admin",
-    element: <AdminLayout />,
-    children : [
+    element: (
+      <PrivateRoute>
+        <AdminLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      { path: "", element: <AdminPage /> },
+      { path: "about", element: <AdminAbout /> },
+      { path: "projects", element: <AdminProjects /> },
+      { path: "ksm", element: <AdminKsm /> },
+      { path: "news", element: <AdminNews /> },
+      { path: "contact", element: <AdminContact /> },
+      { path: "career", element: <AdminCareer /> },
+      { path: "services", element: <AdminService /> },
       {
-        path:'',
-        element:<AdminPage/>
+        path: "profile",
+        element: <AdminProfile />,
       },
       {
-        path:'about',
-        element:<AdminAbout/>
+        path: "reset-password",
+        element: <AdminResetPassword />,
       },
       {
-        path:'projects',
-        element:<AdminProjects/>
-      },
-      {
-        path:'ksm',
-        element:<AdminKsm/>
-      },
-      {
-        path:'news',
-        element:<AdminNews/>
-      },
-      {
-        path:'contact',
-        element:<AdminContact/>
-      },
-      {
-        path:'career',
-        element:<AdminCareer/>
-      },
-      {
-        path:'services',
-        element:<AdminService/>
+        path: "reset-email",
+        element: <ResetEmailPage />,
       }
+    ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/forget-password/email",
+    element: <ForgotPasswordEmail />,       // Enter email page
+  },
+  {
+    path: "/forget-password",
+    element: <ForgetPassword />,       // Enter email page
+  },
+  {
+    path: "/forget-password/otp",
+    element: <ForgotPasswordOTP />,    // Enter OTP page
+  },
+  {
+    path: "/reset-password",
+    element: <ResetPassword />,        // Enter new password page
+  },
+  {
+    path: "/register",
+    element: <Register />,
+  },
 
-    ]
-    
-  }
   
   // {
   //   path: "/admin",

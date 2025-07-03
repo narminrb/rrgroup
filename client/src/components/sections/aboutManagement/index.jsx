@@ -18,9 +18,10 @@ const AboutManagement = () => {
       <h1 className={clsx(styles.history, "text-center mb-6")}>İdarəetmə strukturu</h1>
 
       <div className="max-w-4xl text-center">
-        <p className={clsx(styles.histdesc)}>
-          {data?.paragraph}
-        </p>
+      <div
+    className={clsx("ql-editor", styles.histdesc)}
+    dangerouslySetInnerHTML={{ __html: data?.paragraph || "" }}
+  />
       </div>
     </div>
   );

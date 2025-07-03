@@ -31,7 +31,10 @@ const CareerDetailTemplates = () => {
       <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
         <div className={clsx(styles.desccont)}>
           <div className="py-6">
-          <div className={clsx(styles.detname)} dangerouslySetInnerHTML={{ __html: context }} />
+                <div
+        className="ql-editor"
+        dangerouslySetInnerHTML={{ __html: context }}
+      />
           </div>
         </div>
       </div>

@@ -68,8 +68,6 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getAPiData } from '@/http/api';
-import clsx from 'clsx';
-import styles from './style.module.scss';
 import NewsSwiper from '@/components/sections/newsSwiper';
 
 const NewsDetailTemplate = () => {
@@ -105,7 +103,11 @@ const NewsDetailTemplate = () => {
           <h1 className="text-2xl md:text-3xl font-semibold text-black mb-4">
             {name}
           </h1>
-          <p className={clsx(styles.detname)}>{context}</p>
+          <div
+ className="ql-editor"
+  dangerouslySetInnerHTML={{ __html: context }}
+/>
+
         </div>
         <div className="md:w-1/2">
           <img

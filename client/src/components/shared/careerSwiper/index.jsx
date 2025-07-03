@@ -69,8 +69,8 @@ export default function CareerSwiper() {
 
     >
     {data?.map((item, index) => {
-  const imageUrl = item.images
-    ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${item.images}`
+  const imageUrl = item.image
+    ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${item.image}`
     : 'https://via.placeholder.com/150';
 
   return (

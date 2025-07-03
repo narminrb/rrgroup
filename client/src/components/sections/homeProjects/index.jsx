@@ -148,7 +148,7 @@ const ProjectImage = ({ item, fallback }) => {
     : `${import.meta.env.BASE_URL}${fallback}`;
 
   return (
-    <Link to={`/rrgroup/layihələr/${item.slug}`} className="block">
+    <Link to={`/projects/${item.slug}`} className="block">
     <div className="relative group w-full h-[300px] overflow-hidden">
       <img
         src={imageUrl}

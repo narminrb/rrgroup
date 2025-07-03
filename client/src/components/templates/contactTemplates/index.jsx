@@ -9,7 +9,7 @@ import styles from './style.module.scss';
 const ContactTemplates = () => {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['CONTACT_INFO'],
-    queryFn: () => getAPiData('/v1/contact'),
+    queryFn: () => getAPiData('/v1/contact/getAll'),
   });
 
   if (isLoading) return <p>Loading...</p>;

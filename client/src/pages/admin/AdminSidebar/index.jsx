@@ -3,7 +3,7 @@ import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import styles from './style.module.scss'
 import Logo from '../../../assets/Logo1.svg'
-import Edit from '../../../assets/edit.svg'
+import Profile from '../../../assets/profile.svg'
 import Exit from '../../../assets/dashboardcont.svg'
 
 const AdminSidebar = () => {
@@ -36,11 +36,16 @@ const AdminSidebar = () => {
                     <div className={clsx(styles.logo)}>
                         <Logo />
                     </div>
-                    <div className={clsx(styles.edit)}>
+                    {/* <div className={clsx(styles.edit)}>
                         <div className={clsx(styles.editt)}>
                         <Edit/>
                         </div>
-                    </div>
+                    </div> */}
+                </div>
+                <div className={clsx(styles.exit)}>
+                    <Link to="/admin/profile">
+                    <Profile/>
+                    </Link>
                 </div>
                 <div className={clsx(styles.exit)}>
                         <Exit />

@@ -5,3 +5,29 @@
     font-family: "Inter", sans-serif;
 }
 
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    visibility: hidden !important;
+  }
+  
+  body {
+    top: 0 !important;
+    margin-top: 0 !important;
+  }
+  
+  iframe.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+    height: 0 !important;
+    visibility: hidden !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+  }
+  
+  body {
+    top: 0 !important;
+    margin-top: 0 !important;
+    position: static !important;
+  }
+  

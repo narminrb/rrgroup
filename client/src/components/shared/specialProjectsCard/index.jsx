@@ -30,11 +30,12 @@ const SpecialProjectsCard = ({ news }) => {
      </div>
       <div className="p-3">
         <h3 className={clsx(styles.newsname)}>{title}</h3>
-        <p className={clsx(styles.newsdesc)}>{description}</p>
-        {/* <div
-  className={clsx(styles.newsdesc)}
+        {/* <p className={clsx(styles.newsdesc)}>{description}</p> */}
+        <div
+  className={clsx(styles.newsdesc, 'ql-editor')}
   dangerouslySetInnerHTML={{ __html: news?.content }}
-></div> */}
+></div>
+
 
       </div>
     </div>

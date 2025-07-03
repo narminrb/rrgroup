@@ -9,7 +9,7 @@ export default function InstaSwiperCard({ ImageSrc, name, desc }) {
       <MissionImageCont src={ImageSrc} alt={name} />
       </InstaSwiperImage>
       <MissionSwiperName>{name}</MissionSwiperName>
-      <MissionSwiperDesc dangerouslySetInnerHTML={{ __html: desc }} />
+      <MissionSwiperDesc  dangerouslySetInnerHTML={{ __html: desc }} />
 
     </InstaSwiperCardContainer>
   );
