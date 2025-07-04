@@ -2,7 +2,7 @@ import axios from "axios";
 import { getAccessToken, getRefreshToken, setTokens, clearTokens } from "./tokenService";
 
 const client = axios.create({
-  baseURL: `${import.meta.env.VITE_API_BASE_URL}/auth`,
+  baseURL: `${import.meta.env.VITE_API_BASE_URL}/v1/auth`,
   timeout: 5000,
 });
 
