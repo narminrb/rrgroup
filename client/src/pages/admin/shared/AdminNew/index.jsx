@@ -56,8 +56,11 @@ const AdminNew = () => {
       title: val.title,
       paragraph: val.paragraph,
       imageFiles: [],
+      // imagePreviews: val.images.map((url) => ({ url, isExisting: true })),
+      // existingImages: val.images.map((url) => url.split("/").pop()),
       imagePreviews: val.images.map((url) => ({ url, isExisting: true })),
-      existingImages: val.images.map((url) => url.split("/").pop()),
+existingImages: val.images.map((url) => url.split("/").pop()), // 👈 this is important
+
     });
     setModalOpen(true);
   };
@@ -75,35 +78,84 @@ const AdminNew = () => {
     setEditId(null);
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (!newValue.title.trim() || !newValue.paragraph.trim()) {
+  //     alert("Zəhmət olmasa bütün xanaları doldurun.");
+  //     return;
+  //   }
+
+  //   try {
+  //     const formData = new FormData();
+  //     const requestPayload = {
+  //       title: newValue.title.trim(),
+  //       paragraph: newValue.paragraph.trim(),
+  //     };
+
+  //     formData.append(
+  //       "request",
+  //       new Blob([JSON.stringify(requestPayload)], {
+  //         type: "application/json",
+  //       })
+  //     );
+
+  //     newValue.imageFiles.forEach((file) => {
+  //       formData.append("images", file);
+  //     });
+
+  //     const response = isEditing
+  //       ? await updateNew(editId, formData)
+  //       : await createNew(formData);
+
+  //     const updated = await getNews();
+  //     setAboutValues(
+  //       updated.data.map((item) => ({
+  //         id: item.id,
+  //         title: item.title,
+  //         paragraph: item.paragraph,
+  //         images: (item.images || []).map(
+  //           (img) => `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${img}`
+  //         ),
+  //       }))
+  //     );
+
+  //     resetForm();
+  //   } catch (err) {
+  //     console.error("Submission error:", err.response?.data || err.message);
+  //     alert("Əməliyyat zamanı xəta baş verdi.");
+  //   }
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!newValue.title.trim() || !newValue.paragraph.trim()) {
       alert("Zəhmət olmasa bütün xanaları doldurun.");
       return;
     }
-
+  
     try {
       const formData = new FormData();
+  
       const requestPayload = {
         title: newValue.title.trim(),
         paragraph: newValue.paragraph.trim(),
+        ...(isEditing && { images: [...newValue.existingImages] }) // ✅ include images ONLY in PUT
       };
-
+  
       formData.append(
         "request",
         new Blob([JSON.stringify(requestPayload)], {
           type: "application/json",
         })
       );
-
+  
       newValue.imageFiles.forEach((file) => {
-        formData.append("images", file);
+        formData.append("images", file); // ✅ always add new files here
       });
-
+  
       const response = isEditing
         ? await updateNew(editId, formData)
         : await createNew(formData);
-
+  
       const updated = await getNews();
       setAboutValues(
         updated.data.map((item) => ({
@@ -111,18 +163,19 @@ const AdminNew = () => {
           title: item.title,
           paragraph: item.paragraph,
           images: (item.images || []).map(
-            (img) => `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${img}`
+            (img) =>
+              `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${img}`
           ),
         }))
       );
-
+  
       resetForm();
     } catch (err) {
       console.error("Submission error:", err.response?.data || err.message);
       alert("Əməliyyat zamanı xəta baş verdi.");
     }
   };
-
+  
   return (
     <div className="p-8 mx-auto">
       {modalOpen && (
@@ -139,23 +192,25 @@ const AdminNew = () => {
               &times;
             </button>
 
-            <div className={clsx(styles.cardname)}>KSM Dəyərləri</div>
+            <div className={clsx(styles.cardname)}>Xəbər başlıqları</div>
             <form onSubmit={handleSubmit} className="space-y-4">
-              <input
-                type="text"
-                placeholder="Başlıq"
-                value={newValue.title}
-                onChange={(e) =>
-                  setNewValue({ ...newValue, title: e.target.value })
-                }
-                className={clsx(styles.modalinput)}
-              />
-              <RichTextEditor
-                value={newValue.paragraph}
-                onChange={(value) =>
-                  setNewValue({ ...newValue, paragraph: value })
-                }
-              />
+                        <input
+              type="text"
+              placeholder="Başlıq"
+              value={newValue.title}
+              onChange={(e) =>
+                setNewValue((prev) => ({ ...prev, title: e.target.value }))
+              }
+              className={clsx(styles.modalinput)}
+            />
+
+            <RichTextEditor
+              value={newValue.paragraph}
+              onChange={(value) =>
+                setNewValue((prev) => ({ ...prev, paragraph: value }))
+              }
+            />
+
               <label className="block font-semibold mt-4">
                 Şəkillər yüklə (birdən çox):
               </label>

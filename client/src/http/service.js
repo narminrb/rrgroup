@@ -32,12 +32,13 @@ export const deleteHead = (id) => api.delete(`/v1/service/head-category/delete/$
 
 export const getSubs = () => api.get('/v1/service/sub-category/getAll');
 export const getSub = (id) => api.get(`/v1/service/sub-category/get/${id}`);
-export const createSub = (data) => api.post('/v1/service/sub-category/add', data);
+export const createSub = (data) =>
+  api.post("/v1/service/sub-category/add", data, {
+    headers: { "Content-Type": "application/json" },
+  });
 export const updateSub = (id, formData) =>
   api.put(`/v1/service/sub-category/update/${id}`, formData, {
-    headers: {
-      "Content-Type": "text/plain",
-    },
+    headers: { "Content-Type": "application/json" },
   });
 export const deleteSub = (id) => api.delete(`/v1/service/sub-category/delete/${id}`);
 

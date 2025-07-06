@@ -137,7 +137,18 @@ const HomeProjects = () => {
             <ProjectImage item={projects[5]} fallback="assets/proj5.svg" />
           </div>
         )}
+
       </div>
+        {projects.length > 6 && (
+  <div className="flex justify-center items-center mt-10">
+    <Link
+      to="/projects"
+      className=" text-gray py-2 px-6 rounded cursor-pointer text-xl"
+    >
+      Hamısına bax
+    </Link>
+  </div>
+)}
     </div>
   );
 };
@@ -165,4 +176,3 @@ const ProjectImage = ({ item, fallback }) => {
 };
 
 export default HomeProjects;
-    //className="fixed inset-0 bg-[rgba(0,0,0,0.2)] flex justify-center items-center z-50 px-4 overflow-x-hidden"

@@ -189,6 +189,13 @@ const AdminValues = () => {
               }
             }}
           />
+          {newValue.image.url && (
+                <img
+                  src={newValue.image.url}
+                  alt="Preview"
+                  className="w-10 h-10 object-contain"
+                />
+              )}
 
               <button className={clsx(styles.modalbtn)} type="submit">
                 {isEditing ? "Yenilə" : "Yadda saxla"}

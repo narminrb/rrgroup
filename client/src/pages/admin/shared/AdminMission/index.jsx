@@ -428,7 +428,7 @@ const AdminAboutMissions = () => {
               &times;
             </button>
 
-            <div className={clsx(styles.cardname)}>Dəyərlərimiz</div>
+            <div className={clsx(styles.cardname)}>Missiyamız</div>
             <form onSubmit={handleSubmit} className="space-y-4">
               <input
                 type="text"
@@ -462,7 +462,7 @@ const AdminAboutMissions = () => {
                 <img
                   src={newValue.image.url}
                   alt="Preview"
-                  className="w-20 h-20 object-contain"
+                  className="w-10 h-10 object-contain"
                 />
               )}
 

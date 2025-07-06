@@ -1083,29 +1083,59 @@ const AdminSubCategories = () => {
     }
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   if (!newSub.name.trim() || !newSub.headCategory?.name) {
+  //     alert("Adı və kateqoriya seçin.");
+  //     return;
+  //   }
+
+  //   try {
+  //     const payload = {
+  //       id: isEditing ? editId : undefined,
+  //       name: newSub.name.trim(),
+  //       headCategory: newSub.headCategory.name,
+  //     };
+
+  //     const body = JSON.stringify(payload);
+
+  //     if (isEditing) {
+  //       await updateSub(editId, body);
+  //     } else {
+  //       await createSub(body);
+  //     }
+
+  //     await loadSubs();
+  //     resetForm();
+  //   } catch (error) {
+  //     console.error("Failed to save sub category:", error);
+  //     alert("Əməliyyat zamanı xəta baş verdi.");
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (!newSub.name.trim() || !newSub.headCategory?.name) {
       alert("Adı və kateqoriya seçin.");
       return;
     }
-
+  
     try {
       const payload = {
-        id: isEditing ? editId : undefined,
         name: newSub.name.trim(),
         headCategory: newSub.headCategory.name,
       };
-
+  
       const body = JSON.stringify(payload);
-
+  
       if (isEditing) {
         await updateSub(editId, body);
       } else {
         await createSub(body);
       }
-
+  
       await loadSubs();
       resetForm();
     } catch (error) {
@@ -1113,6 +1143,7 @@ const AdminSubCategories = () => {
       alert("Əməliyyat zamanı xəta baş verdi.");
     }
   };
+  
   const getNameString = (name) => {
     if (typeof name === "string") return name;
     if (name && typeof name === "object" && typeof name.name === "string") {

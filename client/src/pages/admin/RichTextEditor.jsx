@@ -122,7 +122,7 @@ const RichTextEditor = ({ value = "", onChange }) => {
   ref={editorRef}
   style={{
     minHeight: "150px",
-    maxHeight: "300px",
+    maxHeight: "200px",
     overflowY: "auto",
     whiteSpace: "normal",
     overflowWrap: "break-word",
@@ -132,7 +132,7 @@ const RichTextEditor = ({ value = "", onChange }) => {
     borderRadius: "4px",
     width: "100%",       // add this
     maxWidth: "100%",    // add this
-    boxSizing: "border-box",  // good practice to include padding/border in width
+    boxSizing: "border-box",  
   }}
 />
 
