@@ -217,7 +217,7 @@ const SpecialProjectsTemplates = () => {
               prevEl: '.swiper-button-prev-cert',
             }}
             breakpoints={{
-              640: {
+              360: {
                 slidesPerView: 1,
               },
               768: {

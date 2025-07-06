@@ -64,3 +64,12 @@
       display: none !important;
     }
   }
+  .custom-swiper-button {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    /* add padding/margin if needed */
+  }
+  
+
+  

@@ -95,7 +95,7 @@ const ServiceOfficeTemplates = () => {
               prevEl: '.swiper-button-prev-cert',
             }}
             breakpoints={{
-              640: {
+              360: {
                 slidesPerView: 1,
               },
               768: {
@@ -111,7 +111,7 @@ const ServiceOfficeTemplates = () => {
             modules={[Navigation]}
             className="about-swiper"
           >
-                    {project.content?.images?.map((filename, index) => {
+                    {project?.images?.map((filename, index) => {
             const imageUrl = filename
                 ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${filename}`
                 : 'https://via.placeholder.com/300';

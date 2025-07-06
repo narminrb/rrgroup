@@ -53,3 +53,25 @@ aspect-ratio: 435/326;
     }
   }
   
+  @media (max-width: 768px) {
+    .detailname {
+      font-size: 24px;
+    }
+  
+    .detname {
+      font-size: 18px;
+    }
+  
+    .projectimage {
+      width: 100%;
+      height: auto;
+      aspect-ratio: auto;
+      max-height: 250px;
+    }
+  
+    .desccont {
+      padding: 0.75rem;
+      max-width: 100%;
+    }
+  }
+  
