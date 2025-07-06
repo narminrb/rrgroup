@@ -156,7 +156,7 @@ const ProjectImage = ({ item, fallback }) => {
         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
       />
       <div className="absolute inset-0 bg-[rgba(0,0,0,0.6)] bg-opacity-50 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-between p-4 text-white">
-        <div className="text-right text-sm">{formatDate(item.createdAt)}</div>
+        <div className="text-right text-sm">{formatDate(item.constructDate)}</div>
         <div className="text-left text-lg font-semibold">{item.name}</div>
       </div>
     </div>
