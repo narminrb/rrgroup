@@ -141,3 +141,74 @@ align-items: center;
 flex-shrink: 0;
 }
 
+
+@media (max-width: 600px) {
+  .card {
+    width: 100%;
+    padding: 15px 10px;
+    border-radius: 12px;
+  }
+
+  .cardsearch {
+    position: static;
+    padding: 10px 0 15px 0;
+    height: auto;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  table {
+    width: 100%;
+    border-spacing: 0 8px;
+  }
+
+  thead {
+    display: none; /* Hide table header on very small screens for compactness */
+  }
+
+  tbody tr {
+    display: block;
+    margin-bottom: 15px;
+    border: 1px solid rgba(115, 103, 255, 0.15);
+    border-radius: 12px;
+    padding: 10px;
+  }
+
+  tbody tr td {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 8px;
+    min-width: auto;
+  }
+
+  tbody tr td div {
+    flex-grow: 1;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .modal {
+    width: 95vw;
+    height: auto;
+    padding: 25px 15px;
+    border-radius: 16px;
+  }
+
+  .modalinput {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+
+  .modalbtn {
+    position: static;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .cardedit {
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+  }
+}

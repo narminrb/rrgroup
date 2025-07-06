@@ -49,7 +49,7 @@ const AdminCv = () => {
 
   return (
     <div className={clsx(styles.card)}>
-      <div className="overflow-auto">
+      <div className="overflow-auto table-wrapper">
         <table>
           <thead>
               <div className={clsx(styles.cardsearch, "flex items-center gap-2")}>
@@ -99,7 +99,6 @@ const AdminCv = () => {
                   >
                     Open
                   </button>
-                  {/* Uncomment if delete is implemented */}
                   <button onClick={() => handleDelete(item.id)}>
                     <Trash />
                   </button>

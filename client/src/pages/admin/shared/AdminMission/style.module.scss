@@ -141,3 +141,63 @@ align-items: center;
 flex-shrink: 0;
 }
 
+@media (max-width: 768px) {
+  .card {
+    width: 100%;
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+
+  .cardrow {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px;
+  }
+
+  .cardname {
+    font-size: 16px;
+    padding: 6px 0;
+  }
+
+  .cardsearch {
+    position: static;
+    padding: 12px 0;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .cardopen {
+    position: static;
+    margin-top: 12px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .modal {
+    width: 95vw;
+    height: auto;
+    padding: 24px 16px;
+    border-radius: 16px;
+  }
+
+  .modalinput {
+    width: 100%;
+  }
+
+  .modalbtn {
+    position: static;
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardname {
+    font-size: 15px;
+  }
+
+  .modalbtn {
+    font-size: 14px;
+    height: 38px;
+  }
+}

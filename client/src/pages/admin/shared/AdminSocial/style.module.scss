@@ -141,3 +141,38 @@ align-items: center;
 flex-shrink: 0;
 }
 
+
+@media (max-width: 600px) {
+  .card {
+    width: 100%;
+    padding: 15px 10px;
+  }
+
+  .modal {
+    width: 95vw;
+    padding: 20px 15px;
+    border-radius: 16px;
+  }
+
+  /* Table cell responsiveness */
+  td > div,
+  th > div {
+    min-width: 60px;       /* smaller min width */
+    max-width: 90px;       /* smaller max width */
+    padding: 6px 5px;      /* smaller padding */
+    font-size: 13px;       /* smaller font */
+    white-space: normal;   /* allow wrapping */
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .cardname {
+    font-size: 14px;
+  }
+
+  .modalbtn {
+    font-size: 14px;
+    height: 38px;
+  }
+}
+

@@ -140,4 +140,84 @@ justify-content: center;
 align-items: center;
 flex-shrink: 0;
 }
+@media (max-width: 1024px) {
+  .card {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .modal {
+    width: 90vw;
+    height: auto; /* allow modal height to adjust */
+    padding: 30px 20px;
+  }
+
+  .modalinput {
+    width: 100%;
+  }
+
+  .modalbtn {
+    position: static;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .cardsearch {
+    position: static;
+    padding: 10px 0;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .cardopen {
+    position: static;
+    margin-top: 10px;
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .cardrow {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding: 16px;
+  }
+
+  .cardname {
+    font-size: 16px;
+  }
+
+  .modal {
+    width: 95vw;
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+
+  .modalinput {
+    height: auto;
+    padding: 10px;
+  }
+
+  .modalbtn {
+    font-size: 14px;
+    height: 38px;
+  }
+
+  .cardopen {
+    height: 36px;
+    padding: 6px;
+  }
+
+  .cardedit {
+    width: 20px;
+    height: 20px;
+  }
+}
+
 

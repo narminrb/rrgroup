@@ -113,3 +113,54 @@ flex-shrink: 0;
   word-break: break-word;
   overflow-wrap: break-word;
 }
+@media (max-width: 768px) {
+  table {
+    table-layout: fixed; /* Fix the layout on smaller screens */
+  }
+
+  /* Make cells narrower and allow wrapping */
+  .flexCell, .flexCelll {
+    min-width: 60px;      /* smaller min width on mobile */
+    max-width: 100px;     /* limit max width */
+    height: auto;         /* let height grow with wrapping */
+    padding: 6px 8px;
+    white-space: normal;  /* allow text wrap */
+    word-break: break-word;
+    overflow-wrap: break-word;
+    flex-grow: 0;         /* prevent cells from expanding */
+  }
+
+  /* Also apply to table header cells */
+  th > div.flexCelll {
+    min-width: 60px;
+    max-width: 100px;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+@media (max-width: 600px) {
+  table {
+    table-layout: fixed;
+  }
+
+  .flexCell, .flexCelll {
+    min-width: 50px;
+    max-width: 90px;
+    padding: 5px 6px;
+    font-size: 14px; /* smaller font on small phones */
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    flex-grow: 0;
+  }
+
+  th > div.flexCelll {
+    min-width: 50px;
+    max-width: 90px;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+}
