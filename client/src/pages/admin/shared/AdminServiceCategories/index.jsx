@@ -981,6 +981,9 @@ const AdminServiceCard = () => {
     setIsEditing(false);
     setEditId(null);
   };
+  const handleInputChange = (field, value) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
 
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
@@ -1023,6 +1026,58 @@ const AdminServiceCard = () => {
   //     alert("Xəta baş verdi");
   //   }
   // };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  
+  //   if (!formData.header.trim() || !formData.headCategory.trim()) {
+  //     alert("Zəhmət olmasa başlıq və baş kateqoriyanı doldurun.");
+  //     return;
+  //   }
+  
+  //   const existingImageNames = formData.imagePreviews
+  //     .filter((img) => img.isExisting)
+  //     .map((img) => img.url.split("/").pop());
+  
+  //   const cardDto = {
+  //     headCategory: formData.headCategory,
+  //     subCategory: formData.subCategory,
+  //     header: formData.header,
+  //     description: formData.description,
+  //     content: {
+  //       contentWrite: formData.content,
+  //     },
+  //     images: existingImageNames,
+  //   };
+  
+  //   const payload = new FormData();
+  //   payload.append(
+  //     "cardDto",
+  //     new Blob([JSON.stringify(cardDto)], { type: "application/json" })
+  //   );
+  
+
+  //   if (formData.mainImageFile) {
+  //     payload.append("mainImage", formData.mainImageFile);
+  //   }
+
+  //   formData.imageFiles.forEach((file) => {
+  //     payload.append("images", file);
+  //   });
+  
+  //   try {
+  //     if (isEditing) {
+  //       await updateCard(editId, payload);
+  //     } else {
+  //       await createCard(payload);
+  //     }
+  
+  //     await loadData();
+  //     resetForm();
+  //   } catch (err) {
+  //     console.error("Submit error:", err.response?.data || err.message);
+  //     alert("Xəta baş verdi");
+  //   }
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
   
@@ -1052,22 +1107,28 @@ const AdminServiceCard = () => {
       new Blob([JSON.stringify(cardDto)], { type: "application/json" })
     );
   
-    // ✅ append mainImage ALWAYS
+    // Handle main image logic like AdminSetem
     if (formData.mainImageFile) {
-      // New image selected
       payload.append("mainImage", formData.mainImageFile);
     } else if (formData.mainImagePreview) {
-      // Use filename from preview (editing)
-      const filename = formData.mainImagePreview.split("/").pop();
-      const fakeFile = new File([""], filename, { type: "text/plain" });
-      payload.append("mainImage", fakeFile);
+      try {
+        const existingImageName = formData.mainImagePreview.split("/").pop();
+        const response = await fetch(formData.mainImagePreview);
+        const blob = await response.blob();
+        const file = new File([blob], existingImageName || "mainImage.png", {
+          type: blob.type,
+        });
+        payload.append("mainImage", file);
+      } catch (err) {
+        console.error("Failed to reuse existing main image:", err);
+        alert("Main şəkil yüklənə bilmədi.");
+        return;
+      }
     } else {
-      // No file, no preview — still required → send empty dummy file
-      const empty = new File([""], "empty.jpg", { type: "image/jpeg" });
-      payload.append("mainImage", empty);
+      alert("Zəhmət olmasa əsas şəkil yükləyin.");
+      return;
     }
   
-    // ✅ append newly added gallery images
     formData.imageFiles.forEach((file) => {
       payload.append("images", file);
     });
@@ -1155,19 +1216,31 @@ const AdminServiceCard = () => {
                 onChange={(val) => setFormData((prev) => ({ ...prev, content: val }))}
               />
 
-              <input
+             <div className="border border-gray-300 p-3 my-3 rounded-md">
+             <input
                 type="file"
                 accept="image/*"
                 onChange={(e) => {
                   const file = e.target.files[0];
-                  if (!file) return;
-                  setFormData({
-                    ...formData,
-                    mainImageFile: file,
-                    mainImagePreview: URL.createObjectURL(file),
-                  });
+                  if (file) {
+                    handleInputChange("mainImageFile", file);
+                    handleInputChange("mainImagePreview", URL.createObjectURL(file));
+                  }
                 }}
               />
+                        {/* <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                const file = e.target.files[0];
+                if (file) {
+                  handleInputChange("iconFile", file);
+                  handleInputChange("iconPreview", URL.createObjectURL(file));
+                }
+              }}
+              className="w-full"
+            /> */}
+             </div>
               {formData.mainImagePreview && (
                 <img
                   src={formData.mainImagePreview}
@@ -1175,7 +1248,7 @@ const AdminServiceCard = () => {
                   className="w-20 h-20 object-cover rounded"
                 />
               )}
-
+             <div className="border border-gray-300 p-3 my-3 rounded-md">
               <input
                 type="file"
                 accept="image/*"
@@ -1195,7 +1268,9 @@ const AdminServiceCard = () => {
                     ],
                   }));
                 }}
+                className="w-full"
               />
+              </div>
               <div className="flex gap-2 flex-wrap">
                 {formData.imagePreviews.map(({ url }, i) => (
                   <img
@@ -1206,7 +1281,7 @@ const AdminServiceCard = () => {
                   />
                 ))}
               </div>
-              <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
+              <button type="submit" className={clsx(styles.modalbtn)} >
                 {isEditing ? "Yenilə" : "Yadda saxla"}
               </button>
             </form>

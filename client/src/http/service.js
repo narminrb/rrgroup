@@ -36,7 +36,7 @@ export const createSub = (data) => api.post('/v1/service/sub-category/add', data
 export const updateSub = (id, formData) =>
   api.put(`/v1/service/sub-category/update/${id}`, formData, {
     headers: {
-      "Content-Type": "multipart/form-data",
+      "Content-Type": "text/plain",
     },
   });
 export const deleteSub = (id) => api.delete(`/v1/service/sub-category/delete/${id}`);
