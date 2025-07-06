@@ -874,6 +874,8 @@
 // };
 
 // export default AdminServiceCard;
+
+
 import { useEffect, useState, useRef } from "react";
 import clsx from "clsx";
 import styles from "./style.module.scss";
@@ -980,14 +982,59 @@ const AdminServiceCard = () => {
     setEditId(null);
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   if (!formData.header.trim() || !formData.headCategory.trim()) {
+  //     alert("Zəhmət olmasa başlıq və baş kateqoriyanı doldurun.");
+  //     return;
+  //   }
+
+  //   const cardDto = {
+  //     headCategory: formData.headCategory,
+  //     subCategory: formData.subCategory,
+  //     header: formData.header,
+  //     description: formData.description,
+  //     content: {
+  //       contentWrite: formData.content,
+  //     },
+  //   };
+
+  //   const payload = new FormData();
+  //   payload.append(
+  //     "cardDto",
+  //     new Blob([JSON.stringify(cardDto)], { type: "application/json" })
+  //   );
+
+  //   if (formData.mainImageFile)
+  //     payload.append("mainImage", formData.mainImageFile);
+  //   formData.imageFiles.forEach((img) => payload.append("images", img));
+
+  //   try {
+  //     if (isEditing) {
+  //       await updateCard(editId, payload);
+  //     } else {
+  //       await createCard(payload);
+  //     }
+  //     await loadData();
+  //     resetForm();
+  //   } catch (err) {
+  //     console.error("Submit error:", err.response?.data || err.message);
+  //     alert("Xəta baş verdi");
+  //   }
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (!formData.header.trim() || !formData.headCategory.trim()) {
       alert("Zəhmət olmasa başlıq və baş kateqoriyanı doldurun.");
       return;
     }
-
+  
+    const existingImageNames = formData.imagePreviews
+      .filter((img) => img.isExisting)
+      .map((img) => img.url.split("/").pop());
+  
     const cardDto = {
       headCategory: formData.headCategory,
       subCategory: formData.subCategory,
@@ -996,24 +1043,42 @@ const AdminServiceCard = () => {
       content: {
         contentWrite: formData.content,
       },
+      images: existingImageNames,
     };
-
+  
     const payload = new FormData();
     payload.append(
       "cardDto",
       new Blob([JSON.stringify(cardDto)], { type: "application/json" })
     );
-
-    if (formData.mainImageFile)
+  
+    // ✅ append mainImage ALWAYS
+    if (formData.mainImageFile) {
+      // New image selected
       payload.append("mainImage", formData.mainImageFile);
-    formData.imageFiles.forEach((img) => payload.append("images", img));
-
+    } else if (formData.mainImagePreview) {
+      // Use filename from preview (editing)
+      const filename = formData.mainImagePreview.split("/").pop();
+      const fakeFile = new File([""], filename, { type: "text/plain" });
+      payload.append("mainImage", fakeFile);
+    } else {
+      // No file, no preview — still required → send empty dummy file
+      const empty = new File([""], "empty.jpg", { type: "image/jpeg" });
+      payload.append("mainImage", empty);
+    }
+  
+    // ✅ append newly added gallery images
+    formData.imageFiles.forEach((file) => {
+      payload.append("images", file);
+    });
+  
     try {
       if (isEditing) {
         await updateCard(editId, payload);
       } else {
         await createCard(payload);
       }
+  
       await loadData();
       resetForm();
     } catch (err) {
@@ -1021,7 +1086,8 @@ const AdminServiceCard = () => {
       alert("Xəta baş verdi");
     }
   };
-
+  
+  
   const handleHeadCategoryChange = (value) => {
     const filteredSubs = allSubCategories.filter(
       (sub) => sub.headCategory === value

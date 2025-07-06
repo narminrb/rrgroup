@@ -470,6 +470,8 @@
 // };
 
 // export default AdminSetem;
+
+
 import { useEffect, useState } from "react";
 import Open from "../../../../assets/open.svg";
 import clsx from "clsx";
@@ -583,19 +585,27 @@ const AdminSetem = () => {
         content: newValue.content.trim(),
       };
 
-      formData.append("dto", new Blob([JSON.stringify(requestPayload)], { type: "application/json" }));
+      formData.append(
+        isEditing ? "setemUpdateDto" : "dto",
+        new Blob([JSON.stringify(requestPayload)], { type: "application/json" })
+      );
+      
 
+      // if (newValue.iconFile) {
+      //   formData.append("icon", newValue.iconFile);
+      // } else if (newValue.existingIcon) {
+      //   const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${newValue.existingIcon}`);
+      //   const blob = await response.blob();
+      //   const filename = newValue.existingIcon.split("/").pop() || "icon.png";
+      //   formData.append("icon", new File([blob], filename, { type: blob.type }));
+      // } else {
+      //   alert("İkon faylı tələb olunur.");
+      //   return;
+      // }
       if (newValue.iconFile) {
         formData.append("icon", newValue.iconFile);
-      } else if (newValue.existingIcon) {
-        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${newValue.existingIcon}`);
-        const blob = await response.blob();
-        const filename = newValue.existingIcon.split("/").pop() || "icon.png";
-        formData.append("icon", new File([blob], filename, { type: blob.type }));
-      } else {
-        alert("İkon faylı tələb olunur.");
-        return;
       }
+      
 
       newValue.imageFiles.forEach((file) => formData.append("images", file));
 
@@ -641,11 +651,28 @@ const AdminSetem = () => {
               <input type="text" placeholder="Təsvir" value={newValue.description} onChange={(e) => handleInputChange("description", e.target.value)} className={clsx(styles.modalinput)} />
               <RichTextEditor value={newValue.content} onChange={(val) => handleInputChange("content", val)} />
               <label className="block font-semibold">İkon yüklə (tək):</label>
-              <input type="file" accept="image/*" onChange={(e) => {
-                const file = e.target.files[0];
-                if (file) handleInputChange("iconFile", file), handleInputChange("iconPreview", URL.createObjectURL(file));
-              }} />
-               {newValue.iconPreview && <img src={newValue.iconPreview} alt="icon preview" className="w-20 h-20 object-contain rounded mt-2" />}
+<div className="border border-gray-300 p-3 rounded-md">
+  <input
+    type="file"
+    accept="image/*"
+    onChange={(e) => {
+      const file = e.target.files[0];
+      if (file) {
+        handleInputChange("iconFile", file);
+        handleInputChange("iconPreview", URL.createObjectURL(file));
+      }
+    }}
+    className="w-full"
+  />
+  {newValue.iconPreview && (
+    <img
+      src={newValue.iconPreview}
+      alt="icon preview"
+      className="w-20 h-20 object-contain rounded mt-2"
+    />
+  )}
+</div>
+
               {/* {newValue.iconPreview && <img src={newValue.iconPreview} alt="icon preview" className="w-10 h-10 object-contain rounded mt-2" />}
               <label className="block font-semibold mt-4">Şəkillər yüklə (birdən çox):</label>
               <input type="file" accept="image/*" multiple className="border p-2 w-full" onChange={(e) => {

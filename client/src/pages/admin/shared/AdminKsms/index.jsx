@@ -495,9 +495,82 @@ const AdminKsms = () => {
     setEditId(null);
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   if (
+  //     !newValue.title.trim() ||
+  //     !newValue.description.trim() ||
+  //     !newValue.paragraph.trim()
+  //   ) {
+  //     alert("Zəhmət olmasa bütün xanaları doldurun.");
+  //     return;
+  //   }
+
+  //   try {
+  //     const formData = new FormData();
+
+  //     const requestPayload = {
+  //       title: newValue.title.trim(),
+  //       description: newValue.description.trim(),
+  //       paragraph: newValue.paragraph.trim(),
+  //     };
+
+  //     formData.append(
+  //       "request",
+  //       new Blob([JSON.stringify(requestPayload)], {
+  //         type: "application/json",
+  //       })
+  //     );
+
+  //     if (newValue.iconFile) {
+  //       formData.append("icon", newValue.iconFile);
+  //     } else if (newValue.existingIcon) {
+  //       const response = await fetch(
+  //         `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${newValue.existingIcon}`
+  //       );
+  //       const blob = await response.blob();
+  //       const filename = newValue.existingIcon.split("/").pop() || "icon.png";
+  //       const file = new File([blob], filename, { type: blob.type });
+  //       formData.append("icon", file);
+  //     } else {
+  //       alert("İkon faylı tələb olunur.");
+  //       return;
+  //     }
+
+  //     newValue.imageFiles.forEach((file) => {
+  //       formData.append("images", file);
+  //     });
+
+  //     const response = isEditing
+  //       ? await updateKsm(editId, formData)
+  //       : await createKsm(formData);
+
+  //     const updated = await getKsms();
+  //     setAboutValues(
+  //       updated.data.map((item) => ({
+  //         id: item.id,
+  //         title: item.title,
+  //         description: item.description,
+  //         paragraph: item.paragraph,
+  //         icon: item.icon,
+  //         iconPreview: `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${item.icon}`,
+  //         images: item.images.map(
+  //           (img) =>
+  //             `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${img}`
+  //         ),
+  //       }))
+  //     );
+
+  //     resetForm();
+  //   } catch (err) {
+  //     console.error("Submission error:", err.response?.data || err.message);
+  //     alert("Əməliyyat zamanı xəta baş verdi.");
+  //   }
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (
       !newValue.title.trim() ||
       !newValue.description.trim() ||
@@ -506,46 +579,42 @@ const AdminKsms = () => {
       alert("Zəhmət olmasa bütün xanaları doldurun.");
       return;
     }
-
+  
     try {
       const formData = new FormData();
-
+  
       const requestPayload = {
         title: newValue.title.trim(),
         description: newValue.description.trim(),
         paragraph: newValue.paragraph.trim(),
       };
-
+  
+      // ✅ Only in PUT (edit) mode: include existing image names
+      if (isEditing) {
+        requestPayload.images = [...newValue.existingImages];
+      }
+  
       formData.append(
         "request",
         new Blob([JSON.stringify(requestPayload)], {
           type: "application/json",
         })
       );
-
+  
+      // ✅ Append icon only if a new one is uploaded
       if (newValue.iconFile) {
         formData.append("icon", newValue.iconFile);
-      } else if (newValue.existingIcon) {
-        const response = await fetch(
-          `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${newValue.existingIcon}`
-        );
-        const blob = await response.blob();
-        const filename = newValue.existingIcon.split("/").pop() || "icon.png";
-        const file = new File([blob], filename, { type: blob.type });
-        formData.append("icon", file);
-      } else {
-        alert("İkon faylı tələb olunur.");
-        return;
       }
-
+  
+      // ✅ Append only newly added images
       newValue.imageFiles.forEach((file) => {
         formData.append("images", file);
       });
-
+  
       const response = isEditing
         ? await updateKsm(editId, formData)
         : await createKsm(formData);
-
+  
       const updated = await getKsms();
       setAboutValues(
         updated.data.map((item) => ({
@@ -561,14 +630,16 @@ const AdminKsms = () => {
           ),
         }))
       );
-
+  
       resetForm();
     } catch (err) {
       console.error("Submission error:", err.response?.data || err.message);
       alert("Əməliyyat zamanı xəta baş verdi.");
     }
   };
-
+  
+  
+  
   return (
     <div className="p-8 mx-auto">
       {modalOpen && (

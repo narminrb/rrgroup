@@ -440,10 +440,25 @@ const AdminProjectss = () => {
     });
   };
 
+  // const handleEdit = (val) => {
+  //   setIsEditing(true);
+  //   setEditId(val.id);
+
+  //   setNewValue({
+  //     name: val.name,
+  //     constructDate: val.constructDate || "",
+  //     orderOwner: val.orderOwner || "",
+  //     imageFiles: [],
+  //     imagePreviews: val.images || [],
+  //   });
+
+  //   setContent(val.desc || "");
+  //   setModalOpen(true);
+  // };
   const handleEdit = (val) => {
     setIsEditing(true);
     setEditId(val.id);
-
+  
     setNewValue({
       name: val.name,
       constructDate: val.constructDate || "",
@@ -451,11 +466,11 @@ const AdminProjectss = () => {
       imageFiles: [],
       imagePreviews: val.images || [],
     });
-
+  
     setContent(val.desc || "");
     setModalOpen(true);
   };
-
+  
   const resetForm = () => {
     setNewValue({
       name: "",
@@ -470,9 +485,65 @@ const AdminProjectss = () => {
     setEditId(null);
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   if (
+  //     !newValue.name.trim() ||
+  //     !newValue.constructDate.trim() ||
+  //     !newValue.orderOwner.trim() ||
+  //     !content.trim()
+  //   ) {
+  //     alert("Zəhmət olmasa bütün xanaları doldurun.");
+  //     return;
+  //   }
+
+  //   try {
+  //     const formData = new FormData();
+
+  //     const dto = {
+  //       name: newValue.name.trim(),
+  //       contructDate: newValue.constructDate.trim(),
+  //       orderOwner: newValue.orderOwner.trim(),
+  //       content: content.trim(),
+  //     };
+
+  //     formData.append("request", new Blob([JSON.stringify(dto)], { type: "application/json" }));
+
+  //     newValue.imageFiles.forEach((file) => {
+  //       formData.append("images", file);
+  //     });
+
+  //     if (isEditing) {
+  //       await updateProject(editId, formData);
+  //     } else {
+  //       await createProject(formData);
+  //     }
+
+  //     // Reload projects after submit
+  //     const updated = await getProjects();
+  //     setAboutValues(
+  //       updated.data.map((item) => ({
+  //         id: item.id,
+  //         name: item.name,
+  //         constructDate: item.constructDate,
+  //         orderOwner: item.orderOwner,
+  //         desc: item.content,
+  //         images: item.images.map(
+  //           (img) => `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${img}`
+  //         ),
+  //       }))
+  //     );
+
+  //     resetForm();
+  //   } catch (err) {
+  //     console.error(err.response?.data || err.message);
+  //     alert("Əməliyyat zamanı xəta baş verdi.");
+  //   }
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (
       !newValue.name.trim() ||
       !newValue.constructDate.trim() ||
@@ -482,30 +553,39 @@ const AdminProjectss = () => {
       alert("Zəhmət olmasa bütün xanaları doldurun.");
       return;
     }
-
+  
     try {
       const formData = new FormData();
-
+  
       const dto = {
         name: newValue.name.trim(),
-        contructDate: newValue.constructDate.trim(),
+        constructDate: newValue.constructDate.trim(),
         orderOwner: newValue.orderOwner.trim(),
         content: content.trim(),
       };
-
+  
+      // ✅ If editing, send existing image filenames in `request.images`
+      if (isEditing) {
+        const existingImageFilenames = newValue.imagePreviews
+          .filter((url) => url.startsWith(import.meta.env.VITE_API_BASE_URL))
+          .map((url) => url.split("/").pop());
+  
+        dto.images = existingImageFilenames;
+      }
+  
       formData.append("request", new Blob([JSON.stringify(dto)], { type: "application/json" }));
-
+  
+      // ✅ Always append only newly uploaded images
       newValue.imageFiles.forEach((file) => {
         formData.append("images", file);
       });
-
+  
       if (isEditing) {
         await updateProject(editId, formData);
       } else {
         await createProject(formData);
       }
-
-      // Reload projects after submit
+  
       const updated = await getProjects();
       setAboutValues(
         updated.data.map((item) => ({
@@ -519,14 +599,14 @@ const AdminProjectss = () => {
           ),
         }))
       );
-
+  
       resetForm();
     } catch (err) {
       console.error(err.response?.data || err.message);
       alert("Əməliyyat zamanı xəta baş verdi.");
     }
   };
-
+  
   return (
     <div className="p-8 mx-auto">
       {modalOpen && (

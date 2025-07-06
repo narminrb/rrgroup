@@ -89,6 +89,51 @@ const AdminSpecialProjects = () => {
   };
 
   
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  
+  //   if (!newValue.name.trim() || !content.trim()) {
+  //     alert("Zəhmət olmasa bütün xanaları doldurun.");
+  //     return;
+  //   }
+  
+  //   try {
+  //     const formData = new FormData();
+  //     const payload = {
+  //       name: newValue.name.trim(),
+  //       content: content.trim(),
+  //       images: newValue.existingImages,
+  //     };
+  //     formData.append("specialDto", new Blob([JSON.stringify(payload)], { type: "application/json" }));
+      
+      
+  //     newValue.imageFiles.forEach((file) => {
+  //       formData.append("images", file);
+  //     });
+  //     const response = isEditing
+  //       ? await updateSpecialProject(editId, formData)
+  //       : await createSpecialProject(formData);
+  
+  //     // Refresh the list after successful operation
+  //     const updated = await getSpecialProjects();
+  //     setAboutValues(
+  //       updated.data.map((item) => ({
+  //         id: item.id,
+  //         name: item.name,
+  //         desc: item.content,
+  //         images: item.images.map(
+  //           (img) => `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${img}`
+  //         ),
+  //       }))
+  //     );
+  
+  //     resetForm();
+  //   } catch (err) {
+  //     console.error("Submission error:", err.response?.data || err.message);
+  //     alert("Əməliyyat zamanı xəta baş verdi.");
+  //   }
+  // };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
   
@@ -99,22 +144,34 @@ const AdminSpecialProjects = () => {
   
     try {
       const formData = new FormData();
+  
       const payload = {
         name: newValue.name.trim(),
         content: content.trim(),
-        images: newValue.existingImages,
       };
-      formData.append("specialDto", new Blob([JSON.stringify(payload)], { type: "application/json" }));
+  
+      // ✅ Add existing images if editing
+      if (isEditing) {
+        payload.images = [...newValue.existingImages];
+      }
+  
+      formData.append(
+        isEditing ? "request" : "specialDto",
+        new Blob([JSON.stringify(payload)], { type: "application/json" })
+      );
       
-      
+  
+      // ✅ Append only new images
       newValue.imageFiles.forEach((file) => {
         formData.append("images", file);
       });
-      const response = isEditing
-        ? await updateSpecialProject(editId, formData)
-        : await createSpecialProject(formData);
   
-      // Refresh the list after successful operation
+      if (isEditing) {
+        await updateSpecialProject(editId, formData);
+      } else {
+        await createSpecialProject(formData);
+      }
+  
       const updated = await getSpecialProjects();
       setAboutValues(
         updated.data.map((item) => ({
@@ -122,7 +179,8 @@ const AdminSpecialProjects = () => {
           name: item.name,
           desc: item.content,
           images: item.images.map(
-            (img) => `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${img}`
+            (img) =>
+              `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${img}`
           ),
         }))
       );
@@ -133,7 +191,6 @@ const AdminSpecialProjects = () => {
       alert("Əməliyyat zamanı xəta baş verdi.");
     }
   };
-  
   
   
   return (

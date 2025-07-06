@@ -401,6 +401,8 @@
 // };
 
 // export default AdminForeign;
+
+
 import { useEffect, useState } from "react";
 import Open from "../../../../assets/open.svg";
 import clsx from "clsx";
@@ -447,14 +449,15 @@ const AdminForeign = () => {
           id: item.id,
           header: item.header,
           description: item.description,
-          content: item.content?.contentWrite || "",
+          content: item.content?.contentWrite || item.content || "",
           icon: item.icon,
           iconPreview: `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${item.icon}`,
-          images: (item.content?.images || []).map((img) =>
-            img.startsWith("http")
-              ? img
-              : `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${img}`
-          ),
+          images:
+            item.content?.images?.map((img) =>
+              img.startsWith("http")
+                ? img
+                : `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${img}`
+            ) || [],
         }));
         setAboutValues(normalized);
       })
@@ -471,21 +474,34 @@ const AdminForeign = () => {
   };
 
   const handleEdit = (val) => {
+    console.log("Editing this one:", val);
+  
     setIsEditing(true);
     setEditId(val.id);
+  
     setNewValue({
-      header: val.header,
-      description: val.description,
-      content: val.content,
+      header: val.header || "",
+      description: val.description || "",
+      content: val.content || "",
       iconFile: null,
-      iconPreview: val.iconPreview,
-      existingIcon: val.icon,
+      iconPreview: val.iconPreview || null,
+      existingIcon: val.icon || "",
       imageFiles: [],
-      imagePreviews: val.images.map((url) => ({ url, isExisting: true })),
-      existingImages: val.images.map((url) => url.split("/").pop()),
+      imagePreviews: val.images?.map((url) => ({
+        url, // full image URL
+        isExisting: true,
+        file: null, // doesn't matter for existing
+      })) || [],
+      existingImages: val.images?.map((url) => {
+        const segments = url.split("/"); // get filename from URL
+        return segments[segments.length - 1];
+      }) || [],
     });
+  
     setModalOpen(true);
   };
+  
+  
 
   const resetForm = () => {
     setNewValue({
@@ -515,19 +531,16 @@ const AdminForeign = () => {
     try {
       const formData = new FormData();
 
-      const requestPayload = {
+      const dtoPayload = {
         header: newValue.header.trim(),
         description: newValue.description.trim(),
-        content: {
-          contentWrite: newValue.content.trim(),
-        },
+        content: newValue.content.trim(),
+        ...(isEditing && { images: newValue.existingImages }),
       };
 
       formData.append(
-        "foreignMissionDto",
-        new Blob([JSON.stringify(requestPayload)], {
-          type: "application/json",
-        })
+        isEditing ? "foreignMissionUpdateDto" : "foreignMissionDto",
+        new Blob([JSON.stringify(dtoPayload)], { type: "application/json" })
       );
 
       if (newValue.iconFile) {
@@ -535,7 +548,7 @@ const AdminForeign = () => {
       } else if (newValue.existingIcon) {
         const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${newValue.existingIcon}`);
         const blob = await response.blob();
-        const filename = newValue.existingIcon.split("/").pop() || "icon.png";
+        const filename = newValue.existingIcon.split("/").pop();
         const file = new File([blob], filename, { type: blob.type });
         formData.append("icon", file);
       } else {
@@ -547,20 +560,24 @@ const AdminForeign = () => {
         formData.append("images", file);
       });
 
-      const response = isEditing ? await updateForeign(editId, formData) : await createForeign(formData);
+      const response = isEditing
+        ? await updateForeign(editId, formData)
+        : await createForeign(formData);
+
       const updated = await getForeigns();
-      const updatedItems = Array.isArray(updated?.data) ? updated.data : [];
-      setAboutValues(
-        updatedItems.map((item) => ({
-          id: item.id,
-          header: item.header,
-          description: item.description,
-          content: item.content?.contentWrite || "",
-          icon: item.icon,
-          iconPreview: `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${item.icon}`,
-          images: (item.content?.images || []).map((img) => `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${img}`),
-        }))
-      );
+      const normalized = updated.data.map((item) => ({
+        id: item.id,
+        header: item.header,
+        description: item.description,
+        content: item.content?.contentWrite || item.content || "",
+        icon: item.icon,
+        iconPreview: `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${item.icon}`,
+        images:
+          item.content?.images?.map((img) =>
+            `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${img}`
+          ) || [],
+      }));
+      setAboutValues(normalized);
 
       resetForm();
     } catch (err) {
@@ -586,7 +603,6 @@ const AdminForeign = () => {
               <input type="text" placeholder="Təsvir" value={newValue.description} onChange={(e) => handleInputChange("description", e.target.value)} className={clsx(styles.modalinput)} />
               <RichTextEditor value={newValue.content} onChange={(value) => handleInputChange("content", value)} />
 
-              {/* Icon */}
               <label className="block font-semibold">Icon yüklə (tək):</label>
               <input type="file" accept="image/*" onChange={(e) => {
                 const file = e.target.files[0];
@@ -595,7 +611,6 @@ const AdminForeign = () => {
               }} />
               {newValue.iconPreview && <img src={newValue.iconPreview} alt="icon preview" className="w-10 h-10 object-contain rounded mt-2" />}
 
-              {/* Images */}
               <label className="block font-semibold mt-4">Şəkillər yüklə (birdən çox):</label>
               <input type="file" accept="image/*" multiple className="border p-2 w-full" onChange={(e) => {
                 const files = Array.from(e.target.files);
@@ -609,33 +624,46 @@ const AdminForeign = () => {
                 }));
                 e.target.value = "";
               }} />
-              <div className="flex gap-2 flex-wrap mt-2">
-                {newValue.imagePreviews.map(({ url, isExisting, file }, index) => (
-                  <div key={index} className="relative">
-                    <img src={url} alt={`preview-${index}`} className="w-10 h-10 object-cover rounded" />
-                    <button type="button" className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center" onClick={() => {
-                      const updatedPreviews = [...newValue.imagePreviews];
-                      const removed = updatedPreviews.splice(index, 1)[0];
-                      let updatedFiles = [...newValue.imageFiles];
-                      let updatedExisting = [...newValue.existingImages];
-                      if (removed.isExisting) {
-                        const filename = removed.url.split("/").pop();
-                        updatedExisting = updatedExisting.filter((name) => name !== filename);
-                      } else {
-                        updatedFiles = updatedFiles.filter((f) => f !== removed.file);
-                      }
-                      setNewValue((prev) => ({
-                        ...prev,
-                        imagePreviews: updatedPreviews,
-                        imageFiles: updatedFiles,
-                        existingImages: updatedExisting,
-                      }));
-                    }}>
-                      ×
-                    </button>
-                  </div>
-                ))}
-              </div>
+     <div className="flex gap-2 flex-wrap mt-2">
+  {newValue.imagePreviews.map(({ url, isExisting, file }, index) => (
+    <div key={index} className="relative">
+      <img
+        src={url}
+        alt={`preview-${index}`}
+        className="w-10 h-10 object-cover rounded"
+      />
+      <button
+        type="button"
+        className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"
+        onClick={() => {
+          const updatedPreviews = [...newValue.imagePreviews];
+          const removed = updatedPreviews.splice(index, 1)[0];
+
+          let updatedFiles = [...newValue.imageFiles];
+          let updatedExisting = [...newValue.existingImages];
+
+          if (removed.isExisting) {
+            const filename = removed.url.split("/").pop();
+            updatedExisting = updatedExisting.filter(
+              (name) => name !== filename
+            );
+          } else {
+            updatedFiles = updatedFiles.filter((f) => f !== removed.file);
+          }
+
+          setNewValue((prev) => ({
+            ...prev,
+            imagePreviews: updatedPreviews,
+            imageFiles: updatedFiles,
+            existingImages: updatedExisting,
+          }));
+        }}
+      >
+        ×
+      </button>
+    </div>
+  ))}
+</div>
 
               <button className={clsx(styles.modalbtn)} type="submit">
                 {isEditing ? "Yenilə" : "Yadda saxla"}
