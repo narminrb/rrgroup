@@ -81,7 +81,7 @@ const ServiceOfficeTemplates = () => {
 )}
 
      </div>
-     {project.content?.images?.length > 0 && (
+     {project?.images?.length > 0 && (
           <div className="about-certificate-swiper container max-w-screen-xl mx-auto my-10 px-3 relative"> 
           <div className="swiper-button-prev-cert custom-swiper-button hidden sm:flex">
             <ArrowLeft />
