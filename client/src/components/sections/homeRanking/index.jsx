@@ -46,6 +46,7 @@ import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import styles from './style.module.scss';
 import { getAPiData } from '../../../http/api';
+import House from '../../../assets/house.jpg'
 
 const HomeRanking = () => {
   const [aboutCards, setAboutCards] = useState([]);
@@ -64,13 +65,15 @@ const HomeRanking = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         
         <div className="flex justify-center">
-        <div className={clsx(styles.homeimg)}>
+        {/* <div className={clsx(styles.homeimg)}>
           <img
               src={`${import.meta.env.BASE_URL}assets/home.svg`}
               alt="Home"
               className="w-full max-w-md md:max-w-full object-contain"
             />
-         </div>
+            <House/>
+         </div> */}
+         <img src={House} alt="House" className={clsx(styles.homeimg)} />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

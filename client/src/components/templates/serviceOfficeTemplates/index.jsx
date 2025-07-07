@@ -52,10 +52,10 @@ const ServiceOfficeTemplates = () => {
   }
 </div>
 </div>
-{project.content?.contentWrite && (
+{project?.content && (
   <div
     className={clsx(styles.detname, 'ql-editor')}
-    dangerouslySetInnerHTML={{ __html: project.content.contentWrite }}
+    dangerouslySetInnerHTML={{ __html: project.content }}
   />
 )}
 
