@@ -13,6 +13,7 @@ const staticPathsMap = {
   services: 'Xidmətlərimiz',
   projects: 'Layihələrimiz',
   newprojects: 'Özəl Layihələr',
+  offices: 'Ofislər',
 };
 
 const Breadcrumb = () => {
@@ -40,8 +41,10 @@ const Breadcrumb = () => {
           endpoint = `/v1/vacancy/getBySlug/${lastSegment}`;
         } else if (secondLastSegment === 'ksm') {
           endpoint = `/v1/ksm/getBySlug/${lastSegment}`;
+        } else if (secondLastSegment === 'offices') {
+          endpoint = `/v1/office/getBySlug/${lastSegment}`;
         }
-
+        
         if (endpoint) {
           const data = await getAPiData(endpoint);
           setDynamicTitle(data?.title || data?.name || data?.header || null);

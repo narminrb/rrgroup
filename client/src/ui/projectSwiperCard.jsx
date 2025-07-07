@@ -27,7 +27,7 @@ export const ProjSwiperCardContainer = styled.div`
 `;
 
 export const ProjSwiperImage = styled.div`
-  width: 100%;   /* full width by default */
+  width: 100%;  
   height: auto;
   aspect-ratio: 4 / 3;
   border-radius: 10px;
@@ -64,6 +64,18 @@ export const ProjSwiperName = styled.h2`
   }
 `;
 
+// export const ProjSwiperDesc = styled.p`
+//   color: #000;
+//   font-family: Inter;
+//   font-size: 16px;
+//   font-weight: 300;
+//   line-height: 1.5;
+//   text-align: left;
+
+//   @media (max-width: 768px) {
+//     font-size: 14px;
+//   }
+// `;
 export const ProjSwiperDesc = styled.p`
   color: #000;
   font-family: Inter;
@@ -72,7 +84,15 @@ export const ProjSwiperDesc = styled.p`
   line-height: 1.5;
   text-align: left;
 
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 👈 force exactly 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   @media (max-width: 768px) {
     font-size: 14px;
+    -webkit-line-clamp: 2; /* smaller screens: 2 lines */
   }
 `;
+

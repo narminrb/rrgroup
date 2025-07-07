@@ -28,13 +28,13 @@ import {
 } from '@/ui/projectSwiperCard';
 import React from 'react';
 
-const truncateHTML = (htmlString, maxChars = 250) => {
-  const div = document.createElement("div");
-  div.innerHTML = htmlString;
-  const text = div.textContent || div.innerText || "";
-  const sliced = text.slice(0, maxChars).trim();
-  return sliced + (text.length > maxChars ? "..." : "");
-};
+// const truncateHTML = (htmlString, maxChars = 250) => {
+//   const div = document.createElement("div");
+//   div.innerHTML = htmlString;
+//   const text = div.textContent || div.innerText || "";
+//   const sliced = text.slice(0, maxChars).trim();
+//   return sliced + (text.length > maxChars ? "..." : "");
+// };
 
 export default function ProjectSwiperCard({ ImageSrc, name, desc }) {
   return (
@@ -44,9 +44,8 @@ export default function ProjectSwiperCard({ ImageSrc, name, desc }) {
       </ProjSwiperImage>
       <ProjSwiperName>{name}</ProjSwiperName>
 
-      <ProjSwiperDesc>
-        {truncateHTML(desc, 250)}
-      </ProjSwiperDesc>
+      <ProjSwiperDesc dangerouslySetInnerHTML={{ __html: desc }} />
+
     </ProjSwiperCardContainer>
   );
 }

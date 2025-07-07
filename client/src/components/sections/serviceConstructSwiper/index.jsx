@@ -59,39 +59,32 @@
 
 
 
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import './style.css'; 
-import ProjectSwiperCard from '@/components/shared/projectSwiperCard';
-import { Link } from 'react-router-dom';
+// import React from 'react';
+// import { Swiper, SwiperSlide } from 'swiper/react';
+// import 'swiper/css';
+// import 'swiper/css/pagination';
+// import './style.css'; 
+// import ProjectSwiperCard from '@/components/shared/projectSwiperCard';
+// import { Link } from 'react-router-dom';
 
-// export default function ServiceConstructSwiper({ data = [] }) {
-//   if (!data.length) return null;
-
+// export default function ServiceConstructSwiper({ data }) {
 //   return (
 //     <div className="container max-w-screen-xl mx-auto my-10 px-3 relative"> 
 //       <Swiper
 //         slidesPerView={2}
-//         spaceBetween={10}
-//         grabCursor={true} 
-//         className="mySwiper"
+//         spaceBetween={20}
+//         grabCursor={true}
 //         breakpoints={{
 //           340: { slidesPerView: 1 },
 //           768: { slidesPerView: 1 },
 //           1024: { slidesPerView: 2 },
 //         }}
 //       >
-//         {data.map((el, index) => (
-//           <SwiperSlide className="font-worksans" key={index}>
-//             <Link to={`/rrgroup/services/${el.id}`}>
+//         {data?.map((el, index) => (
+//           <SwiperSlide key={index}>
+//             <Link to={`/services/${el.slug}`}>
 //               <ProjectSwiperCard
-//                 ImageSrc={
-//                   el.content?.mainImage
-//                     ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${el.content.mainImage}`
-//                     : 'https://via.placeholder.com/150'
-//                 }
+//                 ImageSrc={`${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${el.content?.mainImage}`}
 //                 name={el.header}
 //                 desc={el.description}
 //               />
@@ -102,9 +95,14 @@ import { Link } from 'react-router-dom';
 //     </div>
 //   );
 // }
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import './style.css'; 
+import ProjectSwiperCard from '@/components/shared/projectSwiperCard';
+import { Link } from 'react-router-dom';
 
-
-// components/ServiceConstructSwiper.jsx
 export default function ServiceConstructSwiper({ data }) {
   return (
     <div className="container max-w-screen-xl mx-auto my-10 px-3 relative"> 
@@ -118,17 +116,23 @@ export default function ServiceConstructSwiper({ data }) {
           1024: { slidesPerView: 2 },
         }}
       >
-        {data?.map((el, index) => (
-          <SwiperSlide key={index}>
-            <Link to={`/services/${el.slug}`}>
-              <ProjectSwiperCard
-                ImageSrc={`${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${el.content?.mainImage}`}
-                name={el.header}
-                desc={el.description}
-              />
-            </Link>
-          </SwiperSlide>
-        ))}
+        {data?.map((el, index) => {
+          const imageUrl = el.content?.mainImage
+            ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${el.content.mainImage}`
+            : 'https://via.placeholder.com/300';
+
+          return (
+            <SwiperSlide key={index}>
+              <Link to={`/services/${el.slug}`}>
+                <ProjectSwiperCard
+                  ImageSrc={imageUrl}
+                  name={el.header}
+                  desc={el.description}
+                />
+              </Link>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </div>
   );
