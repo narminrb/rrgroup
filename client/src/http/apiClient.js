@@ -47,10 +47,17 @@ client.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        const res = await axios.post("http://217.18.210.188:8080/api/v1/auth/refresh", {
-          accessToken: getAccessToken(),
-          refreshToken: getRefreshToken(),
-        });
+        // const res = await axios.post("http://217.18.210.188:8080/api/v1/auth/refresh", {
+        //   accessToken: getAccessToken(),
+        //   refreshToken: getRefreshToken(),
+        // });
+        const res = await axios.post(
+          `${import.meta.env.VITE_API_BASE_URL}/v1/auth/refresh`,
+          {
+            accessToken: getAccessToken(),
+            refreshToken: getRefreshToken(),
+          }
+        );
 
         const { accessToken, refreshToken } = res.data;
         setTokens(accessToken, refreshToken);
