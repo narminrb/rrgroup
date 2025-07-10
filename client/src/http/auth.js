@@ -1,8 +1,14 @@
+// import axios from "axios";
+
+// const API = axios.create({
+//   baseURL: "http://217.18.210.188:8080/api/v1/auth",
+// });
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://217.18.210.188:8080/api/v1/auth",
+  baseURL: `${import.meta.env.VITE_API_BASE_URL}/v1/auth`,
 });
+
 
 // export const register = async ({ username, password }) => {
 //   try {
