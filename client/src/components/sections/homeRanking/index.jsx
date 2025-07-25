@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import styles from './style.module.scss';
 import { getAPiData } from '../../../http/api';
-import Housee from '../../../assets/4904447370784255973.jpg'
+import Housee from '../../../assets/housee.jpg'
 
 const HomeRanking = () => {
   const [aboutCards, setAboutCards] = useState([]);
@@ -17,7 +17,7 @@ const HomeRanking = () => {
 
 
   return (
-    <div className="mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="mx-auto px-4 my-10 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         
         <div className="flex justify-center">
