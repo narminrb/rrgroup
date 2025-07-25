@@ -26,9 +26,7 @@ const Breadcrumb = () => {
     .filter((x) => x && x !== 'rrgroup');
 
   const lastSegment = pathnames[pathnames.length - 1];
-  const secondLastSegment = pathnames[pathnames.length - 2]; // e.g. "news" or "career"
-
-  // Fetch title for last slug only (if it's dynamic)
+  const secondLastSegment = pathnames[pathnames.length - 2];
   useEffect(() => {
     const fetchTitle = async () => {
       try {

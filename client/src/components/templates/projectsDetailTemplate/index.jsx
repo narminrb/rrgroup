@@ -154,6 +154,7 @@ import ArrowLeft from '@/assets/arrow-left.svg';
 import ArrowRight from '@/assets/arrow-right.svg';
 import ProjectSwiper from '@/components/sections/projectSwiper'; 
 import './style.css'
+import { Helmet } from 'react-helmet-async';
 
 const ProjectDetailTemplate = () => {
   const { slug } = useParams();
@@ -177,17 +178,32 @@ const ProjectDetailTemplate = () => {
   const name = project.name || 'No name';
   const date = project.constructDate || 'No date';
   const customer = project.orderOwner || 'No customer';
+  const image = images[0] || null;
+const imageUrl = image
+  ? (image.startsWith('http') 
+      ? image 
+      : `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${image}`)
+  : 'https://via.placeholder.com/150';
 
   return (
-    <div className="container mx-auto my-20 px-4 max-w-screen-xl">
+    <>
+      <Helmet>
+      <title>{name} | Projects | Rrgroup</title>
+      <meta property="og:title" content={`${name} | Rrgroup`} />
+      <meta property="og:image" content={imageUrl} />
+      <meta property="og:type" content="article" />
+      <meta name="description" content={project.content?.slice(0, 150) || 'Project detail page'} />
+    </Helmet>
+          <div className="container mx-auto my-20 px-4 max-w-screen-xl">
       {images.length > 0 && (
         <div className="relative">
-          <div className="swiper-button-prev-cert custom-swiper-button hidden sm:flex">
-            <ArrowLeft />
-          </div>
+          <div className="swiper-button-prev-cert custom-swiper-button">
+    <ArrowLeft />
+  </div>
           <Swiper
             slidesPerView={1}
             spaceBetween={0}
+            loop={true}
             navigation={{
               nextEl: '.swiper-button-next-cert',
               prevEl: '.swiper-button-prev-cert',
@@ -200,7 +216,7 @@ const ProjectDetailTemplate = () => {
                 slidesPerView: 1,
               },
               1024: {
-                slidesPerView: 2,
+                slidesPerView: 1,
               },
             }}
             modules={[Navigation]}
@@ -212,18 +228,20 @@ const ProjectDetailTemplate = () => {
                 : `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${img}`;
               return (
                 <SwiperSlide key={index}>
-                  <img className={clsx(styles.projectimg)} src={imageUrl} alt={`Project ${index + 1}`} />
-                </SwiperSlide>
+              <div className={clsx(styles.projectimage)}>
+                <img className={clsx(styles.projectimg)} src={imageUrl} alt={`Project ${index + 1}`} />
+              </div>
+            </SwiperSlide>
+
               );
             })}
           </Swiper>
-          <div className="swiper-button-next-cert custom-swiper-button hidden sm:flex">
-            <ArrowRight />
-          </div>
+          <div className="swiper-button-next-cert custom-swiper-button">
+    <ArrowRight />
+  </div>
         </div>
       )}
 
-      {/* Project Info */}
       <div className="py-7">
         <div className="flex gap-6 py-6">
           <h2 className={clsx(styles.detailname)}>Layihə adı</h2>
@@ -247,6 +265,8 @@ const ProjectDetailTemplate = () => {
       </div>
       <ProjectSwiper images={project.images || []} />
     </div>
+    </>
+    
   );
 };
 

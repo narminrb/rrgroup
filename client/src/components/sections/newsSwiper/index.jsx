@@ -68,7 +68,7 @@ export default function NewsSwiper({ images = [], onImageClick }) {
       : `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${img}`;
 
   return (
-    <div className="about-certificate-swiper container max-w-screen-xl mx-auto my-10 px-3 relative">
+    <div className="news-swiper container max-w-screen-xl mx-auto my-10 px-3 relative">
       <div className="swiper-button-prev-cert custom-swiper-button hidden sm:flex">
         <ArrowLeft />
       </div>
@@ -97,7 +97,7 @@ export default function NewsSwiper({ images = [], onImageClick }) {
                 className="cursor-pointer"
                 onClick={() => onImageClick?.(img)}
               >
-                <NewsSwiperCard ImageSrc={imageUrl} />
+                <NewsSwiperCard className="news-card-image" ImageSrc={imageUrl} />
               </div>
             </SwiperSlide>
           );

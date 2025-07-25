@@ -14,12 +14,8 @@ export default function ProtectedRoute({ children }) {
   const accessToken = getAccessToken();
   const refreshToken = getRefreshToken();
 
-  // If neither token exists, force login
   if (!accessToken && !refreshToken) {
     return <Navigate to="/login" />;
   }
-
-  // If refreshToken exists, your apiClient will handle refreshing on API calls,
-  // so allow access for now.
   return children;
 }

@@ -5,6 +5,7 @@ import { getAPiData } from '@/http/api';
 import clsx from 'clsx';
 import styles from './style.module.scss';
 import ServiceDetailSwiper from '@/components/sections/serviceDetailSwiper';
+import { Helmet } from 'react-helmet-async';
 
 const ServiceDetailsTemplates = () => {
   const { slug } = useParams();
@@ -24,7 +25,6 @@ const ServiceDetailsTemplates = () => {
   if (isError) return <p>Error: {error.message}</p>;
   if (!project) return <p>Project not found.</p>;
   const images = project.content?.images || [];
-  // Fix image URL
   const imageUrl = project.content?.mainImage
   ? `${import.meta.env.VITE_API_BASE_URL}/v1/files/view/${project.content.mainImage}`
   : 'https://via.placeholder.com/300';
@@ -33,9 +33,22 @@ const ServiceDetailsTemplates = () => {
   const name = project.header || 'No name';
 
   const contentText = project.content?.contentWrite || '';
+  const mainImageUrl = imageUrl;
+const title = name || 'Service Detail';
+const description = contentText ? contentText.replace(/<[^>]+>/g, '').slice(0, 150) : 'Service detail page';
+
 
   return (
-    <div className="container mx-auto my-20 px-4 max-w-screen-xl">
+    <>
+      <Helmet>
+    <title>{title} | Rrgroup</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={`${title} | Rrgroup`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={mainImageUrl} />
+    <meta property="og:type" content="article" />
+  </Helmet>
+  <div className="container mx-auto my-20 px-4 max-w-screen-xl">
       <div className={clsx(styles.projectimage)}>
         <img className={clsx(styles.projectimg)} src={imageUrl} alt={name} />
       </div>
@@ -60,6 +73,8 @@ const ServiceDetailsTemplates = () => {
 
       <ServiceDetailSwiper images={images} />
     </div>
+    </>
+    
   );
 };
 

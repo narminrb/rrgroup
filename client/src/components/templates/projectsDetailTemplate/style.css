@@ -104,15 +104,17 @@
   cursor: pointer;
   z-index: 10;
 }
-
-
-.swiper-button-prev {
-  left: -50px; 
+ .swiper-button-next,
+ .swiper-button-prev {
+  color: #555555 !important;
 }
 
+.popularSwiper .swiper-button-next {
+  right: -10px;
+}
 
-.swiper-button-next {
-  right: -50px; 
+.popularSwiper .swiper-button-prev {
+  left: -10px;
 }
 
 
@@ -121,4 +123,32 @@
   height: 24px;
   object-fit: contain;
   pointer-events: none; 
+}
+.custom-swiper-button {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  cursor: pointer;
+  background: rgba(255,255,255,0.7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiper-button-prev-cert {
+  left: -50px; /* outside the image */
+}
+
+.swiper-button-next-cert {
+  right: -50px; /* outside the image */
+}
+
+.arrow-icon {
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
 }

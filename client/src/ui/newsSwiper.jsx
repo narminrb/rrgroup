@@ -15,9 +15,8 @@ export const NewsSwiperImageContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-    width: 390px;
-    height: 284px;
-    aspect-ratio: 379/284;
+  width: 390px;
+  height: 284px;
   
   
 `;
@@ -34,3 +33,4 @@ export const NewsSwiperImage = styled.img`
 export const NewsSwiperImageContainerWithHover = styled(NewsSwiperImageContainer)`
  
 `;
+

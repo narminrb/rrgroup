@@ -1,5 +1,5 @@
 import React from 'react'
-import { NewsSwiperImage, NewsSwiperImageContainerWithHover } from '@/ui/newsSwiper';
+import { NewsSwiperContainer, NewsSwiperImage, NewsSwiperImageContainer, NewsSwiperImageContainerWithHover } from '@/ui/newsSwiper';
 
 const NewsSwiperCard = ({ ImageSrc,  }) => {
     return (

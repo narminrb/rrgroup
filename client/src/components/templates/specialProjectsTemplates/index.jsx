@@ -161,6 +161,7 @@ import { Navigation } from 'swiper/modules';
 import ArrowLeft from '@/assets/arrow-left.svg';
 import ArrowRight from '@/assets/arrow-right.svg';
 import NewsSwiperCard from '@/components/shared/newsSwiperCard';
+import { Helmet } from 'react-helmet-async';
 
 const SpecialProjectsTemplates = () => {
   const { slug } = useParams();
@@ -183,7 +184,16 @@ const SpecialProjectsTemplates = () => {
   const name = project.name || 'No name';
 
   return (
-    <div className="container mx-auto my-20 px-4 max-w-screen-xl">
+    <>
+     <Helmet>
+                <title>{name} | News | Rrgroup</title>
+                <meta name="description" content={context.slice(0, 150)} />
+                <meta property="og:title" content={name} />
+                <meta property="og:description" content={context.slice(0, 150)} />
+                <meta property="og:image" content={imageUrl} />
+                <meta property="og:type" content="article" />
+              </Helmet>
+              <div className="container mx-auto my-20 px-4 max-w-screen-xl">
       <div className="py-7">
         <div className="flex gap-6 py-6">
           <h1 className={clsx(styles.detailname)}>{name}</h1>
@@ -252,6 +262,8 @@ const SpecialProjectsTemplates = () => {
         </div>
       )}
     </div>
+    </>
+    
   );
 };
 

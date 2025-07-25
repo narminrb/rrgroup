@@ -5,6 +5,7 @@ import { getAPiData } from '@/http/api';
 import clsx from 'clsx';
 import styles from './style.module.scss';
 import KsmDetailSwiper from '@/components/sections/ksmDetailSwiper';
+import { Helmet } from 'react-helmet-async';
 
 const CareerDetailTemplates = () => {
   const { slug } = useParams();
@@ -25,9 +26,18 @@ const CareerDetailTemplates = () => {
   if (!ksm) return <p>Career not found.</p>;
 
   const context = ksm.content || 'No context';
+  const title = ksm.title || 'Career Detail';
+  const description = ksm.description || 'Career detail page for Rrgroup';
 
   return (
-    <div className="container mx-auto my-20 px-4 max-w-screen-xl">
+    <>
+     <Helmet>
+        <title>{title} | Rrgroup</title>
+        <meta name="description" content={description} />
+        <meta property="og:title" content={`${title} | Rrgroup`} />
+        <meta property="og:description" content={description} />
+      </Helmet>
+      <div className="container mx-auto my-20 px-4 max-w-screen-xl">
       <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
         <div className={clsx(styles.desccont)}>
           <div className="py-6">
@@ -60,6 +70,8 @@ const CareerDetailTemplates = () => {
       </div>
       <KsmDetailSwiper images={ksm.images} />
     </div>
+    </>
+    
   );
 };
 

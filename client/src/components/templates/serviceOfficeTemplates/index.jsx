@@ -10,6 +10,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
+import { Helmet } from 'react-helmet-async'
 const ServiceOfficeTemplates = () => {
   const { slug } = useParams()
 
@@ -37,6 +38,14 @@ const ServiceOfficeTemplates = () => {
 
 
   return (
+    <>
+    <Helmet>
+      <title>{name} | Rrgroup</title>
+      <meta name="description" content={project.description || 'Service office detail'} />
+      <meta property="og:title" content={`${name} | Rrgroup`} />
+      <meta property="og:description" content={project.description || 'Service office detail'} />
+      {/* Optionally add og:image if you have */}
+    </Helmet>
     <div className="container mx-auto my-20 px-4 max-w-screen-xl">
          <div className='py-7'>
         <div className='flex gap-6 py-6'>
@@ -130,6 +139,8 @@ const ServiceOfficeTemplates = () => {
         </div>
       )}
     </div>
+    </>
+  
   )
 }
 
