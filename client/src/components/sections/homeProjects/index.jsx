@@ -139,16 +139,14 @@ const HomeProjects = () => {
         )}
 
       </div>
-        {projects.length > 6 && (
   <div className="flex justify-center items-center mt-10">
     <Link
       to="/projects"
-      className=" text-gray py-2 px-6 rounded cursor-pointer text-xl"
+      className=" text-black py-2 px-6 rounded cursor-pointer text-xl"
     >
       Hamısına bax
     </Link>
   </div>
-)}
     </div>
   );
 };

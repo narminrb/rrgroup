@@ -30,6 +30,7 @@
     "styled-components": "^6.1.18",
     "swagger-ui-react": "^5.25.2",
     "swiper": "^11.2.6",
+    "tailwind-scrollbar": "^4.0.2",
     "tailwindcss": "^4.1.7"
   },
   "devDependencies": {

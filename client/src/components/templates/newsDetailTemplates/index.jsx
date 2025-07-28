@@ -46,7 +46,7 @@ const NewsDetailTemplate = () => {
       </Helmet>
       <div className="container mx-auto my-20 px-4 max-w-screen-xl">
       <div className="flex flex-col md:flex-row gap-6">
-        <div className="md:w-1/2 bg-[#F7F7F7] p-5">
+        {/* <div className="md:w-1/2 bg-[#F7F7F7] p-5">
           <h1 className="text-2xl md:text-3xl font-semibold text-black mb-4">
             {name}
           </h1>
@@ -54,7 +54,25 @@ const NewsDetailTemplate = () => {
             className="ql-editor"
             dangerouslySetInnerHTML={{ __html: context }}
           />
-        </div>
+        </div> */}
+       <div className="md:w-1/2 bg-[#F7F7F7] p-5 max-h-[460px] overflow-y-auto">
+  <div className="pr-2"> {/* optional: pr-2 to avoid scroll clipping */}
+    <h1 className="text-2xl md:text-3xl font-semibold text-black mb-4">
+      {name}
+    </h1>
+    <div
+      className="ql-editor p-0 m-0"
+      style={{
+        overflow: 'visible',
+        maxHeight: 'none'
+      }}
+      dangerouslySetInnerHTML={{ __html: context }}
+    />
+  </div>
+</div>
+
+
+
         <div className="md:w-1/2">
           <img
             className="w-full h-auto object-cover rounded"

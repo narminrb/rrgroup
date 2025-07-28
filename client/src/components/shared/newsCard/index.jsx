@@ -39,10 +39,11 @@ const NewsCard = ({ news }) => {
       />
      </div>
       <div className="p-3">
-        <h3 className={clsx(styles.newsname)}>{title}</h3>
+      <h3 className={clsx(styles.newsname)}>{truncateWords(title, 5)}</h3>
+
         <div
   className={clsx(styles.newsdesc)}
-  dangerouslySetInnerHTML={{ __html: truncateWords(paragraph, 6) }}
+  dangerouslySetInnerHTML={{ __html: truncateWords(paragraph, 5) }}
 />
 
       </div>
